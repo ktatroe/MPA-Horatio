@@ -104,10 +104,11 @@ public struct ServiceRequest
         self.payload = payload
         self.configurator = configurator
 
-        self.url = endpoint.url()
-
         if let configurator = configurator {
             self.url = configurator.configureURL(self)
+        }
+        else {
+            self.url = endpoint.url()
         }
     }
 

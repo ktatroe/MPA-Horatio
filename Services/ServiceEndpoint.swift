@@ -64,6 +64,17 @@ public protocol ServiceEndpointProvider: class {
 
 
 /**
+ Stores information about a `ServiceEndpoint` URL.
+*/
+enum ServiceEndpointURLContainer {
+    // URL is contained in an `NSURLComponents` object
+    case components(NSURLComponents)
+    
+    // URL is contained in a self-contained complete URL
+    case absolutePath(String)
+}
+
+/**
  Abstracts details of an API endpoint and turning endpoint information into `NSURL`
  instances (which can then be turned into `NSURLRequest` instances via the
  appropriate `Service`).
@@ -73,11 +84,7 @@ public class ServiceEndpoint {
     
     public let identifier: String
     
-    var scheme: String = ""
-    var hostName: String = ""
-    var basePath: String = ""
-    
-    var path: String = ""
+    var urlContainer: ServiceEndpointURLContainer
     
     public var type: ServiceEndpointType = .get
     
@@ -89,18 +96,28 @@ public class ServiceEndpoint {
     
     public init(identifier: String) {
         self.identifier = identifier
+        self.urlContainer = .absolutePath("")
     }
+    
     
     public convenience init(identifier: String, scheme: String, hostName: String, basePath: String, path: String) {
         self.init(identifier: identifier)
         
-        self.scheme = scheme
-        self.hostName = hostName
-        self.basePath = basePath
+        let components = NSURLComponents()
+        components.scheme = scheme
+        components.host = hostName
+        components.path = "\(basePath)/\(path)"
         
-        self.path = path
+        self.urlContainer = .components(components)
     }
+
     
+    public convenience init(identifier: String, path: String) {
+        self.init(identifier: identifier)
+        
+        self.urlContainer = .absolutePath(path)
+    }
+
     
     // MARK: - Public
     
@@ -112,9 +129,11 @@ public class ServiceEndpoint {
      attached to a `ServiceRequest`.
      */
     public func url() -> NSURL? {
-        let fullPath = String.init(format: "%@://%@%@", scheme, hostName, basePath)
-        let url = NSURL.init(string: fullPath)
-        
-        return url
+        switch urlContainer {
+        case .components(let components):
+            return components.URL
+        case .absolutePath(let urlString):
+            return NSURL(string: urlString)
+        }
     }
 }

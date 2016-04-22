@@ -50,16 +50,19 @@ public protocol ServiceRequestConfigurator: class {
 /// Provides base functionality for implementations of `ServiceRequestConfigurator`.
 public extension ServiceRequestConfigurator {
     public func configureURL(serviceRequest: ServiceRequest) -> NSURL? {
-        var basePath = serviceRequest.endpoint.basePath
-        
-        for transformer in endpointPathTransformers(serviceRequest) {
-            basePath = transformer.transformedPath(basePath)
+        switch serviceRequest.endpoint.urlContainer {
+            case .components(let components):
+                return components.URL
+
+            case .absolutePath(let urlString):
+                var basePath = urlString
+                
+                for transformer in endpointPathTransformers(serviceRequest) {
+                    basePath = transformer.transformedPath(basePath)
+                }
+            
+                return NSURL(string: basePath)
         }
-        
-        let fullPath = String.init(format: "%@://%@%@", serviceRequest.endpoint.scheme, serviceRequest.endpoint.hostName, basePath)
-        let url = NSURL.init(string: fullPath)
-        
-        return url
     }
     
     
