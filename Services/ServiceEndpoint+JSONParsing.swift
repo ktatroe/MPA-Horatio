@@ -59,24 +59,19 @@ extension ServiceEndpoint : JSONParsing {
         guard self.dynamicType.isValidJSONRepresentation(data) else { return }
         
         if let urlString = JSONParser.parseString(data[JSONKeys.URL]) {
-            if let url = NSURL(string: urlString), host = url.host, path = url.path {
-                scheme = url.scheme
-                self.hostName = host
-                
-                if let query = url.query {
-                    self.basePath = path + "?" + query
-                }
-                else {
-                    self.basePath = path
-                }
-            }
+            urlContainer = .absolutePath(urlString)
         }
-        
-        scheme = JSONParser.parseString(data[JSONKeys.Scheme]) ?? scheme
-        hostName = JSONParser.parseString(data[JSONKeys.HostName]) ?? hostName
-        basePath = JSONParser.parseString(data[JSONKeys.BasePath]) ?? basePath
-        
-        path = JSONParser.parseString(data[JSONKeys.Path]) ?? path
+        else {
+            let basePath = JSONParser.parseString(data[JSONKeys.BasePath])
+            let path = JSONParser.parseString(data[JSONKeys.Path])
+            
+            let components = NSURLComponents()
+            components.scheme = JSONParser.parseString(data[JSONKeys.Scheme])
+            components.host = JSONParser.parseString(data[JSONKeys.HostName])
+            components.path = "\(basePath)/\(path)"
+            
+            self.urlContainer = .components(components)
+        }
         
         isAuthRequired = JSONParser.parseBool(data[JSONKeys.AuthRequired], options: .allowEmpty) ?? isAuthRequired
         isIdempotent = JSONParser.parseBool(data[JSONKeys.Idempotent], options: .allowEmpty) ?? isIdempotent
