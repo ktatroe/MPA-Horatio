@@ -48,6 +48,27 @@ public protocol ServiceRequestPayload {
 }
 
 
+/// An empty service request for requests that require no payload; typealias to a specific payload type to use
+public class EmptyServiceRequestPayload : ServiceRequestPayload {
+    // MARK: - Initializers
+
+    public init() { }
+
+
+    // MARK: - Protocols
+
+    // MARK: <ServiceRequestPayload>
+
+    public func values() -> [String : String] {
+        return [String : String]()
+    }
+
+    public func hashValue() -> Int {
+        return 0
+    }
+}
+
+
 /// A combination of endpoint and payload to uniquely identify specific request attempts.
 public struct ServiceRequestIdentifier : Hashable {
     let endpoint: ServiceEndpoint
