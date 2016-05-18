@@ -275,7 +275,7 @@ extension NSDate {
             formatter.calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierISO8601)
             formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
             formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSX"
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
             
             return formatter
         }()
