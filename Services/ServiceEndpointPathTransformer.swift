@@ -43,6 +43,15 @@ public protocol ServiceEndpointPathTransformer: class {
     func transformedPath(path: String) -> String
 }
 
+extension ServiceEndpointPathTransformer {
+    func transformedPath(components: NSURLComponents) -> NSURLComponents {
+        guard let path = components.path else { return components }
+        components.path = transformedPath(path)
+ 
+        return components
+    }
+}
+
 
 /**
  A `EndpointPathTransformer` defined by substitutions; for example,
@@ -108,7 +117,7 @@ public class LocatorChainServiceEndpointPathTransformer: ServiceEndpointPathTran
         var index = 0
         
         for pathPart in endpointPath.componentsSeparatedByString("/") {
-            if pathPart.characters[pathPart.startIndex] == ":" {
+            if !pathPart.isEmpty && pathPart.characters[pathPart.startIndex] == ":" {
                 if index < locator.count {
                     // replace the next ":(foo)" with the first locator remaining
                     transformedComponents.append(locator[index])

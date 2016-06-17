@@ -129,8 +129,7 @@ internal extension NSURL {
         guard let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false) else { return self }
         
         for (key, value) in parameters {
-            let encodedValue = value.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-            let queryItem = NSURLQueryItem(name: key, value: encodedValue)
+            let queryItem = NSURLQueryItem(name: key, value: value)
             
             if let _ = components.queryItems {
                 components.queryItems!.append(queryItem)

@@ -51,17 +51,21 @@ public protocol ServiceRequestConfigurator: class {
 public extension ServiceRequestConfigurator {
     public func configureURL(serviceRequest: ServiceRequest) -> NSURL? {
         switch serviceRequest.endpoint.urlContainer {
-            case .components(let components):
-                return components.URL
+        case .components(var components):
+            for transformer in endpointPathTransformers(serviceRequest) {
+                components = transformer.transformedPath(components)
+            }
 
-            case .absolutePath(let urlString):
-                var basePath = urlString
-                
-                for transformer in endpointPathTransformers(serviceRequest) {
-                    basePath = transformer.transformedPath(basePath)
-                }
-            
-                return NSURL(string: basePath)
+            return components.URL
+
+        case .absolutePath(let urlString):
+            var basePath = urlString
+
+            for transformer in endpointPathTransformers(serviceRequest) {
+                basePath = transformer.transformedPath(basePath)
+            }
+
+            return NSURL(string: basePath)
         }
     }
     
