@@ -1,0 +1,874 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EDB09D2B1D85BD25000FC309 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D2A1D85BD25000FC309 /* AppDelegate.swift */; };
+		EDB09D2D1D85BD25000FC309 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D2C1D85BD25000FC309 /* ViewController.swift */; };
+		EDB09D301D85BD25000FC309 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB09D2E1D85BD25000FC309 /* Main.storyboard */; };
+		EDB09D331D85BD25000FC309 /* HoratioDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D311D85BD25000FC309 /* HoratioDemo.xcdatamodeld */; };
+		EDB09D351D85BD25000FC309 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDB09D341D85BD25000FC309 /* Assets.xcassets */; };
+		EDB09D381D85BD25000FC309 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB09D361D85BD25000FC309 /* LaunchScreen.storyboard */; };
+		EDB09D431D85BD26000FC309 /* HoratioDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D421D85BD26000FC309 /* HoratioDemoTests.swift */; };
+		EDB09D4E1D85BD26000FC309 /* HoratioDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D4D1D85BD26000FC309 /* HoratioDemoUITests.swift */; };
+		EDB09DBA1D85BF34000FC309 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D5F1D85BF34000FC309 /* Container.swift */; };
+		EDB09DC61D85BF34000FC309 /* FeatureCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D6D1D85BF34000FC309 /* FeatureCondition.swift */; };
+		EDB09DC71D85BF34000FC309 /* FeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D6E1D85BF34000FC309 /* FeatureManager.swift */; };
+		EDB09DC81D85BF34000FC309 /* FeatureSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D6F1D85BF34000FC309 /* FeatureSelector.swift */; };
+		EDB09DC91D85BF34000FC309 /* FeatureSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D701D85BF34000FC309 /* FeatureSubject.swift */; };
+		EDB09DCA1D85BF34000FC309 /* VendorIDFeatureSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D711D85BF34000FC309 /* VendorIDFeatureSubject.swift */; };
+		EDB09DCB1D85BF34000FC309 /* JSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D731D85BF34000FC309 /* JSONParsing.swift */; };
+		EDB09DCC1D85BF34000FC309 /* JSONServiceResponseProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D741D85BF34000FC309 /* JSONServiceResponseProcessor.swift */; };
+		EDB09DCE1D85BF34000FC309 /* AlertOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D771D85BF34000FC309 /* AlertOperation.swift */; };
+		EDB09DCF1D85BF34000FC309 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D781D85BF34000FC309 /* BlockObserver.swift */; };
+		EDB09DD01D85BF34000FC309 /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D791D85BF34000FC309 /* BlockOperation.swift */; };
+		EDB09DD11D85BF34000FC309 /* CalendarCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D7A1D85BF34000FC309 /* CalendarCondition.swift */; };
+		EDB09DD21D85BF34000FC309 /* CKContainer+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D7B1D85BF34000FC309 /* CKContainer+Operations.swift */; };
+		EDB09DD31D85BF34000FC309 /* CloudCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D7C1D85BF34000FC309 /* CloudCondition.swift */; };
+		EDB09DD41D85BF34000FC309 /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D7D1D85BF34000FC309 /* DelayOperation.swift */; };
+		EDB09DD61D85BF34000FC309 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D7F1D85BF34000FC309 /* Dictionary+Operations.swift */; };
+		EDB09DD71D85BF34000FC309 /* ExclusivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D801D85BF34000FC309 /* ExclusivityController.swift */; };
+		EDB09DD81D85BF34000FC309 /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D811D85BF34000FC309 /* GroupOperation.swift */; };
+		EDB09DD91D85BF34000FC309 /* HealthCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D821D85BF34000FC309 /* HealthCondition.swift */; };
+		EDB09DDA1D85BF34000FC309 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDB09D831D85BF34000FC309 /* LICENSE.txt */; };
+		EDB09DDB1D85BF34000FC309 /* LocationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D841D85BF34000FC309 /* LocationCondition.swift */; };
+		EDB09DDC1D85BF34000FC309 /* LocationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D851D85BF34000FC309 /* LocationOperation.swift */; };
+		EDB09DDD1D85BF34000FC309 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D861D85BF34000FC309 /* MutuallyExclusive.swift */; };
+		EDB09DDE1D85BF34000FC309 /* NegatedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D881D85BF34000FC309 /* NegatedCondition.swift */; };
+		EDB09DDF1D85BF34000FC309 /* NetworkObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D891D85BF34000FC309 /* NetworkObserver.swift */; };
+		EDB09DE01D85BF34000FC309 /* NoCancelledDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D8A1D85BF34000FC309 /* NoCancelledDependencies.swift */; };
+		EDB09DE11D85BF34000FC309 /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D8B1D85BF34000FC309 /* NSLock+Operations.swift */; };
+		EDB09DE21D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D8D1D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.m */; };
+		EDB09DE31D85BF34000FC309 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D8E1D85BF34000FC309 /* NSOperation+Operations.swift */; };
+		EDB09DE41D85BF34000FC309 /* NSURL+CacheFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D8F1D85BF34000FC309 /* NSURL+CacheFiles.swift */; };
+		EDB09DE51D85BF34000FC309 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D901D85BF34000FC309 /* Operation.swift */; };
+		EDB09DE61D85BF34000FC309 /* OperationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D911D85BF34000FC309 /* OperationCondition.swift */; };
+		EDB09DE71D85BF34000FC309 /* OperationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D921D85BF34000FC309 /* OperationErrors.swift */; };
+		EDB09DE81D85BF34000FC309 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D931D85BF34000FC309 /* OperationObserver.swift */; };
+		EDB09DE91D85BF34000FC309 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D941D85BF34000FC309 /* OperationQueue.swift */; };
+		EDB09DEA1D85BF34000FC309 /* PassbookCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D951D85BF34000FC309 /* PassbookCondition.swift */; };
+		EDB09DEB1D85BF34000FC309 /* PhotosCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D961D85BF34000FC309 /* PhotosCondition.swift */; };
+		EDB09DEC1D85BF34000FC309 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D971D85BF34000FC309 /* ReachabilityCondition.swift */; };
+		EDB09DED1D85BF34000FC309 /* RemoteNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D981D85BF34000FC309 /* RemoteNotificationCondition.swift */; };
+		EDB09DEE1D85BF34000FC309 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D991D85BF34000FC309 /* SilentCondition.swift */; };
+		EDB09DEF1D85BF34000FC309 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9A1D85BF34000FC309 /* TimeoutObserver.swift */; };
+		EDB09DF01D85BF34000FC309 /* UIUserNotifications+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9B1D85BF34000FC309 /* UIUserNotifications+Operations.swift */; };
+		EDB09DF11D85BF34000FC309 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9C1D85BF34000FC309 /* URLSessionTaskOperation.swift */; };
+		EDB09DF21D85BF34000FC309 /* UserNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9D1D85BF34000FC309 /* UserNotificationCondition.swift */; };
+		EDB09DF91D85BF34000FC309 /* TaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DA61D85BF34000FC309 /* TaskScheduler.swift */; };
+		EDB09DFB1D85BF34000FC309 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DA91D85BF34000FC309 /* Service.swift */; };
+		EDB09DFC1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAA1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift */; };
+		EDB09DFD1D85BF34000FC309 /* ServiceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAB1D85BF34000FC309 /* ServiceEndpoint.swift */; };
+		EDB09DFE1D85BF34000FC309 /* ServiceEndpointPathTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAC1D85BF34000FC309 /* ServiceEndpointPathTransformer.swift */; };
+		EDB09DFF1D85BF34000FC309 /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAD1D85BF34000FC309 /* ServiceRequest.swift */; };
+		EDB09E001D85BF34000FC309 /* ServiceRequestConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAE1D85BF34000FC309 /* ServiceRequestConfigurator.swift */; };
+		EDB09E011D85BF34000FC309 /* ServiceRequestDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAF1D85BF34000FC309 /* ServiceRequestDecorator.swift */; };
+		EDB09E021D85BF34000FC309 /* ServiceRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DB01D85BF34000FC309 /* ServiceRequestOperation.swift */; };
+		EDB09E031D85BF34000FC309 /* ServiceRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DB11D85BF34000FC309 /* ServiceRequestStatus.swift */; };
+		EDB09E041D85BF34000FC309 /* ServiceSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DB21D85BF34000FC309 /* ServiceSession.swift */; };
+		EDC073861D8AE2ED00ADEBC9 /* JSONServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC073851D8AE2ED00ADEBC9 /* JSONServiceRequest.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EDB09D3F1D85BD26000FC309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDB09D1F1D85BD25000FC309 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDB09D261D85BD25000FC309;
+			remoteInfo = HoratioDemo;
+		};
+		EDB09D4A1D85BD26000FC309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDB09D1F1D85BD25000FC309 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDB09D261D85BD25000FC309;
+			remoteInfo = HoratioDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EDB09D271D85BD25000FC309 /* HoratioDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HoratioDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDB09D2A1D85BD25000FC309 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EDB09D2C1D85BD25000FC309 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EDB09D2F1D85BD25000FC309 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EDB09D321D85BD25000FC309 /* HoratioDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HoratioDemo.xcdatamodel; sourceTree = "<group>"; };
+		EDB09D341D85BD25000FC309 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EDB09D371D85BD25000FC309 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EDB09D391D85BD25000FC309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDB09D3E1D85BD26000FC309 /* HoratioDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HoratioDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDB09D421D85BD26000FC309 /* HoratioDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoratioDemoTests.swift; sourceTree = "<group>"; };
+		EDB09D441D85BD26000FC309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDB09D491D85BD26000FC309 /* HoratioDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HoratioDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDB09D4D1D85BD26000FC309 /* HoratioDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoratioDemoUITests.swift; sourceTree = "<group>"; };
+		EDB09D4F1D85BD26000FC309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDB09D5F1D85BF34000FC309 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		EDB09D6D1D85BF34000FC309 /* FeatureCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureCondition.swift; sourceTree = "<group>"; };
+		EDB09D6E1D85BF34000FC309 /* FeatureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureManager.swift; sourceTree = "<group>"; };
+		EDB09D6F1D85BF34000FC309 /* FeatureSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureSelector.swift; sourceTree = "<group>"; };
+		EDB09D701D85BF34000FC309 /* FeatureSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureSubject.swift; sourceTree = "<group>"; };
+		EDB09D711D85BF34000FC309 /* VendorIDFeatureSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorIDFeatureSubject.swift; sourceTree = "<group>"; };
+		EDB09D731D85BF34000FC309 /* JSONParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParsing.swift; sourceTree = "<group>"; };
+		EDB09D741D85BF34000FC309 /* JSONServiceResponseProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONServiceResponseProcessor.swift; sourceTree = "<group>"; };
+		EDB09D771D85BF34000FC309 /* AlertOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertOperation.swift; sourceTree = "<group>"; };
+		EDB09D781D85BF34000FC309 /* BlockObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockObserver.swift; sourceTree = "<group>"; };
+		EDB09D791D85BF34000FC309 /* BlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockOperation.swift; sourceTree = "<group>"; };
+		EDB09D7A1D85BF34000FC309 /* CalendarCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCondition.swift; sourceTree = "<group>"; };
+		EDB09D7B1D85BF34000FC309 /* CKContainer+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKContainer+Operations.swift"; sourceTree = "<group>"; };
+		EDB09D7C1D85BF34000FC309 /* CloudCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudCondition.swift; sourceTree = "<group>"; };
+		EDB09D7D1D85BF34000FC309 /* DelayOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayOperation.swift; sourceTree = "<group>"; };
+		EDB09D7F1D85BF34000FC309 /* Dictionary+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Operations.swift"; sourceTree = "<group>"; };
+		EDB09D801D85BF34000FC309 /* ExclusivityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExclusivityController.swift; sourceTree = "<group>"; };
+		EDB09D811D85BF34000FC309 /* GroupOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupOperation.swift; sourceTree = "<group>"; };
+		EDB09D821D85BF34000FC309 /* HealthCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCondition.swift; sourceTree = "<group>"; };
+		EDB09D831D85BF34000FC309 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		EDB09D841D85BF34000FC309 /* LocationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCondition.swift; sourceTree = "<group>"; };
+		EDB09D851D85BF34000FC309 /* LocationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationOperation.swift; sourceTree = "<group>"; };
+		EDB09D861D85BF34000FC309 /* MutuallyExclusive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutuallyExclusive.swift; sourceTree = "<group>"; };
+		EDB09D881D85BF34000FC309 /* NegatedCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegatedCondition.swift; sourceTree = "<group>"; };
+		EDB09D891D85BF34000FC309 /* NetworkObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkObserver.swift; sourceTree = "<group>"; };
+		EDB09D8A1D85BF34000FC309 /* NoCancelledDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoCancelledDependencies.swift; sourceTree = "<group>"; };
+		EDB09D8B1D85BF34000FC309 /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
+		EDB09D8C1D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ThrowingKeyValueObserving.h"; sourceTree = "<group>"; };
+		EDB09D8D1D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ThrowingKeyValueObserving.m"; sourceTree = "<group>"; };
+		EDB09D8E1D85BF34000FC309 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperation+Operations.swift"; sourceTree = "<group>"; };
+		EDB09D8F1D85BF34000FC309 /* NSURL+CacheFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+CacheFiles.swift"; sourceTree = "<group>"; };
+		EDB09D901D85BF34000FC309 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
+		EDB09D911D85BF34000FC309 /* OperationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationCondition.swift; sourceTree = "<group>"; };
+		EDB09D921D85BF34000FC309 /* OperationErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationErrors.swift; sourceTree = "<group>"; };
+		EDB09D931D85BF34000FC309 /* OperationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationObserver.swift; sourceTree = "<group>"; };
+		EDB09D941D85BF34000FC309 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
+		EDB09D951D85BF34000FC309 /* PassbookCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassbookCondition.swift; sourceTree = "<group>"; };
+		EDB09D961D85BF34000FC309 /* PhotosCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCondition.swift; sourceTree = "<group>"; };
+		EDB09D971D85BF34000FC309 /* ReachabilityCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCondition.swift; sourceTree = "<group>"; };
+		EDB09D981D85BF34000FC309 /* RemoteNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationCondition.swift; sourceTree = "<group>"; };
+		EDB09D991D85BF34000FC309 /* SilentCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentCondition.swift; sourceTree = "<group>"; };
+		EDB09D9A1D85BF34000FC309 /* TimeoutObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeoutObserver.swift; sourceTree = "<group>"; };
+		EDB09D9B1D85BF34000FC309 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
+		EDB09D9C1D85BF34000FC309 /* URLSessionTaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperation.swift; sourceTree = "<group>"; };
+		EDB09D9D1D85BF34000FC309 /* UserNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCondition.swift; sourceTree = "<group>"; };
+		EDB09DA61D85BF34000FC309 /* TaskScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskScheduler.swift; sourceTree = "<group>"; };
+		EDB09DA91D85BF34000FC309 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		EDB09DAA1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ServiceEndpoint+JSONParsing.swift"; path = "../Services/ServiceEndpoint+JSONParsing.swift"; sourceTree = "<group>"; };
+		EDB09DAB1D85BF34000FC309 /* ServiceEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEndpoint.swift; sourceTree = "<group>"; };
+		EDB09DAC1D85BF34000FC309 /* ServiceEndpointPathTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEndpointPathTransformer.swift; sourceTree = "<group>"; };
+		EDB09DAD1D85BF34000FC309 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
+		EDB09DAE1D85BF34000FC309 /* ServiceRequestConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestConfigurator.swift; sourceTree = "<group>"; };
+		EDB09DAF1D85BF34000FC309 /* ServiceRequestDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestDecorator.swift; sourceTree = "<group>"; };
+		EDB09DB01D85BF34000FC309 /* ServiceRequestOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestOperation.swift; sourceTree = "<group>"; };
+		EDB09DB11D85BF34000FC309 /* ServiceRequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestStatus.swift; sourceTree = "<group>"; };
+		EDB09DB21D85BF34000FC309 /* ServiceSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceSession.swift; sourceTree = "<group>"; };
+		EDC073851D8AE2ED00ADEBC9 /* JSONServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONServiceRequest.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EDB09D241D85BD25000FC309 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDB09D3B1D85BD26000FC309 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDB09D461D85BD26000FC309 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EDB09D1E1D85BD25000FC309 = {
+			isa = PBXGroup;
+			children = (
+				EDB09D5B1D85BF19000FC309 /* Vendor */,
+				EDB09D291D85BD25000FC309 /* HoratioDemo */,
+				EDB09D411D85BD26000FC309 /* HoratioDemoTests */,
+				EDB09D4C1D85BD26000FC309 /* HoratioDemoUITests */,
+				EDB09D281D85BD25000FC309 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EDB09D281D85BD25000FC309 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D271D85BD25000FC309 /* HoratioDemo.app */,
+				EDB09D3E1D85BD26000FC309 /* HoratioDemoTests.xctest */,
+				EDB09D491D85BD26000FC309 /* HoratioDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EDB09D291D85BD25000FC309 /* HoratioDemo */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D2A1D85BD25000FC309 /* AppDelegate.swift */,
+				EDB09D2C1D85BD25000FC309 /* ViewController.swift */,
+				EDB09D2E1D85BD25000FC309 /* Main.storyboard */,
+				EDB09D341D85BD25000FC309 /* Assets.xcassets */,
+				EDB09D361D85BD25000FC309 /* LaunchScreen.storyboard */,
+				EDB09D391D85BD25000FC309 /* Info.plist */,
+				EDB09D311D85BD25000FC309 /* HoratioDemo.xcdatamodeld */,
+			);
+			path = HoratioDemo;
+			sourceTree = "<group>";
+		};
+		EDB09D411D85BD26000FC309 /* HoratioDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D421D85BD26000FC309 /* HoratioDemoTests.swift */,
+				EDB09D441D85BD26000FC309 /* Info.plist */,
+			);
+			path = HoratioDemoTests;
+			sourceTree = "<group>";
+		};
+		EDB09D4C1D85BD26000FC309 /* HoratioDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D4D1D85BD26000FC309 /* HoratioDemoUITests.swift */,
+				EDB09D4F1D85BD26000FC309 /* Info.plist */,
+			);
+			path = HoratioDemoUITests;
+			sourceTree = "<group>";
+		};
+		EDB09D5B1D85BF19000FC309 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D5D1D85BF34000FC309 /* Horatio */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		EDB09D5D1D85BF34000FC309 /* Horatio */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D5E1D85BF34000FC309 /* Container */,
+				EDB09D761D85BF34000FC309 /* Operations */,
+				EDB09D6C1D85BF34000FC309 /* Features */,
+				EDB09DA71D85BF34000FC309 /* Services */,
+				EDB09D721D85BF34000FC309 /* JSON */,
+				EDB09DA51D85BF34000FC309 /* Scheduler */,
+			);
+			name = Horatio;
+			path = ../Horatio;
+			sourceTree = "<group>";
+		};
+		EDB09D5E1D85BF34000FC309 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D5F1D85BF34000FC309 /* Container.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		EDB09D6C1D85BF34000FC309 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D6D1D85BF34000FC309 /* FeatureCondition.swift */,
+				EDB09D6E1D85BF34000FC309 /* FeatureManager.swift */,
+				EDB09D6F1D85BF34000FC309 /* FeatureSelector.swift */,
+				EDB09D701D85BF34000FC309 /* FeatureSubject.swift */,
+				EDB09D711D85BF34000FC309 /* VendorIDFeatureSubject.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		EDB09D721D85BF34000FC309 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D731D85BF34000FC309 /* JSONParsing.swift */,
+				EDB09D741D85BF34000FC309 /* JSONServiceResponseProcessor.swift */,
+				EDC073851D8AE2ED00ADEBC9 /* JSONServiceRequest.swift */,
+				EDB09DAA1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		EDB09D761D85BF34000FC309 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D771D85BF34000FC309 /* AlertOperation.swift */,
+				EDB09E101D872579000FC309 /* Observers */,
+				EDB09D791D85BF34000FC309 /* BlockOperation.swift */,
+				EDB09E0E1D87251D000FC309 /* Conditions */,
+				EDB09E0F1D872555000FC309 /* Extensions */,
+				EDB09D7D1D85BF34000FC309 /* DelayOperation.swift */,
+				EDB09D811D85BF34000FC309 /* GroupOperation.swift */,
+				EDB09D831D85BF34000FC309 /* LICENSE.txt */,
+				EDB09D851D85BF34000FC309 /* LocationOperation.swift */,
+				EDB09D901D85BF34000FC309 /* Operation.swift */,
+				EDB09D921D85BF34000FC309 /* OperationErrors.swift */,
+				EDB09D941D85BF34000FC309 /* OperationQueue.swift */,
+				EDB09D9C1D85BF34000FC309 /* URLSessionTaskOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		EDB09DA51D85BF34000FC309 /* Scheduler */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09DA61D85BF34000FC309 /* TaskScheduler.swift */,
+			);
+			path = Scheduler;
+			sourceTree = "<group>";
+		};
+		EDB09DA71D85BF34000FC309 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09DA91D85BF34000FC309 /* Service.swift */,
+				EDB09DAB1D85BF34000FC309 /* ServiceEndpoint.swift */,
+				EDB09DAC1D85BF34000FC309 /* ServiceEndpointPathTransformer.swift */,
+				EDB09DAD1D85BF34000FC309 /* ServiceRequest.swift */,
+				EDB09DAE1D85BF34000FC309 /* ServiceRequestConfigurator.swift */,
+				EDB09DAF1D85BF34000FC309 /* ServiceRequestDecorator.swift */,
+				EDB09DB01D85BF34000FC309 /* ServiceRequestOperation.swift */,
+				EDB09DB11D85BF34000FC309 /* ServiceRequestStatus.swift */,
+				EDB09DB21D85BF34000FC309 /* ServiceSession.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EDB09E0E1D87251D000FC309 /* Conditions */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D801D85BF34000FC309 /* ExclusivityController.swift */,
+				EDB09D8A1D85BF34000FC309 /* NoCancelledDependencies.swift */,
+				EDB09D861D85BF34000FC309 /* MutuallyExclusive.swift */,
+				EDB09D7A1D85BF34000FC309 /* CalendarCondition.swift */,
+				EDB09D7C1D85BF34000FC309 /* CloudCondition.swift */,
+				EDB09D821D85BF34000FC309 /* HealthCondition.swift */,
+				EDB09D841D85BF34000FC309 /* LocationCondition.swift */,
+				EDB09D881D85BF34000FC309 /* NegatedCondition.swift */,
+				EDB09D911D85BF34000FC309 /* OperationCondition.swift */,
+				EDB09D951D85BF34000FC309 /* PassbookCondition.swift */,
+				EDB09D961D85BF34000FC309 /* PhotosCondition.swift */,
+				EDB09D971D85BF34000FC309 /* ReachabilityCondition.swift */,
+				EDB09D981D85BF34000FC309 /* RemoteNotificationCondition.swift */,
+				EDB09D991D85BF34000FC309 /* SilentCondition.swift */,
+				EDB09D9D1D85BF34000FC309 /* UserNotificationCondition.swift */,
+			);
+			name = Conditions;
+			sourceTree = "<group>";
+		};
+		EDB09E0F1D872555000FC309 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D7B1D85BF34000FC309 /* CKContainer+Operations.swift */,
+				EDB09D7F1D85BF34000FC309 /* Dictionary+Operations.swift */,
+				EDB09D8B1D85BF34000FC309 /* NSLock+Operations.swift */,
+				EDB09D8C1D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.h */,
+				EDB09D8D1D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.m */,
+				EDB09D8E1D85BF34000FC309 /* NSOperation+Operations.swift */,
+				EDB09D8F1D85BF34000FC309 /* NSURL+CacheFiles.swift */,
+				EDB09D9B1D85BF34000FC309 /* UIUserNotifications+Operations.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		EDB09E101D872579000FC309 /* Observers */ = {
+			isa = PBXGroup;
+			children = (
+				EDB09D781D85BF34000FC309 /* BlockObserver.swift */,
+				EDB09D891D85BF34000FC309 /* NetworkObserver.swift */,
+				EDB09D931D85BF34000FC309 /* OperationObserver.swift */,
+				EDB09D9A1D85BF34000FC309 /* TimeoutObserver.swift */,
+			);
+			name = Observers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EDB09D261D85BD25000FC309 /* HoratioDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDB09D521D85BD26000FC309 /* Build configuration list for PBXNativeTarget "HoratioDemo" */;
+			buildPhases = (
+				EDB09D231D85BD25000FC309 /* Sources */,
+				EDB09D241D85BD25000FC309 /* Frameworks */,
+				EDB09D251D85BD25000FC309 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HoratioDemo;
+			productName = HoratioDemo;
+			productReference = EDB09D271D85BD25000FC309 /* HoratioDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EDB09D3D1D85BD26000FC309 /* HoratioDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDB09D551D85BD26000FC309 /* Build configuration list for PBXNativeTarget "HoratioDemoTests" */;
+			buildPhases = (
+				EDB09D3A1D85BD26000FC309 /* Sources */,
+				EDB09D3B1D85BD26000FC309 /* Frameworks */,
+				EDB09D3C1D85BD26000FC309 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EDB09D401D85BD26000FC309 /* PBXTargetDependency */,
+			);
+			name = HoratioDemoTests;
+			productName = HoratioDemoTests;
+			productReference = EDB09D3E1D85BD26000FC309 /* HoratioDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EDB09D481D85BD26000FC309 /* HoratioDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDB09D581D85BD26000FC309 /* Build configuration list for PBXNativeTarget "HoratioDemoUITests" */;
+			buildPhases = (
+				EDB09D451D85BD26000FC309 /* Sources */,
+				EDB09D461D85BD26000FC309 /* Frameworks */,
+				EDB09D471D85BD26000FC309 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EDB09D4B1D85BD26000FC309 /* PBXTargetDependency */,
+			);
+			name = HoratioDemoUITests;
+			productName = HoratioDemoUITests;
+			productReference = EDB09D491D85BD26000FC309 /* HoratioDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EDB09D1F1D85BD25000FC309 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Mudpot Apps";
+				TargetAttributes = {
+					EDB09D261D85BD25000FC309 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 46RFK4MJ8P;
+						ProvisioningStyle = Automatic;
+					};
+					EDB09D3D1D85BD26000FC309 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 46RFK4MJ8P;
+						ProvisioningStyle = Automatic;
+						TestTargetID = EDB09D261D85BD25000FC309;
+					};
+					EDB09D481D85BD26000FC309 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 46RFK4MJ8P;
+						ProvisioningStyle = Automatic;
+						TestTargetID = EDB09D261D85BD25000FC309;
+					};
+				};
+			};
+			buildConfigurationList = EDB09D221D85BD25000FC309 /* Build configuration list for PBXProject "HoratioDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EDB09D1E1D85BD25000FC309;
+			productRefGroup = EDB09D281D85BD25000FC309 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EDB09D261D85BD25000FC309 /* HoratioDemo */,
+				EDB09D3D1D85BD26000FC309 /* HoratioDemoTests */,
+				EDB09D481D85BD26000FC309 /* HoratioDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EDB09D251D85BD25000FC309 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDB09D381D85BD25000FC309 /* LaunchScreen.storyboard in Resources */,
+				EDB09D351D85BD25000FC309 /* Assets.xcassets in Resources */,
+				EDB09DDA1D85BF34000FC309 /* LICENSE.txt in Resources */,
+				EDB09D301D85BD25000FC309 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDB09D3C1D85BD26000FC309 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDB09D471D85BD26000FC309 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EDB09D231D85BD25000FC309 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDB09DDE1D85BF34000FC309 /* NegatedCondition.swift in Sources */,
+				EDB09DEA1D85BF34000FC309 /* PassbookCondition.swift in Sources */,
+				EDC073861D8AE2ED00ADEBC9 /* JSONServiceRequest.swift in Sources */,
+				EDB09DEB1D85BF34000FC309 /* PhotosCondition.swift in Sources */,
+				EDB09DC71D85BF34000FC309 /* FeatureManager.swift in Sources */,
+				EDB09D2D1D85BD25000FC309 /* ViewController.swift in Sources */,
+				EDB09DD71D85BF34000FC309 /* ExclusivityController.swift in Sources */,
+				EDB09E011D85BF34000FC309 /* ServiceRequestDecorator.swift in Sources */,
+				EDB09E001D85BF34000FC309 /* ServiceRequestConfigurator.swift in Sources */,
+				EDB09DCE1D85BF34000FC309 /* AlertOperation.swift in Sources */,
+				EDB09DCC1D85BF34000FC309 /* JSONServiceResponseProcessor.swift in Sources */,
+				EDB09DD31D85BF34000FC309 /* CloudCondition.swift in Sources */,
+				EDB09DF91D85BF34000FC309 /* TaskScheduler.swift in Sources */,
+				EDB09DED1D85BF34000FC309 /* RemoteNotificationCondition.swift in Sources */,
+				EDB09DF11D85BF34000FC309 /* URLSessionTaskOperation.swift in Sources */,
+				EDB09DFC1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift in Sources */,
+				EDB09DE81D85BF34000FC309 /* OperationObserver.swift in Sources */,
+				EDB09E031D85BF34000FC309 /* ServiceRequestStatus.swift in Sources */,
+				EDB09E021D85BF34000FC309 /* ServiceRequestOperation.swift in Sources */,
+				EDB09DC61D85BF34000FC309 /* FeatureCondition.swift in Sources */,
+				EDB09DCB1D85BF34000FC309 /* JSONParsing.swift in Sources */,
+				EDB09DFF1D85BF34000FC309 /* ServiceRequest.swift in Sources */,
+				EDB09DE41D85BF34000FC309 /* NSURL+CacheFiles.swift in Sources */,
+				EDB09DD41D85BF34000FC309 /* DelayOperation.swift in Sources */,
+				EDB09DDB1D85BF34000FC309 /* LocationCondition.swift in Sources */,
+				EDB09DD81D85BF34000FC309 /* GroupOperation.swift in Sources */,
+				EDB09DE91D85BF34000FC309 /* OperationQueue.swift in Sources */,
+				EDB09DE71D85BF34000FC309 /* OperationErrors.swift in Sources */,
+				EDB09DFE1D85BF34000FC309 /* ServiceEndpointPathTransformer.swift in Sources */,
+				EDB09DD91D85BF34000FC309 /* HealthCondition.swift in Sources */,
+				EDB09DEF1D85BF34000FC309 /* TimeoutObserver.swift in Sources */,
+				EDB09DBA1D85BF34000FC309 /* Container.swift in Sources */,
+				EDB09DFD1D85BF34000FC309 /* ServiceEndpoint.swift in Sources */,
+				EDB09DD11D85BF34000FC309 /* CalendarCondition.swift in Sources */,
+				EDB09DE51D85BF34000FC309 /* Operation.swift in Sources */,
+				EDB09DFB1D85BF34000FC309 /* Service.swift in Sources */,
+				EDB09D331D85BD25000FC309 /* HoratioDemo.xcdatamodeld in Sources */,
+				EDB09DEC1D85BF34000FC309 /* ReachabilityCondition.swift in Sources */,
+				EDB09D2B1D85BD25000FC309 /* AppDelegate.swift in Sources */,
+				EDB09DE31D85BF34000FC309 /* NSOperation+Operations.swift in Sources */,
+				EDB09DD21D85BF34000FC309 /* CKContainer+Operations.swift in Sources */,
+				EDB09DC81D85BF34000FC309 /* FeatureSelector.swift in Sources */,
+				EDB09DCF1D85BF34000FC309 /* BlockObserver.swift in Sources */,
+				EDB09DE11D85BF34000FC309 /* NSLock+Operations.swift in Sources */,
+				EDB09DDF1D85BF34000FC309 /* NetworkObserver.swift in Sources */,
+				EDB09DD01D85BF34000FC309 /* BlockOperation.swift in Sources */,
+				EDB09DDC1D85BF34000FC309 /* LocationOperation.swift in Sources */,
+				EDB09DE01D85BF34000FC309 /* NoCancelledDependencies.swift in Sources */,
+				EDB09DCA1D85BF34000FC309 /* VendorIDFeatureSubject.swift in Sources */,
+				EDB09DF01D85BF34000FC309 /* UIUserNotifications+Operations.swift in Sources */,
+				EDB09DC91D85BF34000FC309 /* FeatureSubject.swift in Sources */,
+				EDB09DF21D85BF34000FC309 /* UserNotificationCondition.swift in Sources */,
+				EDB09DE21D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.m in Sources */,
+				EDB09DEE1D85BF34000FC309 /* SilentCondition.swift in Sources */,
+				EDB09DD61D85BF34000FC309 /* Dictionary+Operations.swift in Sources */,
+				EDB09E041D85BF34000FC309 /* ServiceSession.swift in Sources */,
+				EDB09DDD1D85BF34000FC309 /* MutuallyExclusive.swift in Sources */,
+				EDB09DE61D85BF34000FC309 /* OperationCondition.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDB09D3A1D85BD26000FC309 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDB09D431D85BD26000FC309 /* HoratioDemoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDB09D451D85BD26000FC309 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDB09D4E1D85BD26000FC309 /* HoratioDemoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EDB09D401D85BD26000FC309 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDB09D261D85BD25000FC309 /* HoratioDemo */;
+			targetProxy = EDB09D3F1D85BD26000FC309 /* PBXContainerItemProxy */;
+		};
+		EDB09D4B1D85BD26000FC309 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDB09D261D85BD25000FC309 /* HoratioDemo */;
+			targetProxy = EDB09D4A1D85BD26000FC309 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EDB09D2E1D85BD25000FC309 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDB09D2F1D85BD25000FC309 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EDB09D361D85BD25000FC309 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDB09D371D85BD25000FC309 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EDB09D501D85BD26000FC309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EDB09D511D85BD26000FC309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EDB09D531D85BD26000FC309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 46RFK4MJ8P;
+				INFOPLIST_FILE = HoratioDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
+			};
+			name = Debug;
+		};
+		EDB09D541D85BD26000FC309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 46RFK4MJ8P;
+				INFOPLIST_FILE = HoratioDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
+			};
+			name = Release;
+		};
+		EDB09D561D85BD26000FC309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 46RFK4MJ8P;
+				INFOPLIST_FILE = HoratioDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HoratioDemo.app/HoratioDemo";
+			};
+			name = Debug;
+		};
+		EDB09D571D85BD26000FC309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 46RFK4MJ8P;
+				INFOPLIST_FILE = HoratioDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HoratioDemo.app/HoratioDemo";
+			};
+			name = Release;
+		};
+		EDB09D591D85BD26000FC309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 46RFK4MJ8P;
+				INFOPLIST_FILE = HoratioDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
+				TEST_TARGET_NAME = HoratioDemo;
+			};
+			name = Debug;
+		};
+		EDB09D5A1D85BD26000FC309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 46RFK4MJ8P;
+				INFOPLIST_FILE = HoratioDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
+				TEST_TARGET_NAME = HoratioDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EDB09D221D85BD25000FC309 /* Build configuration list for PBXProject "HoratioDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDB09D501D85BD26000FC309 /* Debug */,
+				EDB09D511D85BD26000FC309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDB09D521D85BD26000FC309 /* Build configuration list for PBXNativeTarget "HoratioDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDB09D531D85BD26000FC309 /* Debug */,
+				EDB09D541D85BD26000FC309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDB09D551D85BD26000FC309 /* Build configuration list for PBXNativeTarget "HoratioDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDB09D561D85BD26000FC309 /* Debug */,
+				EDB09D571D85BD26000FC309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDB09D581D85BD26000FC309 /* Build configuration list for PBXNativeTarget "HoratioDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDB09D591D85BD26000FC309 /* Debug */,
+				EDB09D5A1D85BD26000FC309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EDB09D311D85BD25000FC309 /* HoratioDemo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EDB09D321D85BD25000FC309 /* HoratioDemo.xcdatamodel */,
+			);
+			currentVersion = EDB09D321D85BD25000FC309 /* HoratioDemo.xcdatamodel */;
+			path = HoratioDemo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = EDB09D1F1D85BD25000FC309 /* Project object */;
+}
