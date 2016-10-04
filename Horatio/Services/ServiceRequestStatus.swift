@@ -14,10 +14,10 @@ import Foundation
 public protocol ServiceStatusHandler: class {
     var statuses: [ServiceEndpointResponseStatus] { get }
 
-    func isIdle(identifier: ServiceRequestIdentifier) -> Bool
+    func isIdle(_ identifier: ServiceRequestIdentifier) -> Bool
 
-    func updateStatus(identifier: ServiceRequestIdentifier, status: ServiceEndpointStatus)
-    func lastStatus(identifier: ServiceRequestIdentifier) -> (ServiceEndpointStatus, NSDate?)
+    func updateStatus(_ identifier: ServiceRequestIdentifier, status: ServiceEndpointStatus)
+    func lastStatus(_ identifier: ServiceRequestIdentifier) -> (ServiceEndpointStatus, Date?)
 }
 
 
@@ -42,18 +42,18 @@ public enum ServiceEndpointStatus: Int16 {
  Encapsulates the current state of a fetches against a specific request (`ServiceEndpoint`
  and `ServiceRequestPayload` combination) in an informal state machine.
 */
-public class ServiceEndpointResponseStatus {
+open class ServiceEndpointResponseStatus {
     // MARK: - Properties
 
-    public let identifier: ServiceRequestIdentifier
+    open let identifier: ServiceRequestIdentifier
 
-    public var updateDate: NSDate
+    open var updateDate: Date
 
-    public var activityState: ServiceEndpointState = .waiting
-    public var status: ServiceEndpointStatus = .unknown
+    open var activityState: ServiceEndpointState = .waiting
+    open var status: ServiceEndpointStatus = .unknown
 
-    public var error: NSError?
-    public var urlResponse: NSURLResponse?
+    open var error: NSError?
+    open var urlResponse: URLResponse?
 
 
     // MARK: - Initialization
@@ -61,7 +61,7 @@ public class ServiceEndpointResponseStatus {
     public init(identifier: ServiceRequestIdentifier) {
         self.identifier = identifier
 
-        self.updateDate = NSDate.distantPast()
+        self.updateDate = Date.distantPast
     }
 
 
@@ -72,7 +72,7 @@ public class ServiceEndpointResponseStatus {
     /**
      Indicate that this status has moved from Idle to starting a fetch.
     */
-    public func startFetch() {
+    open func startFetch() {
         changeState(.fetching)
     }
 
@@ -82,7 +82,7 @@ public class ServiceEndpointResponseStatus {
      - parameter response: The `NSURLResponse` that completed, causing the
      status to transition to the parsing state.
      */
-    public func startParse(response: NSURLResponse? = nil) {
+    open func startParse(_ response: URLResponse? = nil) {
         urlResponse = response
 
         changeState(.parsing)
@@ -94,7 +94,7 @@ public class ServiceEndpointResponseStatus {
      - parameter completionError: The error that prevented the status from completing
      successfilly.
      */
-    public func completeWithError(completionError: NSError?) {
+    open func completeWithError(_ completionError: NSError?) {
         status = .failure
         error = completionError
 
@@ -104,7 +104,7 @@ public class ServiceEndpointResponseStatus {
     /**
      Indicate that this status has completed successfully.
      */
-    public func completeWithSuccess() {
+    open func completeWithSuccess() {
         status = .success
 
         changeState(.complete)
@@ -113,11 +113,11 @@ public class ServiceEndpointResponseStatus {
 
     // MARK: - Private
 
-    private func changeState(state: ServiceEndpointState) {
+    fileprivate func changeState(_ state: ServiceEndpointState) {
         guard activityState != .complete else { return }
         guard state != activityState else { return }
 
         activityState = state
-        updateDate = NSDate()
+        updateDate = Date()
     }
 }

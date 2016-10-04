@@ -9,19 +9,19 @@ import Foundation
  Processes JSON data in some way — transforming, storing, or otherwise manipulating the data.
  */
 public protocol JSONProcessor {
-    func processJSONData(request: ServiceRequest, jsonData: JSONObject, completionBlock: (errors: [NSError]?) -> Void)
-    func processJSONData(request: ServiceRequest, jsonData: [JSONObject], completionBlock: (errors: [NSError]?) -> Void)
+    func processJSONData(_ request: ServiceRequest, jsonData: JSONObject, completionBlock: (_ errors: [NSError]?) -> Void)
+    func processJSONData(_ request: ServiceRequest, jsonData: [JSONObject], completionBlock: (_ errors: [NSError]?) -> Void)
 }
 
 
 extension JSONProcessor {
-    func processJSONData(request: ServiceRequest, jsonData: JSONObject, completionBlock: (errors: [NSError]?) -> Void) {
-        completionBlock(errors: nil)
+    func processJSONData(_ request: ServiceRequest, jsonData: JSONObject, completionBlock: (_ errors: [NSError]?) -> Void) {
+        completionBlock(nil)
     }
     
     
-    func processJSONData(request: ServiceRequest, jsonData: [JSONObject], completionBlock: (errors: [NSError]?) -> Void) {
-        completionBlock(errors: nil)
+    func processJSONData(_ request: ServiceRequest, jsonData: [JSONObject], completionBlock: (_ errors: [NSError]?) -> Void) {
+        completionBlock(nil)
     }
 }
 
@@ -31,7 +31,7 @@ extension JSONProcessor {
  A JSON processor takes a specialized processor for parsing JSON (typically, parsing the JSON
  into objects and storing those in a local store).
  */
-public class JSONServiceResponseProcessor: ServiceResponseProcessor {
+open class JSONServiceResponseProcessor: ServiceResponseProcessor {
     // MARK: - Properties
 
     let jsonProcessor: JSONProcessor
@@ -49,16 +49,16 @@ public class JSONServiceResponseProcessor: ServiceResponseProcessor {
 
     // MARK: <ServiceResponseProcessor>
 
-    public func process(request: ServiceRequest, input: ServiceResponseProcessorParam, completionBlock: (ServiceResponseProcessorParam) -> Void) {
-        var jsonData: AnyObject? = nil
+    open func process(_ request: ServiceRequest, input: ServiceResponseProcessorParam, completionBlock: (ServiceResponseProcessorParam) -> Void) {
+        var jsonData: Any? = nil
         
         do {
             switch input {
             case .stream(let inputStream):
-                jsonData = try NSJSONSerialization.JSONObjectWithStream(inputStream, options: .AllowFragments)
+                jsonData = try JSONSerialization.jsonObject(with: inputStream, options: .allowFragments)
                 
             case .data(_, let inputData):
-                jsonData = try NSJSONSerialization.JSONObjectWithData(inputData, options: .AllowFragments)
+                jsonData = try JSONSerialization.jsonObject(with: inputData, options: .allowFragments)
                 
             default:
                 completionBlock(input)
@@ -80,7 +80,7 @@ public class JSONServiceResponseProcessor: ServiceResponseProcessor {
     
     // MARK: - Private
 
-    private func processObject(request: ServiceRequest, jsonObject: JSONObject, completionBlock: (ServiceResponseProcessorParam) -> Void) {
+    fileprivate func processObject(_ request: ServiceRequest, jsonObject: JSONObject, completionBlock: (ServiceResponseProcessorParam) -> Void) {
 
         jsonProcessor.processJSONData(request, jsonData: jsonObject, completionBlock: { (errors: [NSError]?) in
             if let error = errors?.first {
@@ -93,7 +93,7 @@ public class JSONServiceResponseProcessor: ServiceResponseProcessor {
     }
 
 
-    private func processArray(request: ServiceRequest, jsonArray: [JSONObject], completionBlock: (ServiceResponseProcessorParam) -> Void) {
+    fileprivate func processArray(_ request: ServiceRequest, jsonArray: [JSONObject], completionBlock: (ServiceResponseProcessorParam) -> Void) {
         jsonProcessor.processJSONData(request, jsonData: jsonArray, completionBlock: { (errors: [NSError]?) in
             if let error = errors?.first {
                 completionBlock(.error(error))

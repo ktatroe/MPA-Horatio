@@ -20,11 +20,11 @@ public protocol ServiceRequestPayload {
 
 
 /// An empty service request for requests that require no payload; typealias to a specific payload type to use
-public class EmptyServiceRequestPayload: ServiceRequestPayload {
+open class EmptyServiceRequestPayload: ServiceRequestPayload {
     // MARK: - Initializers
 
     public init() {
-        let uuidString = NSUUID().UUIDString
+        let uuidString = UUID().uuidString
         
         self.hashString = "\(uuidString)"
     }
@@ -33,18 +33,18 @@ public class EmptyServiceRequestPayload: ServiceRequestPayload {
 
     // MARK: <ServiceRequestPayload>
 
-    public func values() -> [String : String] {
+    open func values() -> [String : String] {
         return [String : String]()
     }
 
-    public func hashValue() -> Int {
+    open func hashValue() -> Int {
         return hashString.hashValue
     }
     
     
     // MARK: - Private
 
-    private let hashString: String
+    fileprivate let hashString: String
 }
 
 
@@ -89,7 +89,7 @@ public struct ServiceRequest {
     // MARK: - Properties
 
     public let endpoint: ServiceEndpoint
-    public var url: NSURL?
+    public var url: URL?
 
     public let payload: ServiceRequestPayload?
     let configurator: ServiceRequestConfigurator?
@@ -106,7 +106,7 @@ public struct ServiceRequest {
         if let configurator = configurator {
             self.url = configurator.configureURL(self)
         } else {
-            self.url = endpoint.url()
+            self.url = endpoint.url() as URL?
         }
     }
 
@@ -124,11 +124,11 @@ public struct ServiceRequest {
      (for example, if the `Service` responsible for this request requires OAuth
      or other HTTP-request based authentication).
      */
-    public func makeURLRequest(session: ServiceSession?) -> NSURLRequest? {
+    public func makeURLRequest(_ session: ServiceSession?) -> URLRequest? {
         guard let url = url else { return nil }
 
-        var request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = self.endpoint.type.rawValue
+        var request = NSMutableURLRequest(url: url)
+        request.httpMethod = self.endpoint.type.rawValue
 
         if let configurator = configurator {
             request = configurator.configureURLRequest(self, urlRequest: request)
@@ -138,6 +138,6 @@ public struct ServiceRequest {
             session.signURLRequest(request)
         }
 
-        return request
+        return request as URLRequest
     }
 }

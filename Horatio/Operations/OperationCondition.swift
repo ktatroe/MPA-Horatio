@@ -41,10 +41,10 @@ public protocol OperationCondition {
             expressing that as multiple conditions. Alternatively, you could return
             a single `GroupOperation` that executes multiple operations internally.
     */
-    func dependencyForOperation(operation: Operation) -> NSOperation?
+    func dependencyForOperation(_ operation: Operation) -> Foundation.Operation?
 
     /// Evaluate the condition, to see if it has been satisfied or not.
-    func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void)
+    func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void)
 }
 
 /**
@@ -52,11 +52,11 @@ public protocol OperationCondition {
     failed with an error.
 */
 public enum OperationConditionResult {
-    case Satisfied
-    case Failed(NSError)
+    case satisfied
+    case failed(NSError)
 
     var error: NSError? {
-        if case .Failed(let error) = self {
+        if case .failed(let error) = self {
             return error
         }
 
@@ -67,23 +67,23 @@ public enum OperationConditionResult {
 // MARK: Evaluate Conditions
 
 public struct OperationConditionEvaluator {
-    public static func evaluate(conditions: [OperationCondition], operation: Operation, completion: [NSError] -> Void) {
+    public static func evaluate(_ conditions: [OperationCondition], operation: Operation, completion: @escaping ([NSError]) -> Void) {
         // Check conditions.
-        let conditionGroup = dispatch_group_create()
+        let conditionGroup = DispatchGroup()
 
-        var results = [OperationConditionResult?](count: conditions.count, repeatedValue: nil)
+        var results = [OperationConditionResult?](repeating: nil, count: conditions.count)
 
         // Ask each condition to evaluate and store its result in the "results" array.
-        for (index, condition) in conditions.enumerate() {
-            dispatch_group_enter(conditionGroup)
+        for (index, condition) in conditions.enumerated() {
+            conditionGroup.enter()
             condition.evaluateForOperation(operation) { result in
                 results[index] = result
-                dispatch_group_leave(conditionGroup)
+                conditionGroup.leave()
             }
         }
 
         // After all the conditions have evaluated, this block will execute.
-        dispatch_group_notify(conditionGroup, dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) {
+        conditionGroup.notify(queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default)) {
             // Aggregate the errors that occurred, in order.
             var failures = results.flatMap { $0?.error }
 
@@ -91,8 +91,8 @@ public struct OperationConditionEvaluator {
                 If any of the conditions caused this operation to be cancelled,
                 check for that.
             */
-            if operation.cancelled {
-                failures.append(NSError(code: .ConditionFailed))
+            if operation.isCancelled {
+                failures.append(NSError(code: .conditionFailed))
             }
 
             completion(failures)

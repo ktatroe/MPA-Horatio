@@ -9,7 +9,7 @@ public typealias JSONObject = [String : AnyObject]
 
 
 /// Options for parsing and validating JSON using the `JSONParser` class.
-public struct JSONParsingOptions: OptionSetType {
+public struct JSONParsingOptions: OptionSet {
     public let rawValue: Int
 
     /// No options set.
@@ -31,23 +31,23 @@ public struct JSONParsingOptions: OptionSetType {
  Normalizes values from JSON objects, with options for allowing for conversion from unexpected value
  types and missing values.
 */
-public class JSONParser {
-    public static func parseIdentifier(value: AnyObject?, options: JSONParsingOptions = .none) -> String? {
+open class JSONParser {
+    open static func parseIdentifier(_ value: AnyObject?, options: JSONParsingOptions = .none) -> String? {
         if let stringValue = JSONParser.parseString(value) {
-            return stringValue.lowercaseString
+            return stringValue.lowercased()
         }
 
         return nil
     }
 
-    public static func parseString(value: AnyObject?, options: JSONParsingOptions = .none) -> String? {
+    open static func parseString(_ value: AnyObject?, options: JSONParsingOptions = .none) -> String? {
         if let stringValue = value as? String {
             return stringValue.stringByDecodingJavascriptEntities()
         }
 
         if options.contains(.allowConversion) {
             if let numberValue = value as? NSNumber {
-                return String(numberValue)
+                return String(describing: numberValue)
             }
         }
 
@@ -58,7 +58,7 @@ public class JSONParser {
         return nil
     }
 
-    public static func parseInt(value: AnyObject?, options: JSONParsingOptions = .none) -> Int? {
+    open static func parseInt(_ value: AnyObject?, options: JSONParsingOptions = .none) -> Int? {
         if let intValue = value as? Int {
             return intValue
         }
@@ -80,7 +80,7 @@ public class JSONParser {
         return nil
     }
 
-    public static func parseDouble(value: AnyObject?, options: JSONParsingOptions = .none) -> Double? {
+    open static func parseDouble(_ value: AnyObject?, options: JSONParsingOptions = .none) -> Double? {
         if let doubleValue = value as? Double {
             return doubleValue
         }
@@ -102,7 +102,7 @@ public class JSONParser {
         return nil
     }
 
-    public static func parseBool(value: AnyObject?, options: JSONParsingOptions = .none) -> Bool? {
+    open static func parseBool(_ value: AnyObject?, options: JSONParsingOptions = .none) -> Bool? {
         if let boolValue = value as? Bool {
             return boolValue
         }
@@ -113,7 +113,7 @@ public class JSONParser {
             }
 
             if let stringValue = value as? String {
-                if stringValue.lowercaseString == "true" || stringValue == "1" {
+                if stringValue.lowercased() == "true" || stringValue == "1" {
                     return true
                 }
 
@@ -128,7 +128,7 @@ public class JSONParser {
         return nil
     }
 
-    public static func parseArray(value: AnyObject?, options: JSONParsingOptions = .none) -> [AnyObject]? {
+    open static func parseArray(_ value: AnyObject?, options: JSONParsingOptions = .none) -> [AnyObject]? {
         if let arrayValue = value as? [AnyObject] {
             return arrayValue
         }
@@ -152,7 +152,7 @@ public class JSONParser {
         return nil
     }
 
-    public static func parseObject(value: AnyObject?, options: JSONParsingOptions = .none) -> JSONObject? {
+    open static func parseObject(_ value: AnyObject?, options: JSONParsingOptions = .none) -> JSONObject? {
         if let objectValue = value as? [String : AnyObject] {
             return objectValue
         }
@@ -172,15 +172,15 @@ public class JSONParser {
         return nil
     }
 
-    public static func parseISO8601Date(value: AnyObject?, options: JSONParsingOptions = .none) -> NSDate? {
+    open static func parseISO8601Date(_ value: AnyObject?, options: JSONParsingOptions = .none) -> Date? {
         if let dateString = JSONParser.parseString(value, options: options) {
-            if let dateValue = NSDate.dateFromISO8601String(dateString) {
+            if let dateValue = Date.dateFromISO8601String(dateString) {
                 return dateValue
             }
         }
 
         if options.contains(.allowEmpty) {
-            return NSDate()
+            return Date()
         }
 
         return nil
@@ -188,22 +188,22 @@ public class JSONParser {
 }
 
 public protocol JSONParsing {
-    func updateFromJSONRepresentation(data: JSONObject)
+    func updateFromJSONRepresentation(_ data: JSONObject)
 
-    static func isValidJSONRepresentation (data: JSONObject) -> Bool
+    static func isValidJSONRepresentation (_ data: JSONObject) -> Bool
 }
 
 extension String {
     func stringByDecodingJavascriptEntities() -> String {
-        func decodeHexValue(string: String, base: Int32) -> Character? {
+        func decodeHexValue(_ string: String, base: Int32) -> Character? {
             let code = UInt32(strtoul(string, nil, base))
 
-            return Character(UnicodeScalar(code))
+            return Character(UnicodeScalar(code)!)
         }
 
-        func decodeEntity(entity: String) -> Character? {
+        func decodeEntity(_ entity: String) -> Character? {
             if entity.hasPrefix("\\x") || entity.hasPrefix("\\u") {
-                return decodeHexValue(entity.substringFromIndex(entity.startIndex.advancedBy(2)), base: 16)
+                return decodeHexValue(entity.substring(from: entity.characters.index(entity.startIndex, offsetBy: 2)), base: 16)
             }
 
             return nil
@@ -215,17 +215,17 @@ extension String {
         let entityBeacons = ["\\x", "\\u"]
 
         for beacon in entityBeacons {
-            while let entityRange = self.rangeOfString(beacon, range: position ..< endIndex) {
-                result += self[position ..< entityRange.startIndex]
-                position = entityRange.startIndex
+            while let entityRange = self.range(of: beacon, range: position ..< endIndex) {
+                result += self[position ..< entityRange.lowerBound]
+                position = entityRange.lowerBound
 
                 let entityLength = (beacon == "\\u") ? 4 : 2
-                let entity = self[position ..< position.advancedBy(entityLength)]
+                let entity = self[position ..< self.characters.index(position, offsetBy: entityLength)]
 
                 if let decodedEntity = decodeEntity(entity) {
                     result.append(decodedEntity)
                 } else {
-                    result.appendContentsOf(entity)
+                    result.append(entity)
                 }
             }
         }
@@ -237,22 +237,22 @@ extension String {
 }
 
 
-extension NSDate {
+extension Date {
     struct ISO8601Support {
-        static let formatter: NSDateFormatter = {
-            let formatter = NSDateFormatter()
-            formatter.calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierISO8601)
-            formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-            formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        static let formatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.calendar = Calendar(identifier: Calendar.Identifier.iso8601)
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
 
             return formatter
         }()
     }
 
-    public static func dateFromISO8601String(string: String) -> NSDate? {
-        return ISO8601Support.formatter.dateFromString(string)
+    public static func dateFromISO8601String(_ string: String) -> Date? {
+        return ISO8601Support.formatter.date(from: string)
     }
 
-    public var iso8601String: String { return ISO8601Support.formatter.stringFromDate(self) }
+    public var iso8601String: String { return ISO8601Support.formatter.string(from: self) }
 }

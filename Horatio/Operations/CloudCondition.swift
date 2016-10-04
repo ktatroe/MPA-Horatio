@@ -36,22 +36,22 @@ struct CloudContainerCondition: OperationCondition {
         self.permission = permission
     }
 
-    func dependencyForOperation(operation: Operation) -> NSOperation? {
+    func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
         return CloudKitPermissionOperation(container: container, permission: permission)
     }
 
-    func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
+    func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
         container.verifyPermission(permission, requestingIfNecessary: false) { error in
             if let error = error {
-                let conditionError = NSError(code: .ConditionFailed, userInfo: [
-                    OperationConditionKey: self.dynamicType.name,
-                    self.dynamicType.containerKey: self.container,
+                let conditionError = NSError(code: .conditionFailed, userInfo: [
+                    OperationConditionKey: type(of: self).name,
+                    type(of: self).containerKey: self.container,
                     NSUnderlyingErrorKey: error
                 ])
 
-                completion(.Failed(conditionError))
+                completion(.failed(conditionError))
             } else {
-                completion(.Satisfied)
+                completion(.satisfied)
             }
         }
     }

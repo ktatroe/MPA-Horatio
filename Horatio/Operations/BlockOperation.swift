@@ -9,11 +9,13 @@ This code shows how to create a simple subclass of Operation.
 import Foundation
 
 /// A closure type that takes a closure as its parameter.
-public typealias OperationBlock = (Void -> Void) -> Void
+public typealias ContinuationBlockType = (_ error: Error?) -> Void
+public typealias BlockType = (_ continueWithError: @escaping ContinuationBlockType) -> Void
+
 
 /// A sublcass of `Operation` to execute a closure.
-public class BlockOperation: Operation {
-    private let block: OperationBlock?
+open class BlockOperation: Operation {
+    fileprivate let block: BlockType
 
     /**
         The designated initializer.
@@ -24,9 +26,10 @@ public class BlockOperation: Operation {
             will never finish executing. If this parameter is `nil`, the operation
             will immediately finish.
     */
-    public init(block: OperationBlock? = nil) {
+    public init(block: @escaping BlockType = { continuation in continuation(nil) }) {
         self.block = block
         super.init()
+        name = "Block Operation"
     }
 
     /**
@@ -37,23 +40,18 @@ public class BlockOperation: Operation {
             the designated initializer). The operation will be automatically ended
             after the `mainQueueBlock` is executed.
     */
-    convenience public init(mainQueueBlock: dispatch_block_t) {
+    public convenience init(mainQueueBlock: @escaping ()->()) {
         self.init(block: { continuation in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 mainQueueBlock()
-                continuation()
+                continuation(nil)
             }
         })
     }
 
-    override public func execute() {
-        guard let block = block else {
-            finish()
-            return
-        }
-
-        block {
-            self.finish()
+    open override func execute() {
+        if !isCancelled {
+            block { error in self.finish([error as! NSError]) }
         }
     }
 }

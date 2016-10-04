@@ -18,7 +18,7 @@ struct PassbookCondition: OperationCondition {
 
     init() { }
 
-    func dependencyForOperation(operation: Operation) -> NSOperation? {
+    func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
         /*
             There's nothing you can do to make Passbook available if it's not
             on your device.
@@ -26,15 +26,15 @@ struct PassbookCondition: OperationCondition {
         return nil
     }
 
-    func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
+    func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
         if PKPassLibrary.isPassLibraryAvailable() {
-            completion(.Satisfied)
+            completion(.satisfied)
         } else {
-            let error = NSError(code: .ConditionFailed, userInfo: [
-                OperationConditionKey: self.dynamicType.name
+            let error = NSError(code: .conditionFailed, userInfo: [
+                OperationConditionKey: type(of: self).name
             ])
 
-            completion(.Failed(error))
+            completion(.failed(error))
         }
     }
 }

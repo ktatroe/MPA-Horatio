@@ -16,6 +16,6 @@ class VendorIDFeatureSubject: FeatureSubject {
     // MARK: - Initialization
     
     init() {
-        self.identifier = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? "<unavailable>"
+        self.identifier = UIDevice.current.identifierForVendor?.uuidString ?? "<unavailable>"
     }
 }

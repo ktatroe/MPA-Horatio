@@ -34,7 +34,7 @@ class RandomFeatureSubject: FeatureSubject {
     
     // MARK: - Private
     
-    private static func generateRandomIdentifier(length: Int) -> String {
+    fileprivate static func generateRandomIdentifier(_ length: Int) -> String {
         let allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let count = UInt32(allowed.characters.count)
 
@@ -43,7 +43,7 @@ class RandomFeatureSubject: FeatureSubject {
         for _ in (0 ..< length) {
             let random = Int(arc4random_uniform(count))
             
-            let c = allowed[allowed.startIndex.advancedBy(random)]
+            let c = allowed[allowed.characters.index(allowed.startIndex, offsetBy: random)]
             identifier += String(c)
         }
         

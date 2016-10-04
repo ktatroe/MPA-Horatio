@@ -192,10 +192,10 @@
 		EDB09D1E1D85BD25000FC309 = {
 			isa = PBXGroup;
 			children = (
-				EDB09D5B1D85BF19000FC309 /* Vendor */,
 				EDB09D291D85BD25000FC309 /* HoratioDemo */,
 				EDB09D411D85BD26000FC309 /* HoratioDemoTests */,
 				EDB09D4C1D85BD26000FC309 /* HoratioDemoUITests */,
+				EDB09D5B1D85BF19000FC309 /* Vendor */,
 				EDB09D281D85BD25000FC309 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -456,17 +456,20 @@
 					EDB09D261D85BD25000FC309 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 46RFK4MJ8P;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					EDB09D3D1D85BD26000FC309 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 46RFK4MJ8P;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = EDB09D261D85BD25000FC309;
 					};
 					EDB09D481D85BD26000FC309 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 46RFK4MJ8P;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = EDB09D261D85BD25000FC309;
 					};
@@ -741,7 +744,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -754,7 +757,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -768,7 +771,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HoratioDemo.app/HoratioDemo";
 			};
 			name = Debug;
@@ -783,7 +786,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HoratioDemo.app/HoratioDemo";
 			};
 			name = Release;
@@ -797,7 +800,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = HoratioDemo;
 			};
 			name = Debug;
@@ -811,7 +814,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = HoratioDemo;
 			};
 			name = Release;

@@ -35,17 +35,17 @@ import Foundation
 
  if let bridge = Container.resolve(ParkServiceBridge.self) { }
  */
-public class Container {
+open class Container {
     static internal var sharedContainer = Container()
 
-    private var services = [ContainerItemKey: ContainerItemType]()
+    fileprivate var services = [ContainerItemKey: ContainerItemType]()
 
-    public func register<T>(serviceType: T.Type, name: String? = nil, factory: Resolvable -> T) -> ContainerEntry<T> {
+    open func register<T>(_ serviceType: T.Type, name: String? = nil, factory: (Resolvable) -> T) -> ContainerEntry<T> {
         return registerFactory(serviceType, factory: factory, name: name)
     }
 
-    internal func registerFactory<T, Factory>(serviceType: T.Type, factory: Factory, name: String?) -> ContainerEntry<T> {
-        let key = ContainerItemKey(factoryType: factory.dynamicType, name: name)
+    internal func registerFactory<T, Factory>(_ serviceType: T.Type, factory: Factory, name: String?) -> ContainerEntry<T> {
+        let key = ContainerItemKey(factoryType: type(of: factory), name: name)
         let entry = ContainerEntry(serviceType: serviceType, factory: factory)
 
         services[key] = entry
@@ -53,24 +53,24 @@ public class Container {
         return entry
     }
 
-    static public func register<T>(serviceType: T.Type, name: String? = nil, factory: Resolvable -> T) -> ContainerEntry<T> {
+    static open func register<T>(_ serviceType: T.Type, name: String? = nil, factory: (Resolvable) -> T) -> ContainerEntry<T> {
         return sharedContainer.register(serviceType, name: name, factory: factory)
     }
 }
 
 
 extension Container : Resolvable {
-    public func resolve<T>(serviceType: T.Type, name: String? = nil) -> T? {
-        typealias FactoryType = Resolvable -> T
+    public func resolve<T>(_ serviceType: T.Type, name: String? = nil) -> T? {
+        typealias FactoryType = (Resolvable) -> T
 
         return resolveFactory(name) { (factory: FactoryType) in factory(self) }
     }
 
-    static public func resolve<T>(serviceType: T.Type, name: String? = nil) -> T? {
+    static public func resolve<T>(_ serviceType: T.Type, name: String? = nil) -> T? {
         return sharedContainer.resolve(serviceType, name: name)
     }
 
-    internal func resolveFactory<T, Factory>(name: String?, invoker: Factory -> T) -> T? {
+    internal func resolveFactory<T, Factory>(_ name: String?, invoker: (Factory) -> T) -> T? {
         let key = ContainerItemKey(factoryType: Factory.self, name: name)
 
         if let entry = services[key] as? ContainerEntry<T> {
@@ -84,7 +84,7 @@ extension Container : Resolvable {
         return nil
     }
 
-    private func resolveEntry<T, Factory>(entry: ContainerEntry<T>, key: ContainerItemKey, invoker: Factory -> T) -> T {
+    fileprivate func resolveEntry<T, Factory>(_ entry: ContainerEntry<T>, key: ContainerItemKey, invoker: (Factory) -> T) -> T {
         let resolvedInstance = invoker(entry.factory as! Factory)
 
         return resolvedInstance
@@ -95,13 +95,13 @@ extension Container : Resolvable {
 public typealias FunctionType = Any
 
 public protocol Resolvable {
-    func resolve<T>(serviceType: T.Type, name: String?) -> T?
+    func resolve<T>(_ serviceType: T.Type, name: String?) -> T?
 }
 
 
 internal struct ContainerItemKey {
-    private let factoryType: FunctionType.Type
-    private let name: String?
+    fileprivate let factoryType: FunctionType.Type
+    fileprivate let name: String?
 
     internal init(factoryType: FunctionType.Type, name: String? = nil) {
         self.factoryType = factoryType
@@ -112,7 +112,7 @@ internal struct ContainerItemKey {
 
 extension ContainerItemKey : Hashable {
     var hashValue: Int {
-        return String(factoryType).hashValue ^ (name?.hashValue ?? 0)
+        return String(describing: factoryType).hashValue ^ (name?.hashValue ?? 0)
     }
 }
 
@@ -123,8 +123,8 @@ func == (lhs: ContainerItemKey, rhs: ContainerItemKey) -> Bool {
 
 internal typealias ContainerItemType = Any
 
-public class ContainerEntry<T> : ContainerItemType {
-    private let serviceType: T.Type
+open class ContainerEntry<T> : ContainerItemType {
+    fileprivate let serviceType: T.Type
     let factory: FunctionType
 
     var instance: Any? = nil

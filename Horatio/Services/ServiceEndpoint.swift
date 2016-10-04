@@ -30,7 +30,7 @@ public enum ServiceEndpointType : String {
  but can switch between them as necessary (for example, when switching environments).
  */
 public protocol ServiceEndpointProvider: class {
-    func endpoint(identifier: String) -> ServiceEndpoint?
+    func endpoint(_ identifier: String) -> ServiceEndpoint?
 }
 
 
@@ -39,7 +39,7 @@ public protocol ServiceEndpointProvider: class {
 */
 enum ServiceEndpointURLContainer {
     // URL is contained in an `NSURLComponents` object
-    case components(NSURLComponents)
+    case components(URLComponents)
 
     // URL is contained in a self-contained complete URL
     case absolutePath(String)
@@ -50,17 +50,17 @@ enum ServiceEndpointURLContainer {
  instances (which can then be turned into `NSURLRequest` instances via the
  appropriate `Service`).
  */
-public class ServiceEndpoint {
+open class ServiceEndpoint {
     // MARK: - Properties
 
-    public let identifier: String
+    open let identifier: String
 
     var urlContainer: ServiceEndpointURLContainer
 
-    public var type: ServiceEndpointType = .get
+    open var type: ServiceEndpointType = .get
 
-    public var isAuthRequired: Bool = false
-    public var isIdempotent: Bool = true
+    open var isAuthRequired: Bool = false
+    open var isIdempotent: Bool = true
 
 
     // MARK: - Initialization
@@ -74,7 +74,7 @@ public class ServiceEndpoint {
     public convenience init(identifier: String, scheme: String, hostName: String, basePath: String, path: String) {
         self.init(identifier: identifier)
 
-        let components = NSURLComponents()
+        var components = URLComponents()
         components.scheme = scheme
         components.host = hostName
         components.path = "\(basePath)/\(path)"
@@ -99,12 +99,12 @@ public class ServiceEndpoint {
      often, this would be modified by one or more `ServiceEndpointPathTransformer` instances
      attached to a `ServiceRequest`.
      */
-    public func url() -> NSURL? {
+    open func url() -> URL? {
         switch urlContainer {
         case .components(let components):
-            return components.URL
+            return components.url
         case .absolutePath(let urlString):
-            return NSURL(string: urlString)
+            return URL(string: urlString)
         }
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 */
 protocol FeatureSelector {
     /// Returns the selector's mapped value in the range [0, 1) for a given subject and feature.
-    func select(feature: Feature, subject: FeatureSubject?) -> Double?
+    func select(_ feature: Feature, subject: FeatureSubject?) -> Double?
 }
 
 
@@ -24,7 +24,7 @@ class WeightedFeatureSelector: FeatureSelector {
     
     // MARK: <FeatureSelector>
     
-    func select(feature: Feature, subject: FeatureSubject? = nil) -> Double? {
+    func select(_ feature: Feature, subject: FeatureSubject? = nil) -> Double? {
         guard let subject = subject else { return nil }
 
         let hashValue = "\(feature.identifier).\(subject.identifier)".hashValue
@@ -35,7 +35,7 @@ class WeightedFeatureSelector: FeatureSelector {
 
     // MARK: - Private
     
-    private func normalize(value: Int) -> Double {
+    fileprivate func normalize(_ value: Int) -> Double {
         return Double(value) / Double(Int.max)
     }
 }
@@ -55,12 +55,12 @@ class FixedFeatureSelector: FeatureSelector {
     
     // MARK: <FeatureSelector>
 
-    func select(feature: Feature, subject: FeatureSubject?) -> Double? {
+    func select(_ feature: Feature, subject: FeatureSubject?) -> Double? {
         return weight
     }
 
     
     // MARK: - Private
     
-    private let weight: Double
+    fileprivate let weight: Double
 }

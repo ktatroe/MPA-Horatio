@@ -13,11 +13,11 @@ import Foundation
 public protocol Service: class {
     var sessionHandler: ServiceSessionHandler? { get }
 
-    func makeRequest(identifier: String, payload: ServiceRequestPayload?, configurator: ServiceRequestConfigurator?) -> ServiceRequest?
+    func makeRequest(_ identifier: String, payload: ServiceRequestPayload?, configurator: ServiceRequestConfigurator?) -> ServiceRequest?
 }
 
 extension Service {
-    public func makeRequest(identifier: String, payload: ServiceRequestPayload?, configurator: ServiceRequestConfigurator?) -> ServiceRequest? {
+    public func makeRequest(_ identifier: String, payload: ServiceRequestPayload?, configurator: ServiceRequestConfigurator?) -> ServiceRequest? {
         if let endpointProvider = Container.resolve(ServiceEndpointProvider.self) {
             if let endpoint = endpointProvider.endpoint(identifier) {
                 let request = ServiceRequest(endpoint: endpoint, payload: payload, configurator: configurator)

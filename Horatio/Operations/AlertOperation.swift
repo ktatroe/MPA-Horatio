@@ -11,8 +11,8 @@ import UIKit
 class AlertOperation: Operation {
     // MARK: Properties
 
-    private let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
-    private let presentationContext: UIViewController?
+    fileprivate let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+    fileprivate let presentationContext: UIViewController?
 
     var title: String? {
         get {
@@ -38,7 +38,7 @@ class AlertOperation: Operation {
     // MARK: Initialization
 
     init(presentationContext: UIViewController? = nil) {
-        self.presentationContext = presentationContext ?? UIApplication.sharedApplication().keyWindow?.rootViewController
+        self.presentationContext = presentationContext ?? UIApplication.shared.keyWindow?.rootViewController
 
         super.init()
 
@@ -52,7 +52,7 @@ class AlertOperation: Operation {
         addCondition(MutuallyExclusive<UIViewController>())
     }
 
-    func addAction(title: String, style: UIAlertActionStyle = .Default, handler: AlertOperation -> Void = { _ in }) {
+    func addAction(_ title: String, style: UIAlertActionStyle = .default, handler: @escaping (AlertOperation) -> Void = { _ in }) {
         let action = UIAlertAction(title: title, style: style) { [weak self] _ in
             if let strongSelf = self {
                 handler(strongSelf)
@@ -71,12 +71,12 @@ class AlertOperation: Operation {
             return
         }
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             if self.alertController.actions.isEmpty {
                 self.addAction("OK")
             }
 
-            presentationContext.presentViewController(self.alertController, animated: true, completion: nil)
+            presentationContext.present(self.alertController, animated: true, completion: nil)
         }
     }
 }
