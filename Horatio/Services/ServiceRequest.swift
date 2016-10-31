@@ -135,7 +135,7 @@ public struct ServiceRequest {
         }
 
         if let session = session {
-            session.signURLRequest(request)
+            request = session.signURLRequest(request)
         }
 
         return request as URLRequest

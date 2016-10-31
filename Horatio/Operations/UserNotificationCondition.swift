@@ -9,7 +9,9 @@ This file shows an example of implementing the OperationCondition protocol.
 #if os(iOS)
 
 import UIKit
-
+import UserNotifications
+    
+    
 /**
     A condition for verifying that we can present alerts to the user via
     `UILocalNotification` and/or remote notifications.
@@ -29,7 +31,7 @@ public struct UserNotificationCondition: OperationCondition {
     public static let desiredSettings = "DesiredUserNotificationSettigns"
     public static let isMutuallyExclusive = false
 
-    let settings: UIUserNotificationSettings
+    let settings: UNNotificationSettings
     let application: UIApplication
     let behavior: Behavior
 
@@ -48,7 +50,7 @@ public struct UserNotificationCondition: OperationCondition {
             `application`. You may also specify `.Replace`, which means the `settings`
             will overwrite the exisiting settings.
     */
-    public init(settings: UIUserNotificationSettings, application: UIApplication, behavior: Behavior = .merge) {
+    public init(settings: UNNotificationSettings, application: UIApplication, behavior: Behavior = .merge) {
         self.settings = settings
         self.application = application
         self.behavior = behavior
@@ -86,11 +88,11 @@ public struct UserNotificationCondition: OperationCondition {
     object with a `UIApplication`, prompting the user for permission if necessary.
 */
 private class UserNotificationPermissionOperation: Operation {
-    let settings: UIUserNotificationSettings
+    let settings: UNNotificationSettings
     let application: UIApplication
     let behavior: UserNotificationCondition.Behavior
 
-    init(settings: UIUserNotificationSettings, application: UIApplication, behavior: UserNotificationCondition.Behavior) {
+    init(settings: UNNotificationSettings, application: UIApplication, behavior: UserNotificationCondition.Behavior) {
         self.settings = settings
         self.application = application
         self.behavior = behavior
@@ -104,7 +106,7 @@ private class UserNotificationPermissionOperation: Operation {
         DispatchQueue.main.async {
             let current = self.application.currentUserNotificationSettings
 
-            let settingsToRegister: UIUserNotificationSettings
+            let settingsToRegister: UNNotificationSettings
 
             switch (current, self.behavior) {
                 case (let currentSettings?, .merge):

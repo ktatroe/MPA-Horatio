@@ -56,9 +56,7 @@
 		EDB09DED1D85BF34000FC309 /* RemoteNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D981D85BF34000FC309 /* RemoteNotificationCondition.swift */; };
 		EDB09DEE1D85BF34000FC309 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D991D85BF34000FC309 /* SilentCondition.swift */; };
 		EDB09DEF1D85BF34000FC309 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9A1D85BF34000FC309 /* TimeoutObserver.swift */; };
-		EDB09DF01D85BF34000FC309 /* UIUserNotifications+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9B1D85BF34000FC309 /* UIUserNotifications+Operations.swift */; };
 		EDB09DF11D85BF34000FC309 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9C1D85BF34000FC309 /* URLSessionTaskOperation.swift */; };
-		EDB09DF21D85BF34000FC309 /* UserNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9D1D85BF34000FC309 /* UserNotificationCondition.swift */; };
 		EDB09DF91D85BF34000FC309 /* TaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DA61D85BF34000FC309 /* TaskScheduler.swift */; };
 		EDB09DFB1D85BF34000FC309 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DA91D85BF34000FC309 /* Service.swift */; };
 		EDB09DFC1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAA1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift */; };
@@ -450,7 +448,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Mudpot Apps";
 				TargetAttributes = {
 					EDB09D261D85BD25000FC309 = {
@@ -577,9 +575,7 @@
 				EDB09DDC1D85BF34000FC309 /* LocationOperation.swift in Sources */,
 				EDB09DE01D85BF34000FC309 /* NoCancelledDependencies.swift in Sources */,
 				EDB09DCA1D85BF34000FC309 /* VendorIDFeatureSubject.swift in Sources */,
-				EDB09DF01D85BF34000FC309 /* UIUserNotifications+Operations.swift in Sources */,
 				EDB09DC91D85BF34000FC309 /* FeatureSubject.swift in Sources */,
-				EDB09DF21D85BF34000FC309 /* UserNotificationCondition.swift in Sources */,
 				EDB09DE21D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.m in Sources */,
 				EDB09DEE1D85BF34000FC309 /* SilentCondition.swift in Sources */,
 				EDB09DD61D85BF34000FC309 /* Dictionary+Operations.swift in Sources */,
@@ -658,6 +654,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -709,6 +706,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

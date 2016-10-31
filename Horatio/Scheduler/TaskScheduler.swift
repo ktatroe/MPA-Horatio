@@ -101,7 +101,7 @@ class TimedTaskCoordinator : ScheduledTaskCoordinator {
 
     @objc
     fileprivate func timerFired(_ timer: Foundation.Timer) {
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+        DispatchQueue.global(qos: .default).async {
             self.scheduleTasks()
         }
     }
