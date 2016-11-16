@@ -40,6 +40,9 @@ public class Container {
 
     private var services = [ContainerItemKey: ContainerItemType]()
 
+    // make this a concurrent queue, and use it as a read/write lock
+    private let accessQueue = dispatch_queue_create("SynchronizedContainerAccess", DISPATCH_QUEUE_CONCURRENT)
+
     public func register<T>(serviceType: T.Type, name: String? = nil, factory: Resolvable -> T) -> ContainerEntry<T> {
         return registerFactory(serviceType, factory: factory, name: name)
     }
@@ -48,7 +51,10 @@ public class Container {
         let key = ContainerItemKey(factoryType: factory.dynamicType, name: name)
         let entry = ContainerEntry(serviceType: serviceType, factory: factory)
 
-        services[key] = entry
+        // ensure no other access while writing
+        dispatch_barrier_sync(accessQueue) {
+            services[key] = entry
+        }
 
         return entry
     }
@@ -73,7 +79,14 @@ extension Container : Resolvable {
     internal func resolveFactory<T, Factory>(name: String?, invoker: Factory -> T) -> T? {
         let key = ContainerItemKey(factoryType: Factory.self, name: name)
 
-        if let entry = services[key] as? ContainerEntry<T> {
+        var lockedEntry: ContainerItemType? = nil
+
+        // read from data structure in a thread-safe manner
+        dispatch_sync(accessQueue) {
+            lockedEntry = services[key]
+        }
+
+        if let entry = lockedEntry as? ContainerEntry<T> {
             if entry.instance == nil {
                 entry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
             }
