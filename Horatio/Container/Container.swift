@@ -40,8 +40,8 @@ public class Container {
 
     private var services = [ContainerItemKey: ContainerItemType]()
 
-    // make this a concurrent queue, and use it as a read/write lock
-    private let accessQueue = dispatch_queue_create("SynchronizedContainerAccess", DISPATCH_QUEUE_CONCURRENT)
+    // we need a recursive lock, because sometimes we do a resolve() inside a resolve()
+    private let servicesLock = NSRecursiveLock()
 
     public func register<T>(serviceType: T.Type, name: String? = nil, factory: Resolvable -> T) -> ContainerEntry<T> {
         return registerFactory(serviceType, factory: factory, name: name)
@@ -52,9 +52,13 @@ public class Container {
         let entry = ContainerEntry(serviceType: serviceType, factory: factory)
 
         // ensure no other access while writing
-        dispatch_barrier_sync(accessQueue) {
-            services[key] = entry
+        servicesLock.lock()
+
+        defer {
+            servicesLock.unlock()
         }
+
+        services[key] = entry
 
         return entry
     }
@@ -82,12 +86,17 @@ extension Container : Resolvable {
         var lockedEntry: ContainerItemType? = nil
 
         // read from data structure in a thread-safe manner
-        dispatch_sync(accessQueue) {
-            lockedEntry = services[key]
+        servicesLock.lock()
+
+        defer {
+            servicesLock.unlock()
         }
+
+        lockedEntry = services[key]
 
         if let entry = lockedEntry as? ContainerEntry<T> {
             if entry.instance == nil {
+                // this is doing a write to a shared object, and also must happen inside the lock
                 entry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
             }
 
