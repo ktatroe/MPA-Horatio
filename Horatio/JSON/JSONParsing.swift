@@ -32,17 +32,23 @@ public struct JSONParsingOptions: OptionSet {
  types and missing values.
 */
 open class JSONParser {
-    open static func parseIdentifier(_ value: AnyObject?, options: JSONParsingOptions = .none) -> String? {
-        if let stringValue = JSONParser.parseString(value) {
+    open static func parseIdentifier(_ value: AnyObject?, ignoreDefault defaultToIgnore: String? = nil, options: JSONParsingOptions = .none) -> String? {
+        if let stringValue = JSONParser.parseString(value, ignoreDefault: defaultToIgnore, options: options) {
             return stringValue.lowercased()
         }
 
         return nil
     }
-
-    open static func parseString(_ value: AnyObject?, options: JSONParsingOptions = .none) -> String? {
+    
+    open static func parseString(_ value: AnyObject?, ignoreDefault defaultToIgnore: String? = nil, options: JSONParsingOptions = .none) -> String? {
         if let stringValue = value as? String {
-            return stringValue.stringByDecodingJavascriptEntities()
+            let decodedString = stringValue.stringByDecodingJavascriptEntities()
+            
+            if defaultToIgnore == decodedString {
+                return nil
+            }
+            
+            return decodedString
         }
 
         if options.contains(.allowConversion) {

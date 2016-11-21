@@ -188,7 +188,7 @@ open class Operation: Foundation.Operation {
 
     override final public func start() {
         if let name = self.name {
-            print(name + " started")
+            print("\(name) started")
         }
 
         assert(state == .ready, "This operation must be performed on an operation queue.")
@@ -266,6 +266,16 @@ open class Operation: Foundation.Operation {
             state = .finishing
 
             let combinedErrors = _internalErrors + errors
+            let failed = !combinedErrors.isEmpty
+            
+            if let name = name {
+                if failed {
+                    print("\(name) failed due to errors")
+                } else {
+                    print("\(name) finished")
+                }
+            }
+            
             finished(combinedErrors)
 
             for observer in observers {
