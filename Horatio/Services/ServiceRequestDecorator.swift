@@ -100,8 +100,7 @@ internal extension URL {
         guard var components = URLComponents(url: self, resolvingAgainstBaseURL: false) else { return self }
 
         for (key, value) in parameters {
-            let encodedValue = value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-            let queryItem = URLQueryItem(name: key, value: encodedValue)
+            let queryItem = URLQueryItem(name: key, value: value)
 
             if let _ = components.queryItems {
                 components.queryItems?.append(queryItem)
