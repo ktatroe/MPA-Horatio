@@ -61,12 +61,14 @@ class TimedTaskCoordinator : ScheduledTaskCoordinator {
     func resume() {
         isActive = true
 
-        if updateTimer == nil {
-            updateTimer = Foundation.Timer.scheduledTimer(timeInterval: Behaviors.TimerInterval, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
-        }
-
-        if let updateTimer = updateTimer {
-            updateTimer.fire()
+        DispatchQueue.main.async {
+            if self.updateTimer == nil {
+                self.updateTimer = Foundation.Timer.scheduledTimer(timeInterval: Behaviors.TimerInterval, target: self, selector: #selector(self.timerFired), userInfo: nil, repeats: true)
+            }
+            
+            if let updateTimer = self.updateTimer {
+                updateTimer.fire()
+            }
         }
     }
 

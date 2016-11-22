@@ -33,6 +33,7 @@ open class FetchServiceResponseOperation: GroupOperation {
 
         parseOperation = ProcessServiceResponseOperation(request: request, responseProcessor: responseProcessor, cacheFile: cacheFile)
         parseOperation.addDependency(downloadOperation)
+        parseOperation.addCondition(DependencySuccessCondition())
 
         super.init(operations: [downloadOperation, parseOperation])
 
@@ -43,8 +44,7 @@ open class FetchServiceResponseOperation: GroupOperation {
     // MARK: - Private
 
     fileprivate static func randomCacheFileName() -> String {
-        // TODO: use guid or something similar
-        return "cacheFile"
+        return UUID().uuidString
     }
 }
 
@@ -110,6 +110,25 @@ open class DownloadServiceResponseOperation: GroupOperation {
     }
 }
 
+open struct ProcessServiceResponseErrors {
+    enum ErrorTypes: Error {
+        case notProcessed
+    }
+    
+    static let domain = "ProcessServiceResponseErrors"
+    
+    struct Codes {
+        static let notProcessed = 0
+    }
+    
+    static func errorForType(_ type: ErrorTypes) -> NSError {
+        switch type {
+        case .notProcessed:
+            return NSError(domain: domain, code: Codes.notProcessed, userInfo: nil)
+        }
+    }
+}
+
 
 /**
  Uses a provided `ServiceResponseProcessor` to process a response downloaded
@@ -163,6 +182,8 @@ open class ProcessServiceResponseOperation: Operation {
                     self.finish()
                     return
                 }
+                
+                self.finishWithError(ProcessServiceResponseErrors.errorForType(.notProcessed))
 
             case .error(let error):
                 self.finishWithError(error)
