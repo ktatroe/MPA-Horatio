@@ -33,13 +33,13 @@ public struct JSONParsingOptions: OptionSet {
 */
 open class JSONParser {
     open static func parseIdentifier(_ value: AnyObject?, options: JSONParsingOptions = .none) -> String? {
-        if let stringValue = JSONParser.parseString(value, options: options) {
+        if let stringValue = JSONParser.parseString(value) {
             return stringValue.lowercased()
         }
 
         return nil
     }
-    
+
     open static func parseString(_ value: AnyObject?, options: JSONParsingOptions = .none) -> String? {
         if let stringValue = value as? String {
             return stringValue.stringByDecodingJavascriptEntities()
