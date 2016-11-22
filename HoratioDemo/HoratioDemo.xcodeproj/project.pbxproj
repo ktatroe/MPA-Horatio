@@ -69,6 +69,7 @@
 		EDB09E031D85BF34000FC309 /* ServiceRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DB11D85BF34000FC309 /* ServiceRequestStatus.swift */; };
 		EDB09E041D85BF34000FC309 /* ServiceSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DB21D85BF34000FC309 /* ServiceSession.swift */; };
 		EDC073861D8AE2ED00ADEBC9 /* JSONServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC073851D8AE2ED00ADEBC9 /* JSONServiceRequest.swift */; };
+		EDF647F71DE4D072007E9869 /* DependencySuccessCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF647F61DE4D072007E9869 /* DependencySuccessCondition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 		EDB09DB11D85BF34000FC309 /* ServiceRequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestStatus.swift; sourceTree = "<group>"; };
 		EDB09DB21D85BF34000FC309 /* ServiceSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceSession.swift; sourceTree = "<group>"; };
 		EDC073851D8AE2ED00ADEBC9 /* JSONServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONServiceRequest.swift; sourceTree = "<group>"; };
+		EDF647F61DE4D072007E9869 /* DependencySuccessCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencySuccessCondition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,6 +342,7 @@
 		EDB09E0E1D87251D000FC309 /* Conditions */ = {
 			isa = PBXGroup;
 			children = (
+				EDF647F61DE4D072007E9869 /* DependencySuccessCondition.swift */,
 				EDB09D801D85BF34000FC309 /* ExclusivityController.swift */,
 				EDB09D8A1D85BF34000FC309 /* NoCancelledDependencies.swift */,
 				EDB09D861D85BF34000FC309 /* MutuallyExclusive.swift */,
@@ -565,6 +568,7 @@
 				EDB09D331D85BD25000FC309 /* HoratioDemo.xcdatamodeld in Sources */,
 				EDB09DEC1D85BF34000FC309 /* ReachabilityCondition.swift in Sources */,
 				EDB09D2B1D85BD25000FC309 /* AppDelegate.swift in Sources */,
+				EDF647F71DE4D072007E9869 /* DependencySuccessCondition.swift in Sources */,
 				EDB09DE31D85BF34000FC309 /* NSOperation+Operations.swift in Sources */,
 				EDB09DD21D85BF34000FC309 /* CKContainer+Operations.swift in Sources */,
 				EDB09DC81D85BF34000FC309 /* FeatureSelector.swift in Sources */,

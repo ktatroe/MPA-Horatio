@@ -15,12 +15,12 @@ import Foundation
  about interesting operation state changes
  */
 open class Operation: Foundation.Operation {
-    
+
     // use the KVO mechanism to indicate that changes to "state" affect other properties as well
     class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
         return ["state" as NSObject]
     }
-    
+
     class func keyPathsForValuesAffectingIsExecuting() -> Set<NSObject> {
         return ["state" as NSObject]
     }
@@ -28,7 +28,11 @@ open class Operation: Foundation.Operation {
     class func keyPathsForValuesAffectingIsFinished() -> Set<NSObject> {
         return ["state" as NSObject]
     }
-    
+
+    class func keyPathsForValuesAffectingIsCancelled() -> Set<NSObject> {
+        return ["state" as NSObject]
+    }
+
     // MARK: State Management
     
     fileprivate enum State: Int, Comparable {
@@ -88,7 +92,7 @@ open class Operation: Foundation.Operation {
     func willEnqueue() {
         state = .pending
     }
-    
+
     /// Private storage for the `state` property that will be KVO observed.
     fileprivate var _state = State.initialized
     
@@ -101,7 +105,7 @@ open class Operation: Foundation.Operation {
                 _state
             }
         }
-        
+
         set(newState) {
             /*
              It's important to note that the KVO notifications are NOT called from inside
@@ -121,11 +125,11 @@ open class Operation: Foundation.Operation {
                 assert(_state.canTransitionToState(newState), "Performing invalid state transition.")
                 _state = newState
             }
-            
+
             didChangeValue(forKey: "state")
         }
     }
-    
+
     // Here is where we extend our definition of "readiness".
     override open var isReady: Bool {
         switch state {
@@ -160,18 +164,20 @@ open class Operation: Foundation.Operation {
         get {
             return qualityOfService == .userInitiated
         }
-        
+
         set {
             assert(state < .executing, "Cannot modify userInitiated after execution has begun.")
-            
+
             qualityOfService = newValue ? .userInitiated : .default
         }
     }
-    
+
+    fileprivate(set) open var failed = false
+
     override open var isExecuting: Bool {
         return state == .executing
     }
-    
+
     override open var isFinished: Bool {
         return state == .finished
     }
@@ -180,43 +186,47 @@ open class Operation: Foundation.Operation {
         assert(state == .pending && !isCancelled, "evaluateConditions() was called out-of-order")
         
         state = .evaluatingConditions
-        
+
         OperationConditionEvaluator.evaluate(conditions, operation: self) { failures in
             self._internalErrors.append(contentsOf: failures)
             self.state = .ready
         }
     }
-    
+
     // MARK: Observers and Conditions
-    
+
     fileprivate(set) var conditions = [OperationCondition]()
     
     func addCondition(_ condition: OperationCondition) {
         assert(state < .evaluatingConditions, "Cannot modify conditions after execution has begun.")
-        
+
         conditions.append(condition)
     }
-    
+
     fileprivate(set) var observers = [OperationObserver]()
     
     func addObserver(_ observer: OperationObserver) {
-        assert(state < .executing, "Cannot modify observers after execution has begun.")
-        
+        assert(state <= .executing, "Cannot modify observers after execution has begun.")
+
         observers.append(observer)
     }
-    
+
     override open func addDependency(_ operation: Foundation.Operation) {
         assert(state < .executing, "Dependencies cannot be modified after execution has begun.")
         
         super.addDependency(operation)
     }
-    
+
     // MARK: Execution and Cancellation
     
     override final public func start() {
         // NSOperation.start() contains important logic that shouldn't be bypassed.
         super.start()
-        
+
+        if let name = self.name {
+            print("\(name) started")
+        }
+
         // If the operation has been cancelled, we still need to enter the "Finished" state.
         if isCancelled {
             finish()
@@ -239,7 +249,7 @@ open class Operation: Foundation.Operation {
             finish()
         }
     }
-    
+
     /**
      `execute()` is the entry point of execution for all `Operation` subclasses.
      If you subclass `Operation` and wish to customize its execution, you would
@@ -252,10 +262,10 @@ open class Operation: Foundation.Operation {
      */
     func execute() {
         print("\(type(of: self)) must override `execute()`.")
-        
+
         finish()
     }
-    
+
     fileprivate var _internalErrors = [NSError]()
     func cancelWithError(_ error: NSError? = nil) {
         if let error = error {
@@ -264,13 +274,13 @@ open class Operation: Foundation.Operation {
         
         cancel()
     }
-    
+
     final func produceOperation(_ operation: Foundation.Operation) {
         for observer in observers {
             observer.operation(self, didProduceOperation: operation)
         }
     }
-    
+
     // MARK: Finishing
     
     /**
@@ -301,6 +311,16 @@ open class Operation: Foundation.Operation {
             state = .finishing
             
             let combinedErrors = _internalErrors + errors
+            failed = !combinedErrors.isEmpty
+            
+            if let name = name {
+                if failed {
+                    print("\(name) failed due to errors")
+                } else {
+                    print("\(name) finished")
+                }
+            }
+            
             finished(combinedErrors)
             
             for observer in observers {
