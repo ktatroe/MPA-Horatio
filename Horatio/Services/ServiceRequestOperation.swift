@@ -118,13 +118,13 @@ open struct ProcessServiceResponseErrors {
     static let domain = "ProcessServiceResponseErrors"
     
     struct Codes {
-        static let unProcessed = 0
+        static let notProcessed = 0
     }
     
     static func errorForType(_ type: ErrorTypes) -> NSError {
         switch type {
         case .notProcessed:
-            return NSError(domain: domain, code: Codes.unProcessed, userInfo: nil)
+            return NSError(domain: domain, code: Codes.notProcessed, userInfo: nil)
         }
     }
 }
