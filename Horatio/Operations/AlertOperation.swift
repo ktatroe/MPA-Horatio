@@ -38,8 +38,7 @@ class AlertOperation: Operation {
     // MARK: Initialization
 
     init(presentationContext: UIViewController? = nil) {
-        self.presentationContext = presentationContext ?? UIApplication.shared.keyWindow?.rootViewController
-
+        self.presentationContext = presentationContext
         super.init()
 
         addCondition(AlertPresentation())
@@ -65,18 +64,24 @@ class AlertOperation: Operation {
     }
 
     override func execute() {
-        guard let presentationContext = presentationContext else {
-            finish()
-
-            return
+        var presentationViewController: UIViewController?
+        
+        if let presentationContext = presentationContext {
+            presentationViewController = presentationContext
+        } else {
+            presentationViewController = UIApplication.shared.keyWindow?.rootViewController
+            
+            while let presentedVC = presentationViewController?.presentedViewController {
+                presentationViewController = presentedVC
+            }
         }
 
         DispatchQueue.main.async {
             if self.alertController.actions.isEmpty {
                 self.addAction("OK")
             }
-
-            presentationContext.present(self.alertController, animated: true, completion: nil)
+            
+            presentationViewController?.present(self.alertController, animated: true, completion: nil)
         }
     }
 }
