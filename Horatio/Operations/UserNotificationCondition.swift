@@ -16,6 +16,7 @@ import UserNotifications
     A condition for verifying that we can present alerts to the user via
     `UILocalNotification` and/or remote notifications.
 */
+@available(iOS 10.0, *)
 public struct UserNotificationCondition: OperationCondition {
 
     public enum Behavior {
@@ -87,6 +88,7 @@ public struct UserNotificationCondition: OperationCondition {
     A private `Operation` subclass to register a `UIUserNotificationSettings`
     object with a `UIApplication`, prompting the user for permission if necessary.
 */
+@available(iOS 10.0, *)
 private class UserNotificationPermissionOperation: Operation {
     let settings: UNNotificationSettings
     let application: UIApplication

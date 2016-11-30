@@ -50,7 +50,7 @@ public struct TimeoutObserver: OperationObserver {
         // No op.
     }
 
-    public func operationDidFinish(_ operation: Operation, errors: [NSError]) {
+    public func operationDidFinish(_ operation: Operation, errors: [Error]) {
         // No op.
     }
 }

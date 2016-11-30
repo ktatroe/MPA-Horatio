@@ -8,7 +8,7 @@ import Foundation
 public protocol ScheduledTaskProvider {
     var identifier: String { get }
 
-    func makeScheduledTasks() -> [Foundation.Operation]
+    func makeScheduledTasks() -> [Operation]
 }
 
 

@@ -53,6 +53,7 @@ open class Container {
         return entry
     }
 
+    @discardableResult
     static open func register<T>(_ serviceType: T.Type, name: String? = nil, factory: (Resolvable) -> T) -> ContainerEntry<T> {
         return sharedContainer.register(serviceType, name: name, factory: factory)
     }
@@ -60,14 +61,18 @@ open class Container {
 
 
 extension Container : Resolvable {
+    @discardableResult
     public func resolve<T>(_ serviceType: T.Type, name: String? = nil) -> T? {
         typealias FactoryType = (Resolvable) -> T
 
         return resolveFactory(name) { (factory: FactoryType) in factory(self) }
     }
 
+    @discardableResult
     static public func resolve<T>(_ serviceType: T.Type, name: String? = nil) -> T? {
-        return sharedContainer.resolve(serviceType, name: name)
+        let result = sharedContainer.resolve(serviceType, name: name)
+
+        return result
     }
 
     internal func resolveFactory<T, Factory>(_ name: String?, invoker: (Factory) -> T) -> T? {

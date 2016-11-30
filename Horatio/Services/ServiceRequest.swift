@@ -5,7 +5,7 @@
 import Foundation
 
 
-public typealias ServiceRequestCompletionBlock = (ServiceRequest, [NSError]) -> Void
+public typealias ServiceRequestCompletionBlock = (ServiceRequest, [Error]) -> Void
 
 
 /**

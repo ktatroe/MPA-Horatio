@@ -29,7 +29,7 @@ public struct NetworkObserver: OperationObserver {
 
     public func operation(_ operation: Operation, didProduceOperation newOperation: Foundation.Operation) { }
 
-    public func operationDidFinish(_ operation: Operation, errors: [NSError]) {
+    public func operationDidFinish(_ operation: Operation, errors: [Error]) {
         DispatchQueue.main.async {
             // Decrement the network indicator's "reference count".
             NetworkIndicatorController.sharedIndicatorController.networkActivityDidEnd()
@@ -46,7 +46,7 @@ private class NetworkIndicatorController {
 
     fileprivate var activityCount = 0
 
-    fileprivate var visibilityTimer: Timer?
+    fileprivate var visibilityTimer: NetworkObserverTimer?
 
     // MARK: Methods
 
@@ -75,7 +75,7 @@ private class NetworkIndicatorController {
                 hiding of the indicator by one second. This provides the chance
                 to come in and invalidate the timer before it fires.
             */
-            visibilityTimer = Timer(interval: 1.0) {
+            visibilityTimer = NetworkObserverTimer(interval: 1.0) {
                 self.hideIndicator()
             }
         }
@@ -101,7 +101,7 @@ private class NetworkIndicatorController {
 }
 
 /// Essentially a cancellable `dispatch_after`.
-class Timer {
+fileprivate class NetworkObserverTimer {
     // MARK: Properties
 
     fileprivate var isCancelled = false

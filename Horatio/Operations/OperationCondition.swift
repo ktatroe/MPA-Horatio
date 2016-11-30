@@ -53,9 +53,9 @@ public protocol OperationCondition {
 */
 public enum OperationConditionResult {
     case satisfied
-    case failed(NSError)
+    case failed(Error)
 
-    var error: NSError? {
+    var error: Error? {
         if case .failed(let error) = self {
             return error
         }
@@ -67,7 +67,7 @@ public enum OperationConditionResult {
 // MARK: Evaluate Conditions
 
 public struct OperationConditionEvaluator {
-    public static func evaluate(_ conditions: [OperationCondition], operation: Operation, completion: @escaping ([NSError]) -> Void) {
+    public static func evaluate(_ conditions: [OperationCondition], operation: Operation, completion: @escaping ([Error]) -> Void) {
         // Check conditions.
         let conditionGroup = DispatchGroup()
 

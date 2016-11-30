@@ -266,8 +266,8 @@ open class Operation: Foundation.Operation {
         finish()
     }
 
-    fileprivate var _internalErrors = [NSError]()
-    func cancelWithError(_ error: NSError? = nil) {
+    fileprivate var _internalErrors = [Error]()
+    func cancelWithError(_ error: Error? = nil) {
         if let error = error {
             _internalErrors.append(error)
         }
@@ -291,7 +291,7 @@ open class Operation: Foundation.Operation {
      for how an error from an `NSURLSession` is passed along via the
      `finishWithError()` method.
      */
-    final func finishWithError(_ error: NSError?) {
+    final func finishWithError(_ error: Error?) {
         if let error = error {
             finish([error])
         }
@@ -305,7 +305,7 @@ open class Operation: Foundation.Operation {
      operation has finished.
      */
     fileprivate var hasFinishedAlready = false
-    final func finish(_ errors: [NSError] = []) {
+    final func finish(_ errors: [Error] = []) {
         if !hasFinishedAlready {
             hasFinishedAlready = true
             state = .finishing
@@ -321,7 +321,7 @@ open class Operation: Foundation.Operation {
                 }
             }
             
-            finished(combinedErrors)
+            finished(combinedErrors as [NSError])
             
             for observer in observers {
                 observer.operationDidFinish(self, errors: combinedErrors)
@@ -340,7 +340,7 @@ open class Operation: Foundation.Operation {
     func finished(_ errors: [NSError]) {
         // No op.
     }
-    
+
     override final public func waitUntilFinished() {
         /*
          Waiting on operations is almost NEVER the right thing to do. It is

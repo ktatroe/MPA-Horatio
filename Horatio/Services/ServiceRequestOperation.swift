@@ -221,5 +221,5 @@ public enum ServiceResponseProcessorParam {
  complete the processing stage of the operation.
 */
 public protocol ServiceResponseProcessor: class {
-    func process(_ request: ServiceRequest, input: ServiceResponseProcessorParam, completionBlock: (ServiceResponseProcessorParam) -> Void)
+    func process(_ request: ServiceRequest, input: ServiceResponseProcessorParam, completionBlock: @escaping (ServiceResponseProcessorParam) -> Void)
 }

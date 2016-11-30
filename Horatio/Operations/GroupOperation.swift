@@ -23,9 +23,10 @@ import Foundation
 */
 open class GroupOperation: Operation {
     fileprivate let internalQueue = OperationQueue()
+    fileprivate let startingOperation = Foundation.BlockOperation(block: {})
     fileprivate let finishingOperation = Foundation.BlockOperation(block: {})
 
-    fileprivate var aggregatedErrors = [NSError]()
+    fileprivate var aggregatedErrors = [Error]()
 
     public convenience init(operations: Foundation.Operation...) {
         self.init(operations: operations)
@@ -34,9 +35,10 @@ open class GroupOperation: Operation {
     public init(operations: [Foundation.Operation]) {
         super.init()
 
+        internalQueue.name = "\(name ?? "Unknown Group Operation") queue"
         internalQueue.isSuspended = true
-
         internalQueue.delegate = self
+        internalQueue.addOperation(startingOperation)
 
         for operation in operations {
             internalQueue.addOperation(operation)
@@ -62,11 +64,11 @@ open class GroupOperation: Operation {
         Errors aggregated through this method will be included in the final array
         of errors reported to observers and to the `finished(_:)` method.
     */
-    final public func aggregateError(_ error: NSError) {
+    final public func aggregateError(_ error: Error) {
         aggregatedErrors.append(error)
     }
 
-    open func operationDidFinish(_ operation: Foundation.Operation, withErrors errors: [NSError]) {
+    open func operationDidFinish(_ operation: Foundation.Operation, withErrors errors: [Error]) {
         // For use by subclassers.
     }
 }
@@ -83,15 +85,26 @@ extension GroupOperation: OperationQueueDelegate {
         if operation !== finishingOperation {
             finishingOperation.addDependency(operation)
         }
+
+        /*
+            All operations should be dependent on the "startingOperation".
+            This way, we can guarantee that the conditions for other operations
+            will not evaluate until just before the operation is about to run.
+            Otherwise, the conditions could be evaluated at any time, even
+            before the internal operation queue is unsuspended.
+         */
+        if operation !== startingOperation {
+            operation.addDependency(startingOperation)
+        }
     }
 
-    final public func operationQueue(_ operationQueue: OperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [NSError]) {
-        aggregatedErrors.append(contentsOf: errors)
+    final public func operationQueue(_ operationQueue: OperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [Error]) {
+        aggregatedErrors += errors
 
         if operation === finishingOperation {
             internalQueue.isSuspended = true
             finish(aggregatedErrors)
-        } else {
+        } else if operation !== startingOperation {
             operationDidFinish(operation, withErrors: errors)
         }
     }

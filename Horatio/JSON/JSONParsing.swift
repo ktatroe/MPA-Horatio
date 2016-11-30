@@ -5,7 +5,7 @@
 import Foundation
 
 
-public typealias JSONObject = [String : AnyObject]
+public typealias JSONObject = [String : Any]
 
 
 /// Options for parsing and validating JSON using the `JSONParser` class.
@@ -32,7 +32,7 @@ public struct JSONParsingOptions: OptionSet {
  types and missing values.
 */
 open class JSONParser {
-    open static func parseIdentifier(_ value: AnyObject?, options: JSONParsingOptions = .none) -> String? {
+    open static func parseIdentifier(_ value: Any?, options: JSONParsingOptions = .none) -> String? {
         if let stringValue = JSONParser.parseString(value) {
             return stringValue.lowercased()
         }
@@ -40,7 +40,7 @@ open class JSONParser {
         return nil
     }
 
-    open static func parseString(_ value: AnyObject?, options: JSONParsingOptions = .none) -> String? {
+    open static func parseString(_ value: Any?, options: JSONParsingOptions = .none) -> String? {
         if let stringValue = value as? String {
             return stringValue.stringByDecodingJavascriptEntities()
         }
@@ -58,7 +58,7 @@ open class JSONParser {
         return nil
     }
 
-    open static func parseInt(_ value: AnyObject?, options: JSONParsingOptions = .none) -> Int? {
+    open static func parseInt(_ value: Any?, options: JSONParsingOptions = .none) -> Int? {
         if let intValue = value as? Int {
             return intValue
         }
@@ -80,7 +80,7 @@ open class JSONParser {
         return nil
     }
 
-    open static func parseDouble(_ value: AnyObject?, options: JSONParsingOptions = .none) -> Double? {
+    open static func parseDouble(_ value: Any?, options: JSONParsingOptions = .none) -> Double? {
         if let doubleValue = value as? Double {
             return doubleValue
         }
@@ -102,7 +102,7 @@ open class JSONParser {
         return nil
     }
 
-    open static func parseBool(_ value: AnyObject?, options: JSONParsingOptions = .none) -> Bool? {
+    open static func parseBool(_ value: Any?, options: JSONParsingOptions = .none) -> Bool? {
         if let boolValue = value as? Bool {
             return boolValue
         }
@@ -128,15 +128,15 @@ open class JSONParser {
         return nil
     }
 
-    open static func parseArray(_ value: AnyObject?, options: JSONParsingOptions = .none) -> [AnyObject]? {
-        if let arrayValue = value as? [AnyObject] {
+    open static func parseArray(_ value: Any?, options: JSONParsingOptions = .none) -> [Any]? {
+        if let arrayValue = value as? [Any] {
             return arrayValue
         }
 
         if let value = value {
             if let _ = value as? NSNull {
                 if options.contains(.allowConversion) {
-                    return [AnyObject]()
+                    return [Any]()
                 }
             }
 
@@ -146,33 +146,33 @@ open class JSONParser {
         }
 
         if options.contains(.allowEmpty) {
-            return [AnyObject]()
+            return [Any]()
         }
 
         return nil
     }
 
-    open static func parseObject(_ value: AnyObject?, options: JSONParsingOptions = .none) -> JSONObject? {
-        if let objectValue = value as? [String : AnyObject] {
+    open static func parseObject(_ value: Any?, options: JSONParsingOptions = .none) -> JSONObject? {
+        if let objectValue = value as? [String : Any] {
             return objectValue
         }
 
         if let value = value {
             if let _ = value as? NSNull {
                 if options.contains(.allowConversion) {
-                    return [String : AnyObject]()
+                    return [String : Any]()
                 }
             }
         }
 
         if options.contains(.allowEmpty) {
-            return [String : AnyObject]()
+            return [String : Any]()
         }
 
         return nil
     }
 
-    open static func parseISO8601Date(_ value: AnyObject?, options: JSONParsingOptions = .none) -> Date? {
+    open static func parseISO8601Date(_ value: Any?, options: JSONParsingOptions = .none) -> Date? {
         if let dateString = JSONParser.parseString(value, options: options) {
             if let dateValue = Date.dateFromISO8601String(dateString) {
                 return dateValue
