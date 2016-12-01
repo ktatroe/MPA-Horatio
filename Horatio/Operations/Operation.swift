@@ -321,7 +321,7 @@ open class Operation: Foundation.Operation {
                 }
             }
             
-            finished(combinedErrors as [NSError])
+            finished(combinedErrors)
             
             for observer in observers {
                 observer.operationDidFinish(self, errors: combinedErrors)
@@ -337,7 +337,7 @@ open class Operation: Foundation.Operation {
      this method to potentially inform the user about an error when trying to
      bring up the Core Data stack.
      */
-    func finished(_ errors: [NSError]) {
+    func finished(_ errors: [Error]) {
         // No op.
     }
 
