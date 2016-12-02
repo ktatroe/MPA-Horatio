@@ -12,7 +12,7 @@ import Foundation
  environments).
 */
 protocol FeatureProvider {
-    func feature(named: String) -> Feature?
+    func feature(_ named: String) -> Feature?
 
     func activeSubject() -> FeatureSubject?
 }
@@ -79,5 +79,5 @@ class StaticFeature: Feature {
     
     // MARK: - Private
 
-    private let staticValue: FeatureValue
+    fileprivate let staticValue: FeatureValue
 }

@@ -9,10 +9,13 @@ A convenient extension to UIKit.UIUserNotificationSettings.
 #if os(iOS)
 
 import UIKit
+    import UserNotifications
 
-extension UIUserNotificationSettings {
+    
+@available(iOS 10.0, *)
+extension UNNotificationSettings {
     /// Check to see if one Settings object is a superset of another Settings object.
-    func contains(settings: UIUserNotificationSettings) -> Bool {
+    func contains(_ settings: UNNotificationSettings) -> Bool {
         // our types must contain all of the other types
         if !types.contains(settings.types) {
             return false
@@ -21,14 +24,14 @@ extension UIUserNotificationSettings {
         let otherCategories = settings.categories ?? []
         let myCategories = categories ?? []
 
-        return myCategories.isSupersetOf(otherCategories)
+        return myCategories.isSuperset(of: otherCategories)
     }
 
     /**
         Merge two Settings objects together. `UIUserNotificationCategories` with
         the same identifier are considered equal.
     */
-    func settingsByMerging(settings: UIUserNotificationSettings) -> UIUserNotificationSettings {
+    func settingsByMerging(_ settings: UNNotificationSettings) -> UNNotificationSettings {
         let mergedTypes = types.union(settings.types)
 
         let myCategories = categories ?? []
@@ -42,7 +45,7 @@ extension UIUserNotificationSettings {
         }
 
         let mergedCategories = Set(existingCategoriesByIdentifier.values)
-        return UIUserNotificationSettings(forTypes: mergedTypes, categories: mergedCategories)
+        return UNNotificationSettings(types: mergedTypes, categories: mergedCategories)
     }
 }
 

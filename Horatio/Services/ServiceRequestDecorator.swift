@@ -10,14 +10,14 @@ import Foundation
  to turning the URL request into a fetch.
  */
 public protocol ServiceRequestDecorator: class {
-    func compose(urlRequest: NSMutableURLRequest)
+    func compose(_ urlRequest: NSMutableURLRequest)
 }
 
 
 /**
  Adds an HTTP header indicating the response can be Gzip compressed.
  */
-public class AcceptGZIPHeadersServiceRequestDecorator: ServiceRequestDecorator {
+open class AcceptGZIPHeadersServiceRequestDecorator: ServiceRequestDecorator {
     // MARK: - Initializers
 
     public init() { }
@@ -27,7 +27,7 @@ public class AcceptGZIPHeadersServiceRequestDecorator: ServiceRequestDecorator {
 
     // MARK: <ServiceRequestDecorator>
 
-    public func compose(urlRequest: NSMutableURLRequest) {
+    open func compose(_ urlRequest: NSMutableURLRequest) {
         urlRequest.setValue("gzip", forHTTPHeaderField: "Accept-Encoding")
     }
 }
@@ -37,7 +37,7 @@ public class AcceptGZIPHeadersServiceRequestDecorator: ServiceRequestDecorator {
  Applies its parameters either as GET parameters or by building a POST body payload
  as appropriate for the type of request.
  */
-public class HTTPParametersBodyServiceRequestDecorator: ServiceRequestDecorator {
+open class HTTPParametersBodyServiceRequestDecorator: ServiceRequestDecorator {
     // MARK: - Properties
 
     let type: ServiceEndpointType
@@ -56,13 +56,13 @@ public class HTTPParametersBodyServiceRequestDecorator: ServiceRequestDecorator 
 
     // MARK: <ServiceRequestDecorator>
 
-    public func compose(urlRequest: NSMutableURLRequest) {
+    open func compose(_ urlRequest: NSMutableURLRequest) {
         guard !parameters.isEmpty else { return }
 
         switch type {
         case .get:
-            if let requestURL = urlRequest.URL {
-                urlRequest.URL = requestURL.urlByAppendingQueryParameters(parameters)
+            if let requestURL = urlRequest.url {
+                urlRequest.url = requestURL.urlByAppendingQueryParameters(parameters)
             }
 
         case .post: fallthrough
@@ -73,14 +73,14 @@ public class HTTPParametersBodyServiceRequestDecorator: ServiceRequestDecorator 
             var valueStrings = [String]()
 
             for (key, value) in parameters {
-                let encodedValue = value.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+                let encodedValue = value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
                 valueStrings.append("\(key)=\(encodedValue)")
             }
 
-            let requestBody = valueStrings.joinWithSeparator("&")
+            let requestBody = valueStrings.joined(separator: "&")
 
-            let data = requestBody.dataUsingEncoding(NSUTF8StringEncoding)
-            urlRequest.HTTPBody = data
+            let data = requestBody.data(using: String.Encoding.utf8)
+            urlRequest.httpBody = data
 
         case .header:
             /// TODO: support HEADER requests
@@ -90,18 +90,17 @@ public class HTTPParametersBodyServiceRequestDecorator: ServiceRequestDecorator 
 }
 
 
-internal extension NSURL {
+internal extension URL {
     /**
      Provides support for mutating a URL into another by adding query parameters to the
      URL's existing parameters (or by adding query parameters if none already exist).
      */
-    func urlByAppendingQueryParameters(parameters: [String : String]?) -> NSURL {
+    func urlByAppendingQueryParameters(_ parameters: [String : String]?) -> URL {
         guard let parameters = parameters else { return self }
-        guard let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false) else { return self }
+        guard var components = URLComponents(url: self, resolvingAgainstBaseURL: false) else { return self }
 
         for (key, value) in parameters {
-            let encodedValue = value.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-            let queryItem = NSURLQueryItem(name: key, value: encodedValue)
+            let queryItem = URLQueryItem(name: key, value: value)
 
             if let _ = components.queryItems {
                 components.queryItems?.append(queryItem)
@@ -110,7 +109,7 @@ internal extension NSURL {
             }
         }
 
-        if let url = components.URL {
+        if let url = components.url {
             return url
         }
 
@@ -122,9 +121,9 @@ internal extension NSURL {
 /**
  Adds an HTTP header for HTTP Basic authentication.
  */
-public class HTTPAuthServiceRequestDecorator: ServiceRequestDecorator {
-    private let username: String
-    private let password: String
+open class HTTPAuthServiceRequestDecorator: ServiceRequestDecorator {
+    fileprivate let username: String
+    fileprivate let password: String
     
     
     public init(username: String, password: String) {
@@ -133,11 +132,11 @@ public class HTTPAuthServiceRequestDecorator: ServiceRequestDecorator {
     }
     
     
-    public func compose(urlRequest: NSMutableURLRequest) {
+    open func compose(_ urlRequest: NSMutableURLRequest) {
         let credentials = "\(username):\(password)"
         
-        if let data = credentials.dataUsingEncoding(NSUTF8StringEncoding) {
-            let credentials = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+        if let data = credentials.data(using: String.Encoding.utf8) {
+            let credentials = data.base64EncodedString(options: NSData.Base64EncodingOptions())
             let value = "Basic \(credentials)"
             
             urlRequest.setValue(value, forHTTPHeaderField: "Authorization")

@@ -9,7 +9,7 @@ import Foundation
  Handles downloading and processing of a `ServiceRequest`. Callers provide a `ServiceResponseProcessor`
  responsible for processing the response once it's successfully fetched.
 */
-public class FetchServiceResponseOperation: GroupOperation {
+open class FetchServiceResponseOperation: GroupOperation {
     // MARK: - Properties
 
     let downloadOperation: DownloadServiceResponseOperation
@@ -19,7 +19,7 @@ public class FetchServiceResponseOperation: GroupOperation {
     // MARK: - Initialization
 
     public init(request: ServiceRequest, session: ServiceSession? = nil, responseProcessor: ServiceResponseProcessor) {
-        let cachesFolder = try! NSFileManager.defaultManager().URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
+        let cachesFolder = try! FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 
         var cacheFileName = FetchServiceResponseOperation.randomCacheFileName()
 
@@ -27,12 +27,13 @@ public class FetchServiceResponseOperation: GroupOperation {
             cacheFileName = "\(payload.hashValue()).json"
         }
 
-        let cacheFile = cachesFolder.URLByAppendingPathComponent(cacheFileName)
+        let cacheFile = cachesFolder.appendingPathComponent(cacheFileName)
 
-        downloadOperation = DownloadServiceResponseOperation(request: request, session: session, cacheFile: cacheFile!)
+        downloadOperation = DownloadServiceResponseOperation(request: request, session: session, cacheFile: cacheFile)
 
-        parseOperation = ProcessServiceResponseOperation(request: request, responseProcessor: responseProcessor, cacheFile: cacheFile!)
+        parseOperation = ProcessServiceResponseOperation(request: request, responseProcessor: responseProcessor, cacheFile: cacheFile)
         parseOperation.addDependency(downloadOperation)
+        parseOperation.addCondition(DependencySuccessCondition())
 
         super.init(operations: [downloadOperation, parseOperation])
 
@@ -42,9 +43,8 @@ public class FetchServiceResponseOperation: GroupOperation {
 
     // MARK: - Private
 
-    private static func randomCacheFileName() -> String {
-        // TODO: use guid or something similar
-        return "cacheFile"
+    fileprivate static func randomCacheFileName() -> String {
+        return UUID().uuidString
     }
 }
 
@@ -54,29 +54,32 @@ public class FetchServiceResponseOperation: GroupOperation {
  storing the downloaded file in a cache file location that continued operations can
  pick up and manipulate.
 */
-public class DownloadServiceResponseOperation: GroupOperation {
+open class DownloadServiceResponseOperation: GroupOperation {
     // MARK: - Properties
 
     let request: ServiceRequest
 
-    let cacheFile: NSURL
+    let cacheFile: URL
 
 
     // MARK: - Initialization
 
-    public init(request: ServiceRequest, session: ServiceSession? = nil, cacheFile: NSURL) {
+    public init(request: ServiceRequest, session: ServiceSession? = nil, cacheFile: URL) {
         self.request = request
         self.cacheFile = cacheFile
 
         super.init(operations: [])
 
         if let urlRequest = request.makeURLRequest(session) {
-            if let url = urlRequest.URL {
+            if let url = urlRequest.url {
                 name = "Download Service Request Operation \(url)"
+                
+                let task = URLSession.shared.downloadTask(with: urlRequest, completionHandler: { [weak self] (url, response, error) -> Void in
+                    guard let weakSelf = self else { return }
+                    guard let response = response as? HTTPURLResponse else { weakSelf.finish(); return }
 
-                let task = NSURLSession.sharedSession().downloadTaskWithRequest(urlRequest) { url, response, error in
-                    self.downloadFinished(url, response: response as? NSHTTPURLResponse, error: error)
-                }
+                    weakSelf.downloadFinished(url, response: response, error: error as NSError?)
+                })
 
                 let taskOperation = URLSessionTaskOperation(task: task)
                 addOperation(taskOperation)
@@ -87,14 +90,14 @@ public class DownloadServiceResponseOperation: GroupOperation {
 
     // MARK: - Private
 
-    private func downloadFinished(url: NSURL?, response: NSHTTPURLResponse?, error: NSError?) {
+    fileprivate func downloadFinished(_ url: URL?, response: HTTPURLResponse?, error: NSError?) {
         if let localURL = url {
             do {
-                try NSFileManager.defaultManager().removeItemAtURL(cacheFile)
+                try FileManager.default.removeItem(at: cacheFile)
             } catch { }
 
             do {
-                try NSFileManager.defaultManager().moveItemAtURL(localURL, toURL: cacheFile)
+                try FileManager.default.moveItem(at: localURL, to: cacheFile)
             } catch let error as NSError {
                 aggregateError(error)
             }
@@ -107,23 +110,42 @@ public class DownloadServiceResponseOperation: GroupOperation {
     }
 }
 
+public struct ProcessServiceResponseErrors {
+    enum ErrorTypes: Error {
+        case notProcessed
+    }
+    
+    static let domain = "ProcessServiceResponseErrors"
+    
+    struct Codes {
+        static let notProcessed = 0
+    }
+    
+    static func errorForType(_ type: ErrorTypes) -> NSError {
+        switch type {
+        case .notProcessed:
+            return NSError(domain: domain, code: Codes.notProcessed, userInfo: nil)
+        }
+    }
+}
+
 
 /**
  Uses a provided `ServiceResponseProcessor` to process a response downloaded
  into a cache file.
 */
-public class ProcessServiceResponseOperation: Operation {
+open class ProcessServiceResponseOperation: Operation {
     // MARK: - Properties
 
     let request: ServiceRequest
-    let cacheFile: NSURL
+    let cacheFile: URL
 
     let responseProcessor: ServiceResponseProcessor
 
 
     // MARK: - Initialization
 
-    public init(request: ServiceRequest, responseProcessor: ServiceResponseProcessor, cacheFile: NSURL) {
+    public init(request: ServiceRequest, responseProcessor: ServiceResponseProcessor, cacheFile: URL) {
         self.request = request
         self.cacheFile = cacheFile
 
@@ -135,8 +157,8 @@ public class ProcessServiceResponseOperation: Operation {
 
     // MARK: - Overrides
 
-    override public func execute() {
-        guard let stream = NSInputStream(URL: cacheFile) else {
+    override open func execute() {
+        guard let stream = InputStream(url: cacheFile) else {
             finish()
 
             return
@@ -160,6 +182,8 @@ public class ProcessServiceResponseOperation: Operation {
                     self.finish()
                     return
                 }
+                
+                self.finishWithError(ProcessServiceResponseErrors.errorForType(.notProcessed))
 
             case .error(let error):
                 self.finishWithError(error)
@@ -178,10 +202,10 @@ public class ProcessServiceResponseOperation: Operation {
 */
 public enum ServiceResponseProcessorParam {
     /// Initial input is typically a memory-efficient `NSInputStream`.
-    case stream(NSInputStream)
+    case stream(InputStream)
 
     /// `NSData` can be used to pipe data from one processor to the next.
-    case data(String, NSData)
+    case data(String, Data)
 
     /// The processor was terminal, with an indication of whether the data was completely processed.
     case processed(Bool)
@@ -197,5 +221,5 @@ public enum ServiceResponseProcessorParam {
  complete the processing stage of the operation.
 */
 public protocol ServiceResponseProcessor: class {
-    func process(request: ServiceRequest, input: ServiceResponseProcessorParam, completionBlock: (ServiceResponseProcessorParam) -> Void)
+    func process(_ request: ServiceRequest, input: ServiceResponseProcessorParam, completionBlock: @escaping (ServiceResponseProcessorParam) -> Void)
 }

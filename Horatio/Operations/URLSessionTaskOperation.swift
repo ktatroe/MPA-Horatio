@@ -21,40 +21,41 @@ private var URLSessionTaksOperationKVOContext = 0
 
     An example usage of `URLSessionTaskOperation` can be seen in the `DownloadEarthquakesOperation`.
 */
-public class URLSessionTaskOperation: Operation {
-    let task: NSURLSessionTask
+open class URLSessionTaskOperation: Operation {
+    let task: URLSessionTask
 
-    public init(task: NSURLSessionTask) {
-        assert(task.state == .Suspended, "Tasks must be suspended.")
+    public init(task: URLSessionTask) {
+        assert(task.state == .suspended, "Tasks must be suspended.")
 
         self.task = task
 
         super.init()
     }
 
-    override public func execute() {
-        assert(task.state == .Suspended, "Task was resumed by something other than \(self).")
+    override open func execute() {
+        assert(task.state == .suspended, "Task was resumed by something other than \(self).")
 
         task.addObserver(self, forKeyPath: "state", options: [], context: &URLSessionTaksOperationKVOContext)
 
         task.resume()
     }
 
-    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &URLSessionTaksOperationKVOContext else { return }
+        guard let object = object as? URLSessionTask else { return }
 
-        if object === task && keyPath == "state" && task.state == .Completed {
+        if object === task && keyPath == "state" && task.state == .completed {
             task.removeObserver(self, forKeyPath: "state")
 
             if let error = task.error {
-                finish([error])
+                finish([error as NSError])
             } else {
                 finish()
             }
         }
     }
 
-    override public func cancel() {
+    override open func cancel() {
         task.cancel()
         super.cancel()
     }

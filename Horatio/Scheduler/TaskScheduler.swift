@@ -8,7 +8,7 @@ import Foundation
 public protocol ScheduledTaskProvider {
     var identifier: String { get }
 
-    func makeScheduledTasks() -> [NSOperation]
+    func makeScheduledTasks() -> [Operation]
 }
 
 
@@ -18,20 +18,20 @@ public protocol ScheduledTaskCoordinator {
 
     func scheduleTasks()
 
-    func addTaskProvider(provider: ScheduledTaskProvider)
-    func removeTaskProvider(provider: ScheduledTaskProvider)
+    func addTaskProvider(_ provider: ScheduledTaskProvider)
+    func removeTaskProvider(_ provider: ScheduledTaskProvider)
 }
 
 
 class TimedTaskCoordinator : ScheduledTaskCoordinator {
     struct Behaviors {
-        static let TimerInterval: NSTimeInterval = 10.0
+        static let TimerInterval: TimeInterval = 10.0
     }
 
     var providers = [ScheduledTaskProvider]()
     var isActive = false
 
-    var updateTimer: NSTimer?
+    var updateTimer: Foundation.Timer?
 
 
     // MARK: - Initialization
@@ -61,12 +61,14 @@ class TimedTaskCoordinator : ScheduledTaskCoordinator {
     func resume() {
         isActive = true
 
-        if updateTimer == nil {
-            updateTimer = NSTimer.scheduledTimerWithTimeInterval(Behaviors.TimerInterval, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
-        }
-
-        if let updateTimer = updateTimer {
-            updateTimer.fire()
+        DispatchQueue.main.async {
+            if self.updateTimer == nil {
+                self.updateTimer = Foundation.Timer.scheduledTimer(timeInterval: Behaviors.TimerInterval, target: self, selector: #selector(self.timerFired), userInfo: nil, repeats: true)
+            }
+            
+            if let updateTimer = self.updateTimer {
+                updateTimer.fire()
+            }
         }
     }
 
@@ -83,25 +85,25 @@ class TimedTaskCoordinator : ScheduledTaskCoordinator {
     }
 
 
-    func addTaskProvider(provider: ScheduledTaskProvider) {
+    func addTaskProvider(_ provider: ScheduledTaskProvider) {
         providers.append(provider)
     }
 
 
-    func removeTaskProvider(provider: ScheduledTaskProvider) {
-        guard let index = providers.indexOf({ (testProvider) -> Bool in
+    func removeTaskProvider(_ provider: ScheduledTaskProvider) {
+        guard let index = providers.index(where: { (testProvider) -> Bool in
             return testProvider.identifier == provider.identifier
         }) else { return }
 
-        providers.removeAtIndex(index)
+        providers.remove(at: index)
     }
 
 
     // MARK: - Private
 
     @objc
-    private func timerFired(timer: NSTimer) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+    fileprivate func timerFired(_ timer: Foundation.Timer) {
+        DispatchQueue.global(qos: .default).async {
             self.scheduleTasks()
         }
     }

@@ -6,7 +6,7 @@
 import Foundation
 
 
-public class JSONBodyServiceRequestConfigurator: ServiceRequestConfigurator {
+open class JSONBodyServiceRequestConfigurator: ServiceRequestConfigurator {
     let parameters: JSONObject
     
     public init(parameters: JSONObject) {
@@ -15,11 +15,11 @@ public class JSONBodyServiceRequestConfigurator: ServiceRequestConfigurator {
     
     // MARK: <ServiceRequestConfigurator>
     
-    public func endpointPathTransformers(serviceRequest: ServiceRequest) -> [ServiceEndpointPathTransformer] {
+    open func endpointPathTransformers(_ serviceRequest: ServiceRequest) -> [ServiceEndpointPathTransformer] {
         return [ServiceEndpointPathTransformer]()
     }
     
-    public func urlRequestDecorators(serviceRequest: ServiceRequest) -> [ServiceRequestDecorator] {
+    open func urlRequestDecorators(_ serviceRequest: ServiceRequest) -> [ServiceRequestDecorator] {
         var decorators = [ServiceRequestDecorator]()
         
         decorators.append(JSONHeadersServiceRequestDecorator())
@@ -35,7 +35,7 @@ public class JSONBodyServiceRequestConfigurator: ServiceRequestConfigurator {
 /**
  Adds HTTP headers indicating the response is expected (and allowed) to be in JSON format.
  */
-public class JSONHeadersServiceRequestDecorator: ServiceRequestDecorator {
+open class JSONHeadersServiceRequestDecorator: ServiceRequestDecorator {
     public init() {
         
     }
@@ -45,7 +45,7 @@ public class JSONHeadersServiceRequestDecorator: ServiceRequestDecorator {
     
     // MARK: <ServiceRequestDecorator>
     
-    public func compose(urlRequest: NSMutableURLRequest) {
+    open func compose(_ urlRequest: NSMutableURLRequest) {
         urlRequest.setValue("application/json, text/javascript, */*; q=0.01", forHTTPHeaderField:"Accept")
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
     }
@@ -55,7 +55,7 @@ public class JSONHeadersServiceRequestDecorator: ServiceRequestDecorator {
 /**
  Applies its parameters in a JSON object in the body of the HTTP request.
  */
-public class JSONBodyParametersServiceRequestDecorator: ServiceRequestDecorator {
+open class JSONBodyParametersServiceRequestDecorator: ServiceRequestDecorator {
     // MARK: - Properties
     
     let parameters: JSONObject
@@ -72,10 +72,10 @@ public class JSONBodyParametersServiceRequestDecorator: ServiceRequestDecorator 
     
     // MARK: <ServiceRequestDecorator>
     
-    public func compose(urlRequest: NSMutableURLRequest) {
+    open func compose(_ urlRequest: NSMutableURLRequest) {
         do {
-            let data = try NSJSONSerialization.dataWithJSONObject(parameters, options: .PrettyPrinted)
-            urlRequest.HTTPBody = data
+            let data = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            urlRequest.httpBody = data
         } catch { }
     }
 }

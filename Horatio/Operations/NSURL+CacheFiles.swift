@@ -6,13 +6,13 @@
 import Foundation
 
 
-extension NSURL {
-    static func cacheFile(named name: String, searchPathDirectory: NSSearchPathDirectory = .CachesDirectory) -> NSURL {
-        let cachesDirectory = try! NSFileManager.defaultManager().URLForDirectory(searchPathDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
+extension URL {
+    static func cacheFile(named name: String, searchPathDirectory: FileManager.SearchPathDirectory = .cachesDirectory) -> URL {
+        let cachesDirectory = try! FileManager.default.url(for: searchPathDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         // swiftlint:disable:previous force_try
 
-        let cacheFileURL = cachesDirectory.URLByAppendingPathComponent(name)
+        let cacheFileURL = cachesDirectory.appendingPathComponent(name)
 
-        return cacheFileURL!
+        return cacheFileURL
     }
 }

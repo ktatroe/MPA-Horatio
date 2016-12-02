@@ -11,7 +11,7 @@ import Foundation
 public protocol ServiceSessionHandler: class {
     var activeSession: ServiceSession? { get }
 
-    func beginSession(session: ServiceSession)
+    func beginSession(_ session: ServiceSession)
     func endSession()
 }
 
@@ -24,8 +24,8 @@ public protocol ServiceSessionHandler: class {
 public protocol ServiceSession: class {
     var isAuthenticated: Bool { get }
 
-    func attemptOpen(completion: (Void -> Bool)?)
+    func attemptOpen(_ completion: ((Void) -> Bool)?)
     func close()
 
-    func signURLRequest(request: NSMutableURLRequest) -> NSMutableURLRequest
+    func signURLRequest(_ request: NSMutableURLRequest) -> NSMutableURLRequest
 }

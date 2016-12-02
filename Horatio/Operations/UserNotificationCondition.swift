@@ -9,19 +9,22 @@ This file shows an example of implementing the OperationCondition protocol.
 #if os(iOS)
 
 import UIKit
-
+import UserNotifications
+    
+    
 /**
     A condition for verifying that we can present alerts to the user via
     `UILocalNotification` and/or remote notifications.
 */
+@available(iOS 10.0, *)
 public struct UserNotificationCondition: OperationCondition {
 
     public enum Behavior {
         /// Merge the new `UIUserNotificationSettings` with the `currentUserNotificationSettings`.
-        case Merge
+        case merge
 
         /// Replace the `currentUserNotificationSettings` with the new `UIUserNotificationSettings`.
-        case Replace
+        case replace
     }
 
     public static let name = "UserNotification"
@@ -29,7 +32,7 @@ public struct UserNotificationCondition: OperationCondition {
     public static let desiredSettings = "DesiredUserNotificationSettigns"
     public static let isMutuallyExclusive = false
 
-    let settings: UIUserNotificationSettings
+    let settings: UNNotificationSettings
     let application: UIApplication
     let behavior: Behavior
 
@@ -48,33 +51,33 @@ public struct UserNotificationCondition: OperationCondition {
             `application`. You may also specify `.Replace`, which means the `settings`
             will overwrite the exisiting settings.
     */
-    public init(settings: UIUserNotificationSettings, application: UIApplication, behavior: Behavior = .Merge) {
+    public init(settings: UNNotificationSettings, application: UIApplication, behavior: Behavior = .merge) {
         self.settings = settings
         self.application = application
         self.behavior = behavior
     }
 
-    public func dependencyForOperation(operation: Operation) -> NSOperation? {
+    public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
         return UserNotificationPermissionOperation(settings: settings, application: application, behavior: behavior)
     }
 
-    public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
+    public func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
         let result: OperationConditionResult
 
-        let current = application.currentUserNotificationSettings()
+        let current = application.currentUserNotificationSettings
 
         switch (current, settings) {
             case (let current?, let settings) where current.contains(settings):
-                result = .Satisfied
+                result = .satisfied
 
             default:
-                let error = NSError(code: .ConditionFailed, userInfo: [
-                    OperationConditionKey: self.dynamicType.name,
-                    self.dynamicType.currentSettings: current ?? NSNull(),
-                    self.dynamicType.desiredSettings: settings
+                let error = NSError(code: .conditionFailed, userInfo: [
+                    OperationConditionKey: type(of: self).name,
+                    type(of: self).currentSettings: current ?? NSNull(),
+                    type(of: self).desiredSettings: settings
                 ])
 
-                result = .Failed(error)
+                result = .failed(error)
         }
 
         completion(result)
@@ -85,12 +88,13 @@ public struct UserNotificationCondition: OperationCondition {
     A private `Operation` subclass to register a `UIUserNotificationSettings`
     object with a `UIApplication`, prompting the user for permission if necessary.
 */
+@available(iOS 10.0, *)
 private class UserNotificationPermissionOperation: Operation {
-    let settings: UIUserNotificationSettings
+    let settings: UNNotificationSettings
     let application: UIApplication
     let behavior: UserNotificationCondition.Behavior
 
-    init(settings: UIUserNotificationSettings, application: UIApplication, behavior: UserNotificationCondition.Behavior) {
+    init(settings: UNNotificationSettings, application: UIApplication, behavior: UserNotificationCondition.Behavior) {
         self.settings = settings
         self.application = application
         self.behavior = behavior
@@ -101,13 +105,13 @@ private class UserNotificationPermissionOperation: Operation {
     }
 
     override func execute() {
-        dispatch_async(dispatch_get_main_queue()) {
-            let current = self.application.currentUserNotificationSettings()
+        DispatchQueue.main.async {
+            let current = self.application.currentUserNotificationSettings
 
-            let settingsToRegister: UIUserNotificationSettings
+            let settingsToRegister: UNNotificationSettings
 
             switch (current, self.behavior) {
-                case (let currentSettings?, .Merge):
+                case (let currentSettings?, .merge):
                     settingsToRegister = currentSettings.settingsByMerging(self.settings)
 
                 default:

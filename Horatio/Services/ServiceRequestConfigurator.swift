@@ -10,24 +10,24 @@ import Foundation
  concrete implementation might generate a "Create Post" request.
  */
 public protocol ServiceRequestConfigurator: class {
-    func configureURL(serviceRequest: ServiceRequest) -> NSURL?
-    func configureURLRequest(serviceRequest: ServiceRequest, urlRequest: NSMutableURLRequest) -> NSMutableURLRequest
+    func configureURL(_ serviceRequest: ServiceRequest) -> URL?
+    func configureURLRequest(_ serviceRequest: ServiceRequest, urlRequest: NSMutableURLRequest) -> NSMutableURLRequest
 
-    func endpointPathTransformers(serviceRequest: ServiceRequest) -> [ServiceEndpointPathTransformer]
-    func urlRequestDecorators(serviceRequest: ServiceRequest) -> [ServiceRequestDecorator]
+    func endpointPathTransformers(_ serviceRequest: ServiceRequest) -> [ServiceEndpointPathTransformer]
+    func urlRequestDecorators(_ serviceRequest: ServiceRequest) -> [ServiceRequestDecorator]
 }
 
 
 /// Provides base functionality for implementations of `ServiceRequestConfigurator`.
 public extension ServiceRequestConfigurator {
-    public func configureURL(serviceRequest: ServiceRequest) -> NSURL? {
+    public func configureURL(_ serviceRequest: ServiceRequest) -> URL? {
         switch serviceRequest.endpoint.urlContainer {
             case .components(var components):
                 for transformer in endpointPathTransformers(serviceRequest) {
                     components = transformer.transformedPath(components)
                 }
 
-                // must do this after transforms have happened
+                
                 rectifyEmbeddedQuery(components)
 
                 return components.URL
@@ -39,12 +39,12 @@ public extension ServiceRequestConfigurator {
                     basePath = transformer.transformedPath(basePath)
                 }
 
-                return NSURL(string: basePath)
+                return URL(string: basePath)
         }
     }
 
 
-    public func configureURLRequest(serviceRequest: ServiceRequest, urlRequest: NSMutableURLRequest) -> NSMutableURLRequest {
+    public func configureURLRequest(_ serviceRequest: ServiceRequest, urlRequest: NSMutableURLRequest) -> NSMutableURLRequest {
         for decorator in urlRequestDecorators(serviceRequest) {
             decorator.compose(urlRequest)
         }
@@ -84,7 +84,7 @@ public extension ServiceRequestConfigurator {
  Handles a generic key-value store of entries dropped into the URL as GET or POST
  parameters, with no endpoint path transformations.
  */
-public class DictionaryServiceRequestConfigurator: ServiceRequestConfigurator {
+open class DictionaryServiceRequestConfigurator: ServiceRequestConfigurator {
     // MARK: - Properties
 
     let parameters: [String : String]
@@ -101,11 +101,11 @@ public class DictionaryServiceRequestConfigurator: ServiceRequestConfigurator {
 
     // MARK: <ServiceRequestConfigurator>
 
-    public func endpointPathTransformers(serviceRequest: ServiceRequest) -> [ServiceEndpointPathTransformer] {
+    open func endpointPathTransformers(_ serviceRequest: ServiceRequest) -> [ServiceEndpointPathTransformer] {
         return [ServiceEndpointPathTransformer]()
     }
 
-    public func urlRequestDecorators(serviceRequest: ServiceRequest) -> [ServiceRequestDecorator] {
+    open func urlRequestDecorators(_ serviceRequest: ServiceRequest) -> [ServiceRequestDecorator] {
         let decorator = HTTPParametersBodyServiceRequestDecorator(type: serviceRequest.endpoint.type, parameters: parameters)
 
         return [decorator]

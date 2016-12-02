@@ -56,9 +56,7 @@
 		EDB09DED1D85BF34000FC309 /* RemoteNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D981D85BF34000FC309 /* RemoteNotificationCondition.swift */; };
 		EDB09DEE1D85BF34000FC309 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D991D85BF34000FC309 /* SilentCondition.swift */; };
 		EDB09DEF1D85BF34000FC309 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9A1D85BF34000FC309 /* TimeoutObserver.swift */; };
-		EDB09DF01D85BF34000FC309 /* UIUserNotifications+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9B1D85BF34000FC309 /* UIUserNotifications+Operations.swift */; };
 		EDB09DF11D85BF34000FC309 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9C1D85BF34000FC309 /* URLSessionTaskOperation.swift */; };
-		EDB09DF21D85BF34000FC309 /* UserNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9D1D85BF34000FC309 /* UserNotificationCondition.swift */; };
 		EDB09DF91D85BF34000FC309 /* TaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DA61D85BF34000FC309 /* TaskScheduler.swift */; };
 		EDB09DFB1D85BF34000FC309 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DA91D85BF34000FC309 /* Service.swift */; };
 		EDB09DFC1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAA1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift */; };
@@ -71,6 +69,7 @@
 		EDB09E031D85BF34000FC309 /* ServiceRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DB11D85BF34000FC309 /* ServiceRequestStatus.swift */; };
 		EDB09E041D85BF34000FC309 /* ServiceSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DB21D85BF34000FC309 /* ServiceSession.swift */; };
 		EDC073861D8AE2ED00ADEBC9 /* JSONServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC073851D8AE2ED00ADEBC9 /* JSONServiceRequest.swift */; };
+		EDF647F71DE4D072007E9869 /* DependencySuccessCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF647F61DE4D072007E9869 /* DependencySuccessCondition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +161,7 @@
 		EDB09DB11D85BF34000FC309 /* ServiceRequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestStatus.swift; sourceTree = "<group>"; };
 		EDB09DB21D85BF34000FC309 /* ServiceSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceSession.swift; sourceTree = "<group>"; };
 		EDC073851D8AE2ED00ADEBC9 /* JSONServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONServiceRequest.swift; sourceTree = "<group>"; };
+		EDF647F61DE4D072007E9869 /* DependencySuccessCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencySuccessCondition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,10 +192,10 @@
 		EDB09D1E1D85BD25000FC309 = {
 			isa = PBXGroup;
 			children = (
-				EDB09D5B1D85BF19000FC309 /* Vendor */,
 				EDB09D291D85BD25000FC309 /* HoratioDemo */,
 				EDB09D411D85BD26000FC309 /* HoratioDemoTests */,
 				EDB09D4C1D85BD26000FC309 /* HoratioDemoUITests */,
+				EDB09D5B1D85BF19000FC309 /* Vendor */,
 				EDB09D281D85BD25000FC309 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -342,6 +342,7 @@
 		EDB09E0E1D87251D000FC309 /* Conditions */ = {
 			isa = PBXGroup;
 			children = (
+				EDF647F61DE4D072007E9869 /* DependencySuccessCondition.swift */,
 				EDB09D801D85BF34000FC309 /* ExclusivityController.swift */,
 				EDB09D8A1D85BF34000FC309 /* NoCancelledDependencies.swift */,
 				EDB09D861D85BF34000FC309 /* MutuallyExclusive.swift */,
@@ -450,23 +451,26 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Mudpot Apps";
 				TargetAttributes = {
 					EDB09D261D85BD25000FC309 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 46RFK4MJ8P;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					EDB09D3D1D85BD26000FC309 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 46RFK4MJ8P;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = EDB09D261D85BD25000FC309;
 					};
 					EDB09D481D85BD26000FC309 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 46RFK4MJ8P;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = EDB09D261D85BD25000FC309;
 					};
@@ -564,6 +568,7 @@
 				EDB09D331D85BD25000FC309 /* HoratioDemo.xcdatamodeld in Sources */,
 				EDB09DEC1D85BF34000FC309 /* ReachabilityCondition.swift in Sources */,
 				EDB09D2B1D85BD25000FC309 /* AppDelegate.swift in Sources */,
+				EDF647F71DE4D072007E9869 /* DependencySuccessCondition.swift in Sources */,
 				EDB09DE31D85BF34000FC309 /* NSOperation+Operations.swift in Sources */,
 				EDB09DD21D85BF34000FC309 /* CKContainer+Operations.swift in Sources */,
 				EDB09DC81D85BF34000FC309 /* FeatureSelector.swift in Sources */,
@@ -574,9 +579,7 @@
 				EDB09DDC1D85BF34000FC309 /* LocationOperation.swift in Sources */,
 				EDB09DE01D85BF34000FC309 /* NoCancelledDependencies.swift in Sources */,
 				EDB09DCA1D85BF34000FC309 /* VendorIDFeatureSubject.swift in Sources */,
-				EDB09DF01D85BF34000FC309 /* UIUserNotifications+Operations.swift in Sources */,
 				EDB09DC91D85BF34000FC309 /* FeatureSubject.swift in Sources */,
-				EDB09DF21D85BF34000FC309 /* UserNotificationCondition.swift in Sources */,
 				EDB09DE21D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.m in Sources */,
 				EDB09DEE1D85BF34000FC309 /* SilentCondition.swift in Sources */,
 				EDB09DD61D85BF34000FC309 /* Dictionary+Operations.swift in Sources */,
@@ -655,6 +658,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -706,6 +710,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -741,7 +746,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -754,7 +759,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -768,7 +773,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HoratioDemo.app/HoratioDemo";
 			};
 			name = Debug;
@@ -783,7 +788,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HoratioDemo.app/HoratioDemo";
 			};
 			name = Release;
@@ -797,7 +802,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = HoratioDemo;
 			};
 			name = Debug;
@@ -811,7 +816,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = HoratioDemo;
 			};
 			name = Release;

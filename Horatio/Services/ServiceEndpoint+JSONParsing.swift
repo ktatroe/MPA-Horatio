@@ -26,8 +26,8 @@ extension ServiceEndpoint : JSONParsing {
 
     // MARK: <JSONParsing>
 
-    public func updateFromJSONRepresentation(data: JSONObject) {
-        guard self.dynamicType.isValidJSONRepresentation(data) else { return }
+    public func updateFromJSONRepresentation(_ data: JSONObject) {
+        guard type(of: self).isValidJSONRepresentation(data) else { return }
 
         if let urlString = JSONParser.parseString(data[JSONKeys.URL]) {
             urlContainer = .absolutePath(urlString)
@@ -35,7 +35,7 @@ extension ServiceEndpoint : JSONParsing {
             let basePath = JSONParser.parseString(data[JSONKeys.BasePath])
             let path = JSONParser.parseString(data[JSONKeys.Path])
 
-            let components = NSURLComponents()
+            var components = URLComponents()
             components.scheme = JSONParser.parseString(data[JSONKeys.Scheme])
             components.host = JSONParser.parseString(data[JSONKeys.HostName])
             components.path = "\(basePath)/\(path)"
@@ -48,7 +48,7 @@ extension ServiceEndpoint : JSONParsing {
     }
 
     
-    public static func isValidJSONRepresentation (data: JSONObject) -> Bool {
+    public static func isValidJSONRepresentation (_ data: JSONObject) -> Bool {
         // For now our endpoints only include a url key which we must have
         guard let _ = JSONParser.parseString(data[JSONKeys.URL], options: .none) else { return false }
 
