@@ -26,8 +26,11 @@ public extension ServiceRequestConfigurator {
                 for transformer in endpointPathTransformers(serviceRequest) {
                     components = transformer.transformedPath(components)
                 }
+
                 
-                return components.url
+                rectifyEmbeddedQuery(components)
+
+                return components.URL
 
             case .absolutePath(let urlString):
                 var basePath = urlString
@@ -47,6 +50,32 @@ public extension ServiceRequestConfigurator {
         }
 
         return urlRequest
+    }
+
+    /**
+     Handles the case where there are query parameters embedded in the path. Properly
+     pulls them out and merges them into the query.
+     */
+    private func rectifyEmbeddedQuery(components: NSURLComponents) {
+        guard let path = components.path, range = path.rangeOfString("?") else { return }
+
+        components.path = path.substringToIndex(range.startIndex)
+        let queryString = path.substringFromIndex(range.startIndex.advancedBy(1))
+
+        var queryItems = [NSURLQueryItem]()
+
+        if let existingQuery = components.queryItems {
+            queryItems.appendContentsOf(existingQuery)
+        }
+
+        // let it parse the query for us
+        components.query = queryString
+
+        if let newQuery = components.queryItems {
+            queryItems.appendContentsOf(newQuery)
+        }
+
+        components.queryItems = queryItems
     }
 }
 
