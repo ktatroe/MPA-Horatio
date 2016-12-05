@@ -38,10 +38,11 @@ public struct NegatedCondition<T: OperationCondition>: OperationCondition {
 
     public func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
         condition.evaluateForOperation(operation) { result in
-            if result.error == nil {
+            switch result {
+            case .failed(_):
                 // If the composed condition failed, then this one succeeded.
                 completion(.satisfied)
-            } else {
+            case .satisfied:
                 // If the composed condition succeeded, then this one failed.
                 let error = NSError(code: .conditionFailed, userInfo: [
                     OperationConditionKey: type(of: self).name,
