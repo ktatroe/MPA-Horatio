@@ -64,24 +64,39 @@ class AlertOperation: Operation {
     }
 
     override func execute() {
-        var presentationViewController: UIViewController?
-        
-        if let presentationContext = presentationContext {
-            presentationViewController = presentationContext
-        } else {
-            presentationViewController = UIApplication.shared.keyWindow?.rootViewController
-            
-            while let presentedVC = presentationViewController?.presentedViewController {
-                presentationViewController = presentedVC
-            }
-        }
-
+        // it's probably not safe to even walk the view hierarchy from a background thread, so do this all on main
         DispatchQueue.main.async {
+            var presentationContext = self.presentationContext
+            
+            if presentationContext == nil {
+                // if no context is provided, use the root VC
+                presentationContext = UIApplication.shared.keyWindow?.rootViewController
+
+                // but if something is already presented there, walk down the hierarchy to find the leaf to present on
+                while let presentedVC = presentationContext?.presentedViewController {
+                    presentationContext = presentedVC
+                }
+            }
+
+            guard let presenter = presentationContext else {
+                // this shouldn't be possible, but just in case
+                self.finishWithError(NSError(code: .executionFailed, userInfo:
+                    [NSLocalizedDescriptionKey : "Alert operation failed because no presenter was found"]))
+                return
+            }
+
             if self.alertController.actions.isEmpty {
                 self.addAction("OK")
             }
-            
-            presentationViewController?.present(self.alertController, animated: true, completion: nil)
+
+            if presenter.presentedViewController != nil {
+                // presentation will fail if another VC is already presented, so error out the operation
+                self.finishWithError(NSError(code: .executionFailed, userInfo:
+                    [NSLocalizedDescriptionKey : "Alert operation failed because presenter was already presenting another VC"]))
+
+            } else {
+                presenter.present(self.alertController, animated: true, completion: nil)
+            }
         }
     }
 }
