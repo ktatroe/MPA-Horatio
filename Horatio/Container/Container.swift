@@ -40,6 +40,9 @@ open class Container {
 
     fileprivate var services = [ContainerItemKey: ContainerItemType]()
 
+    // we need a recursive lock, because sometimes we do a resolve() inside a resolve()
+    fileprivate let servicesLock = NSRecursiveLock()
+
     open func register<T>(_ serviceType: T.Type, name: String? = nil, factory: (Resolvable) -> T) -> ContainerEntry<T> {
         return registerFactory(serviceType, factory: factory, name: name)
     }
@@ -47,6 +50,13 @@ open class Container {
     internal func registerFactory<T, Factory>(_ serviceType: T.Type, factory: Factory, name: String?) -> ContainerEntry<T> {
         let key = ContainerItemKey(factoryType: type(of: factory), name: name)
         let entry = ContainerEntry(serviceType: serviceType, factory: factory)
+
+        // ensure no other access while writing
+        servicesLock.lock()
+
+        defer {
+            servicesLock.unlock()
+        }
 
         services[key] = entry
 
@@ -78,8 +88,16 @@ extension Container : Resolvable {
     internal func resolveFactory<T, Factory>(_ name: String?, invoker: (Factory) -> T) -> T? {
         let key = ContainerItemKey(factoryType: Factory.self, name: name)
 
+        // read from data structure in a thread-safe manner
+        servicesLock.lock()
+
+        defer {
+            servicesLock.unlock()
+        }
+
         if let entry = services[key] as? ContainerEntry<T> {
             if entry.instance == nil {
+                // this is doing a write to a shared object, and also must happen inside the lock
                 entry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
             }
 
