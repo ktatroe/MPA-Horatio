@@ -28,9 +28,9 @@ public extension ServiceRequestConfigurator {
                 }
 
                 
-                rectifyEmbeddedQuery(components)
+                components = rectifyEmbeddedQuery(components: components)
 
-                return components.URL
+                return components.url
 
             case .absolutePath(let urlString):
                 var basePath = urlString
@@ -56,26 +56,34 @@ public extension ServiceRequestConfigurator {
      Handles the case where there are query parameters embedded in the path. Properly
      pulls them out and merges them into the query.
      */
-    private func rectifyEmbeddedQuery(components: NSURLComponents) {
-        guard let path = components.path, range = path.rangeOfString("?") else { return }
+    private func rectifyEmbeddedQuery(components: URLComponents) -> URLComponents {
+        let path = components.path
 
-        components.path = path.substringToIndex(range.startIndex)
-        let queryString = path.substringFromIndex(range.startIndex.advancedBy(1))
+        guard let range = path.range(of: "?") else { return components }
 
-        var queryItems = [NSURLQueryItem]()
+        var newComponents = components
+        newComponents.path = path.substring(to: range.lowerBound)
+        let queryString = path.substring(from: range.upperBound)
 
-        if let existingQuery = components.queryItems {
-            queryItems.appendContentsOf(existingQuery)
+        var queryItems = [URLQueryItem]()
+
+        // grab any existing, non-embedded query items
+        if let existingQuery = newComponents.queryItems {
+            queryItems += existingQuery
         }
 
-        // let it parse the query for us
-        components.query = queryString
+        // let it parse the embedded query for us
+        newComponents.query = queryString
 
-        if let newQuery = components.queryItems {
-            queryItems.appendContentsOf(newQuery)
+        // grab any newly parsed query items
+        if let newQuery = newComponents.queryItems {
+            queryItems += newQuery
         }
 
-        components.queryItems = queryItems
+        // set the complete set of query items
+        newComponents.queryItems = queryItems
+
+        return newComponents
     }
 }
 
