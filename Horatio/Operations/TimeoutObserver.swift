@@ -29,9 +29,11 @@ public struct TimeoutObserver: OperationObserver {
 
     public func operationDidStart(_ operation: Operation) {
         // When the operation starts, queue up a block to cause it to time out.
-        let when = DispatchTime.now() + Double(Int64(timeout * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        weak var operation = operation
 
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).asyncAfter(deadline: when) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).asyncAfter(deadline: .now() + timeout) {
+            guard let operation = operation else { return }
+
             /*
                 Cancel the operation if it hasn't finished and hasn't already
                 been cancelled.
