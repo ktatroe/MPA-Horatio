@@ -30,6 +30,9 @@ open class URLSessionTaskOperation: Operation {
         self.task = task
 
         super.init()
+
+        let networkObserver = NetworkObserver()
+        self.addObserver(networkObserver)
     }
 
     override open func execute() {
