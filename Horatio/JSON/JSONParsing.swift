@@ -185,6 +185,18 @@ open class JSONParser {
 
         return nil
     }
+
+    open static func parseDecimalNumber(_ value: Any?, options: JSONParsingOptions = .none) -> NSDecimalNumber? {
+        if let decimalString = JSONParser.parseString(value, options: options) {
+            return NSDecimalNumber(string: decimalString, locale: [NSLocale.Key.decimalSeparator: "."])
+        }
+
+        if options.contains(.allowEmpty) {
+            return NSDecimalNumber.zero
+        }
+
+        return nil
+    }
 }
 
 public protocol JSONParsing {
