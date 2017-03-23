@@ -109,12 +109,15 @@ fileprivate class NetworkObserverTimer {
     // MARK: Initialization
 
     init(interval: TimeInterval, handler: @escaping ()->()) {
-        let when = DispatchTime.now() + Double(Int64(interval * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-
-        DispatchQueue.main.asyncAfter(deadline: when) { [weak self] in
-            if self?.isCancelled == true {
-                handler()
+        DispatchQueue.main.asyncAfter(deadline: .now() + interval) { [weak self] in
+            guard
+                let strongSelf = self,
+                strongSelf.isCancelled == false
+            else {
+                return
             }
+
+            handler()
         }
     }
 
