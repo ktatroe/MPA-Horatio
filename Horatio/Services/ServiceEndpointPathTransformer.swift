@@ -34,12 +34,14 @@ open class SubstitutionsServiceEndpointPathTransformer: ServiceEndpointPathTrans
     // MARK: - Properties
 
     let substitutions: [String : String]
+    let format: String
 
 
     // MARK: - Initialization
 
-    public init(substitutions: [String : String]) {
+    public init(substitutions: [String : String], format: String = "{%@}") {
         self.substitutions = substitutions
+        self.format = format
     }
 
 
@@ -51,7 +53,7 @@ open class SubstitutionsServiceEndpointPathTransformer: ServiceEndpointPathTrans
         var endpointPath = path
 
         for key in substitutions.keys {
-            let identifier = String.init(format: "{%@}", key)
+            let identifier = String.init(format: format, key)
 
             if let value = substitutions[key] {
                 endpointPath = endpointPath.replacingOccurrences(of: identifier, with: value)

@@ -44,6 +44,8 @@ private class NetworkIndicatorController {
 
     static let sharedIndicatorController = NetworkIndicatorController()
 
+    fileprivate let serialQueue = DispatchQueue(label: "Operations.NetworkIndicatorController", attributes: [])
+
     fileprivate var activityCount = 0
 
     fileprivate var visibilityTimer: NetworkObserverTimer?
@@ -53,17 +55,21 @@ private class NetworkIndicatorController {
     func networkActivityDidStart() {
         assert(Thread.isMainThread, "Altering network activity indicator state can only be done on the main thread.")
 
-        activityCount += 1
+        serialQueue.sync {
+            activityCount += 1
 
-        updateIndicatorVisibility()
+            updateIndicatorVisibility()
+        }
     }
 
     func networkActivityDidEnd() {
         assert(Thread.isMainThread, "Altering network activity indicator state can only be done on the main thread.")
 
-        activityCount -= 1
+        serialQueue.sync {
+            activityCount -= 1
 
-        updateIndicatorVisibility()
+            updateIndicatorVisibility()
+        }
     }
 
     fileprivate func updateIndicatorVisibility() {
@@ -109,13 +115,10 @@ fileprivate class NetworkObserverTimer {
     // MARK: Initialization
 
     init(interval: TimeInterval, handler: @escaping ()->()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + interval) { [weak self] in
-            guard
-                let strongSelf = self,
-                strongSelf.isCancelled == false
-            else {
-                return
-            }
+        let when = DispatchTime.now() + Double(Int64(interval * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+
+        DispatchQueue.main.asyncAfter(deadline: when) { [weak self] in
+            guard self?.isCancelled == false else { return }
 
             handler()
         }

@@ -43,7 +43,7 @@ open class ExclusivityController {
 
     /// Unregisters an operation from being mutually exclusive.
     open func removeOperation(_ operation: Operation, categories: [String]) {
-        serialQueue.async {
+        serialQueue.sync {
             for category in categories {
                 self.noqueue_removeOperation(operation, category: category)
             }
@@ -57,10 +57,22 @@ open class ExclusivityController {
         var operationsWithThisCategory = operations[category] ?? []
 
         if let last = operationsWithThisCategory.last {
+            assert(last.dependencies.contains(operation) == false, "Deadlocked")
             operation.addDependency(last)
         }
 
         operationsWithThisCategory.append(operation)
+
+        if operationsWithThisCategory.count >= 3, let first = operationsWithThisCategory.first {
+            let ready = first.isReady
+            let executing = first.isExecuting
+            let hasNoDependencies = first.dependencies.count == 0
+            let hasStalled = ready && !executing && hasNoDependencies
+
+            if hasStalled {
+                first.cancel()
+            }
+        }
 
         operations[category] = operationsWithThisCategory
     }

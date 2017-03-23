@@ -12,8 +12,12 @@ import Foundation
 open class FetchServiceResponseOperation: GroupOperation {
     // MARK: - Properties
 
-    let downloadOperation: DownloadServiceResponseOperation
-    let parseOperation: ProcessServiceResponseOperation
+    private let request: ServiceRequest
+    private let downloadOperation: DownloadServiceResponseOperation
+    private let parseOperation: ProcessServiceResponseOperation
+    private let cacheFile: URL
+
+    private var requestCompletion: ServiceRequestCompletionBlock?
 
 
     // MARK: - Initialization
@@ -21,30 +25,42 @@ open class FetchServiceResponseOperation: GroupOperation {
     public init(request: ServiceRequest, session: ServiceSession? = nil, responseProcessor: ServiceResponseProcessor) {
         let cachesFolder = try! FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 
-        var cacheFileName = FetchServiceResponseOperation.randomCacheFileName()
+        self.request = request
 
-        if let payload = request.payload {
-            cacheFileName = "\(payload.hashValue()).json"
-        }
-
-        let cacheFile = cachesFolder.appendingPathComponent(cacheFileName)
+        let cacheFileName = FetchServiceResponseOperation.generatedCacheFileName(request)
+        cacheFile = cachesFolder.appendingPathComponent(cacheFileName)
 
         downloadOperation = DownloadServiceResponseOperation(request: request, session: session, cacheFile: cacheFile)
 
         parseOperation = ProcessServiceResponseOperation(request: request, responseProcessor: responseProcessor, cacheFile: cacheFile)
         parseOperation.addDependency(downloadOperation)
-        parseOperation.addCondition(DependencySuccessCondition())
 
         super.init(operations: [downloadOperation, parseOperation])
+
+        #if os(iOS) || os(tvOS)
+        let timeout = TimeoutObserver(timeout: 20.0)
+        addObserver(timeout)
+        #endif
+
+        let networkObserver = NetworkObserver()
+        addObserver(networkObserver)
 
         name = "Fetch Service Request Operation"
     }
 
+    override func finished(_ errors: [NSError]) {
+        do {
+            try FileManager.default.removeItem(at: cacheFile)
+        } catch { }
+    }
 
     // MARK: - Private
 
-    fileprivate static func randomCacheFileName() -> String {
-        return UUID().uuidString
+    fileprivate static func generatedCacheFileName(_ request: ServiceRequest) -> String {
+        guard let url = request.url else { return UUID().uuidString }
+
+        let lastComponent = url.lastPathComponent
+        return lastComponent
     }
 }
 
@@ -73,7 +89,7 @@ open class DownloadServiceResponseOperation: GroupOperation {
         if let urlRequest = request.makeURLRequest(session) {
             if let url = urlRequest.url {
                 name = "Download Service Request Operation \(url)"
-                
+
                 let task = URLSession.shared.downloadTask(with: urlRequest, completionHandler: { [weak self] (url, response, error) -> Void in
                     guard let weakSelf = self else { return }
                     guard let response = response as? HTTPURLResponse else { weakSelf.finish(); return }

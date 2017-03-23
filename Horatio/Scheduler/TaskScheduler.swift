@@ -32,6 +32,7 @@ class TimedTaskCoordinator : ScheduledTaskCoordinator {
     var isActive = false
 
     var updateTimer: Foundation.Timer?
+    fileprivate let serialQueue = DispatchQueue(label: "TimedTaskCoordinator.SerialQueue", attributes: [])
 
 
     // MARK: - Initialization
@@ -77,9 +78,11 @@ class TimedTaskCoordinator : ScheduledTaskCoordinator {
         guard isActive else { return }
         guard let queue = Container.resolve(OperationQueue.self) else { return }
 
-        for provider in providers {
-            for operation in provider.makeScheduledTasks() {
-                queue.addOperation(operation)
+        serialQueue.sync {
+            for provider in self.providers {
+                for operation in provider.makeScheduledTasks() {
+                    queue.addOperation(operation)
+                }
             }
         }
     }
@@ -103,8 +106,6 @@ class TimedTaskCoordinator : ScheduledTaskCoordinator {
 
     @objc
     fileprivate func timerFired(_ timer: Foundation.Timer) {
-        DispatchQueue.global(qos: .default).async {
-            self.scheduleTasks()
-        }
+        scheduleTasks()
     }
 }

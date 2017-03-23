@@ -69,6 +69,8 @@ open class Operation: Foundation.Operation {
                 return true
             case (.pending, .evaluatingConditions):
                 return true
+            case (.pending, .finishing):
+                return true
             case (.evaluatingConditions, .ready):
                 return true
             case (.ready, .executing):
@@ -218,13 +220,23 @@ open class Operation: Foundation.Operation {
     }
 
     // MARK: Execution and Cancellation
-    
+
+    /*
+        I think this is where the main problem is.
+        Under certain conditions start will be called, but main will not
+        causing the state to be .ready - but it's not executing - the queue never restarts it
+    */
     override final public func start() {
         // NSOperation.start() contains important logic that shouldn't be bypassed.
         super.start()
 
+        if name == nil {
+            self.name = NSStringFromClass(type(of: self))
+        }
+        
+        // TODO: Remove this spammy log
         if let name = self.name {
-            print("\(name) started")
+            NSLog("\(name) started")
         }
 
         // If the operation has been cancelled, we still need to enter the "Finished" state.
@@ -315,13 +327,13 @@ open class Operation: Foundation.Operation {
             
             if let name = name {
                 if failed {
-                    print("\(name) failed due to errors")
+                    NSLog("\(name) failed due to errors")
                 } else {
-                    print("\(name) finished")
+                    NSLog("\(name) finished")
                 }
             }
             
-            finished(combinedErrors)
+            finished(combinedErrors as [NSError])
             
             for observer in observers {
                 observer.operationDidFinish(self, errors: combinedErrors)
@@ -337,9 +349,14 @@ open class Operation: Foundation.Operation {
      this method to potentially inform the user about an error when trying to
      bring up the Core Data stack.
      */
-    func finished(_ errors: [Error]) {
+    func finished(_ errors: [NSError]) {
         // No op.
-    }
+
+        // TODO: Remove this spammy log
+        if let name = self.name {
+            NSLog("\(name) finished")
+        }
+}
 
     override final public func waitUntilFinished() {
         /*
