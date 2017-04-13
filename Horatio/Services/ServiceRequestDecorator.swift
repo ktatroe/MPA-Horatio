@@ -73,8 +73,9 @@ open class HTTPParametersBodyServiceRequestDecorator: ServiceRequestDecorator {
             var valueStrings = [String]()
 
             for (key, value) in parameters {
-                let encodedValue = value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-                valueStrings.append("\(key)=\(encodedValue)")
+                if let encodedValue = value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
+                    valueStrings.append("\(key)=\(encodedValue)")
+                }
             }
 
             let requestBody = valueStrings.joined(separator: "&")
