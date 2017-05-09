@@ -27,9 +27,9 @@ This document contains the following sections:
 <a id="requirements"></a> 
 ## 1. Requirements
 
-Horatio is delivered as Swift 2.3 source files. Due to Swift’s current
-lack of ABI-compatibility, there is no framework delivery for it at the
-moment.
+Horatio is delivered as Swift 3.1 source files. Due to Swift’s current
+lack of ABI-compatibility, there is no pre-compiled framework delivery
+for it at the moment.
 
 Horatio requires compilation against iOS SDK 9.0 or higher.
 
@@ -57,8 +57,7 @@ that which is provided by the SDK itself).
 > a group called `Vendor`.
   
 1. Make sure the `Project Navigator` is visible (⌘+1).
-2. Drag & drop `Horatio` from your `Finder` to the `Vendor` group in `Xcode` using the `Project Navigator` on the left side.
-3. An overlay will appear. Select `Create groups` and set the checkmark for your target. Then click `Finish`.
+2. Drag & drop `Horatio.xcodeproj` from your `Finder` to the `Vendor` group in `Xcode` using the `Project Navigator` on the left side.
 
 <a id="modifycode"></a>
 ### 2.4 Modify Code 
@@ -70,7 +69,7 @@ that which is provided by the SDK itself).
   application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:[NSObject: AnyObject]?) -> Bool
   ```
 
-4. Add the following lines to setup and start the Application Insights SDK:
+4. Add the following lines to create a shared `Container` for use throughout your application:
 
   ```swift
   Container.register(OperationQueue.self) { _ in OperationQueue() }
@@ -98,6 +97,10 @@ Documentation for Horatio can be found on (TBD).
   - `PhotosCondition.swift` (except if your app asks for permission to access the user’s Photos data)
   - `UserNotificationCondition.swift` (except if your app includes the Push entitlement and has a valid APNS certificate for its bundle)
 
+In the framework version of the project, these files are under the
+Optional group, and are not compiled by default into the generated
+framework.
+
 <a id="contributing"></a>
 ## 5. Contributing
 
@@ -111,7 +114,7 @@ We're looking forward to your contributions via pull requests.
 <a id="contributorlicense"></a>
 ## 6. Contributor License
 
-You must sign a Contributor License Agreement (TDB).
+You must sign a Contributor License Agreement (TBD).
 
 <a id="contact"></a>
 ## 7. Contact
@@ -123,7 +126,13 @@ here, contact us at [support@mudpotapps.com](mailto:support@mudpotapps.com).
 <a id="future"></a>
 ## 8. Future Work
 
-Finishing the demo app; moving the Startup Sequence, Environments, and
-Persistent Store code from the Demo into the library.
+Horatio's roadmap is somewhat flexible, based on contributor's needs at any given point.
+Currently, the following items are being tackled in experimental branches for inclusion
+at a later date:
 
-Provide experimental version in Swift 3.0.
+- Finishing the demo app, including documenting the app startup code.
+- Moving the Startup Sequence feature into the framework.
+- Moving the Environment/Config work into the framework.
+- Adding stacks and updates to Features.
+- Better pipelining of fetched files for faster and lower battery profile parsing.
+- Rewritten operations system based on Javascript's Promises system.
