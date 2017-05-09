@@ -64,7 +64,7 @@ open class JSONServiceResponseProcessor: ServiceResponseProcessor {
                 completionBlock(input)
             }
         } catch let jsonError as NSError {
-            print("Error parsing response from \(request.url): \(jsonError)")
+            print("Error parsing response from \(String(describing: request.url)): \(jsonError)")
             completionBlock(.error(jsonError))
         }
 
