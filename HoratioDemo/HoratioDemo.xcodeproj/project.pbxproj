@@ -15,61 +15,6 @@
 		EDB09D381D85BD25000FC309 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB09D361D85BD25000FC309 /* LaunchScreen.storyboard */; };
 		EDB09D431D85BD26000FC309 /* HoratioDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D421D85BD26000FC309 /* HoratioDemoTests.swift */; };
 		EDB09D4E1D85BD26000FC309 /* HoratioDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D4D1D85BD26000FC309 /* HoratioDemoUITests.swift */; };
-		EDB09DBA1D85BF34000FC309 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D5F1D85BF34000FC309 /* Container.swift */; };
-		EDB09DC61D85BF34000FC309 /* FeatureCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D6D1D85BF34000FC309 /* FeatureCondition.swift */; };
-		EDB09DC71D85BF34000FC309 /* FeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D6E1D85BF34000FC309 /* FeatureManager.swift */; };
-		EDB09DC81D85BF34000FC309 /* FeatureSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D6F1D85BF34000FC309 /* FeatureSelector.swift */; };
-		EDB09DC91D85BF34000FC309 /* FeatureSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D701D85BF34000FC309 /* FeatureSubject.swift */; };
-		EDB09DCA1D85BF34000FC309 /* VendorIDFeatureSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D711D85BF34000FC309 /* VendorIDFeatureSubject.swift */; };
-		EDB09DCB1D85BF34000FC309 /* JSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D731D85BF34000FC309 /* JSONParsing.swift */; };
-		EDB09DCC1D85BF34000FC309 /* JSONServiceResponseProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D741D85BF34000FC309 /* JSONServiceResponseProcessor.swift */; };
-		EDB09DCE1D85BF34000FC309 /* AlertOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D771D85BF34000FC309 /* AlertOperation.swift */; };
-		EDB09DCF1D85BF34000FC309 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D781D85BF34000FC309 /* BlockObserver.swift */; };
-		EDB09DD01D85BF34000FC309 /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D791D85BF34000FC309 /* BlockOperation.swift */; };
-		EDB09DD11D85BF34000FC309 /* CalendarCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D7A1D85BF34000FC309 /* CalendarCondition.swift */; };
-		EDB09DD21D85BF34000FC309 /* CKContainer+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D7B1D85BF34000FC309 /* CKContainer+Operations.swift */; };
-		EDB09DD31D85BF34000FC309 /* CloudCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D7C1D85BF34000FC309 /* CloudCondition.swift */; };
-		EDB09DD41D85BF34000FC309 /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D7D1D85BF34000FC309 /* DelayOperation.swift */; };
-		EDB09DD61D85BF34000FC309 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D7F1D85BF34000FC309 /* Dictionary+Operations.swift */; };
-		EDB09DD71D85BF34000FC309 /* ExclusivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D801D85BF34000FC309 /* ExclusivityController.swift */; };
-		EDB09DD81D85BF34000FC309 /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D811D85BF34000FC309 /* GroupOperation.swift */; };
-		EDB09DD91D85BF34000FC309 /* HealthCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D821D85BF34000FC309 /* HealthCondition.swift */; };
-		EDB09DDA1D85BF34000FC309 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDB09D831D85BF34000FC309 /* LICENSE.txt */; };
-		EDB09DDB1D85BF34000FC309 /* LocationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D841D85BF34000FC309 /* LocationCondition.swift */; };
-		EDB09DDC1D85BF34000FC309 /* LocationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D851D85BF34000FC309 /* LocationOperation.swift */; };
-		EDB09DDD1D85BF34000FC309 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D861D85BF34000FC309 /* MutuallyExclusive.swift */; };
-		EDB09DDE1D85BF34000FC309 /* NegatedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D881D85BF34000FC309 /* NegatedCondition.swift */; };
-		EDB09DDF1D85BF34000FC309 /* NetworkObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D891D85BF34000FC309 /* NetworkObserver.swift */; };
-		EDB09DE01D85BF34000FC309 /* NoCancelledDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D8A1D85BF34000FC309 /* NoCancelledDependencies.swift */; };
-		EDB09DE11D85BF34000FC309 /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D8B1D85BF34000FC309 /* NSLock+Operations.swift */; };
-		EDB09DE21D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D8D1D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.m */; };
-		EDB09DE31D85BF34000FC309 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D8E1D85BF34000FC309 /* NSOperation+Operations.swift */; };
-		EDB09DE41D85BF34000FC309 /* NSURL+CacheFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D8F1D85BF34000FC309 /* NSURL+CacheFiles.swift */; };
-		EDB09DE51D85BF34000FC309 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D901D85BF34000FC309 /* Operation.swift */; };
-		EDB09DE61D85BF34000FC309 /* OperationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D911D85BF34000FC309 /* OperationCondition.swift */; };
-		EDB09DE71D85BF34000FC309 /* OperationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D921D85BF34000FC309 /* OperationErrors.swift */; };
-		EDB09DE81D85BF34000FC309 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D931D85BF34000FC309 /* OperationObserver.swift */; };
-		EDB09DE91D85BF34000FC309 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D941D85BF34000FC309 /* OperationQueue.swift */; };
-		EDB09DEA1D85BF34000FC309 /* PassbookCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D951D85BF34000FC309 /* PassbookCondition.swift */; };
-		EDB09DEB1D85BF34000FC309 /* PhotosCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D961D85BF34000FC309 /* PhotosCondition.swift */; };
-		EDB09DEC1D85BF34000FC309 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D971D85BF34000FC309 /* ReachabilityCondition.swift */; };
-		EDB09DED1D85BF34000FC309 /* RemoteNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D981D85BF34000FC309 /* RemoteNotificationCondition.swift */; };
-		EDB09DEE1D85BF34000FC309 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D991D85BF34000FC309 /* SilentCondition.swift */; };
-		EDB09DEF1D85BF34000FC309 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9A1D85BF34000FC309 /* TimeoutObserver.swift */; };
-		EDB09DF11D85BF34000FC309 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09D9C1D85BF34000FC309 /* URLSessionTaskOperation.swift */; };
-		EDB09DF91D85BF34000FC309 /* TaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DA61D85BF34000FC309 /* TaskScheduler.swift */; };
-		EDB09DFB1D85BF34000FC309 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DA91D85BF34000FC309 /* Service.swift */; };
-		EDB09DFC1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAA1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift */; };
-		EDB09DFD1D85BF34000FC309 /* ServiceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAB1D85BF34000FC309 /* ServiceEndpoint.swift */; };
-		EDB09DFE1D85BF34000FC309 /* ServiceEndpointPathTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAC1D85BF34000FC309 /* ServiceEndpointPathTransformer.swift */; };
-		EDB09DFF1D85BF34000FC309 /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAD1D85BF34000FC309 /* ServiceRequest.swift */; };
-		EDB09E001D85BF34000FC309 /* ServiceRequestConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAE1D85BF34000FC309 /* ServiceRequestConfigurator.swift */; };
-		EDB09E011D85BF34000FC309 /* ServiceRequestDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DAF1D85BF34000FC309 /* ServiceRequestDecorator.swift */; };
-		EDB09E021D85BF34000FC309 /* ServiceRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DB01D85BF34000FC309 /* ServiceRequestOperation.swift */; };
-		EDB09E031D85BF34000FC309 /* ServiceRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DB11D85BF34000FC309 /* ServiceRequestStatus.swift */; };
-		EDB09E041D85BF34000FC309 /* ServiceSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB09DB21D85BF34000FC309 /* ServiceSession.swift */; };
-		EDC073861D8AE2ED00ADEBC9 /* JSONServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC073851D8AE2ED00ADEBC9 /* JSONServiceRequest.swift */; };
-		EDF647F71DE4D072007E9869 /* DependencySuccessCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF647F61DE4D072007E9869 /* DependencySuccessCondition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +31,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = EDB09D261D85BD25000FC309;
 			remoteInfo = HoratioDemo;
+		};
+		EDB7F4C41EC2137B0037CCB3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDB7F4BF1EC2137B0037CCB3 /* Horatio.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EDB7F41D1EC211DD0037CCB3;
+			remoteInfo = Horatio;
+		};
+		EDB7F4C61EC2137B0037CCB3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDB7F4BF1EC2137B0037CCB3 /* Horatio.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EDB7F4261EC211DD0037CCB3;
+			remoteInfo = HoratioTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -104,64 +63,7 @@
 		EDB09D491D85BD26000FC309 /* HoratioDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HoratioDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB09D4D1D85BD26000FC309 /* HoratioDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoratioDemoUITests.swift; sourceTree = "<group>"; };
 		EDB09D4F1D85BD26000FC309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EDB09D5F1D85BF34000FC309 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
-		EDB09D6D1D85BF34000FC309 /* FeatureCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureCondition.swift; sourceTree = "<group>"; };
-		EDB09D6E1D85BF34000FC309 /* FeatureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureManager.swift; sourceTree = "<group>"; };
-		EDB09D6F1D85BF34000FC309 /* FeatureSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureSelector.swift; sourceTree = "<group>"; };
-		EDB09D701D85BF34000FC309 /* FeatureSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureSubject.swift; sourceTree = "<group>"; };
-		EDB09D711D85BF34000FC309 /* VendorIDFeatureSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorIDFeatureSubject.swift; sourceTree = "<group>"; };
-		EDB09D731D85BF34000FC309 /* JSONParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParsing.swift; sourceTree = "<group>"; };
-		EDB09D741D85BF34000FC309 /* JSONServiceResponseProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONServiceResponseProcessor.swift; sourceTree = "<group>"; };
-		EDB09D771D85BF34000FC309 /* AlertOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertOperation.swift; sourceTree = "<group>"; };
-		EDB09D781D85BF34000FC309 /* BlockObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockObserver.swift; sourceTree = "<group>"; };
-		EDB09D791D85BF34000FC309 /* BlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockOperation.swift; sourceTree = "<group>"; };
-		EDB09D7A1D85BF34000FC309 /* CalendarCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCondition.swift; sourceTree = "<group>"; };
-		EDB09D7B1D85BF34000FC309 /* CKContainer+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKContainer+Operations.swift"; sourceTree = "<group>"; };
-		EDB09D7C1D85BF34000FC309 /* CloudCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudCondition.swift; sourceTree = "<group>"; };
-		EDB09D7D1D85BF34000FC309 /* DelayOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayOperation.swift; sourceTree = "<group>"; };
-		EDB09D7F1D85BF34000FC309 /* Dictionary+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Operations.swift"; sourceTree = "<group>"; };
-		EDB09D801D85BF34000FC309 /* ExclusivityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExclusivityController.swift; sourceTree = "<group>"; };
-		EDB09D811D85BF34000FC309 /* GroupOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupOperation.swift; sourceTree = "<group>"; };
-		EDB09D821D85BF34000FC309 /* HealthCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCondition.swift; sourceTree = "<group>"; };
-		EDB09D831D85BF34000FC309 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		EDB09D841D85BF34000FC309 /* LocationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCondition.swift; sourceTree = "<group>"; };
-		EDB09D851D85BF34000FC309 /* LocationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationOperation.swift; sourceTree = "<group>"; };
-		EDB09D861D85BF34000FC309 /* MutuallyExclusive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutuallyExclusive.swift; sourceTree = "<group>"; };
-		EDB09D881D85BF34000FC309 /* NegatedCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegatedCondition.swift; sourceTree = "<group>"; };
-		EDB09D891D85BF34000FC309 /* NetworkObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkObserver.swift; sourceTree = "<group>"; };
-		EDB09D8A1D85BF34000FC309 /* NoCancelledDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoCancelledDependencies.swift; sourceTree = "<group>"; };
-		EDB09D8B1D85BF34000FC309 /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
-		EDB09D8C1D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ThrowingKeyValueObserving.h"; sourceTree = "<group>"; };
-		EDB09D8D1D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ThrowingKeyValueObserving.m"; sourceTree = "<group>"; };
-		EDB09D8E1D85BF34000FC309 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperation+Operations.swift"; sourceTree = "<group>"; };
-		EDB09D8F1D85BF34000FC309 /* NSURL+CacheFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+CacheFiles.swift"; sourceTree = "<group>"; };
-		EDB09D901D85BF34000FC309 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
-		EDB09D911D85BF34000FC309 /* OperationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationCondition.swift; sourceTree = "<group>"; };
-		EDB09D921D85BF34000FC309 /* OperationErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationErrors.swift; sourceTree = "<group>"; };
-		EDB09D931D85BF34000FC309 /* OperationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationObserver.swift; sourceTree = "<group>"; };
-		EDB09D941D85BF34000FC309 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
-		EDB09D951D85BF34000FC309 /* PassbookCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassbookCondition.swift; sourceTree = "<group>"; };
-		EDB09D961D85BF34000FC309 /* PhotosCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCondition.swift; sourceTree = "<group>"; };
-		EDB09D971D85BF34000FC309 /* ReachabilityCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCondition.swift; sourceTree = "<group>"; };
-		EDB09D981D85BF34000FC309 /* RemoteNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationCondition.swift; sourceTree = "<group>"; };
-		EDB09D991D85BF34000FC309 /* SilentCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentCondition.swift; sourceTree = "<group>"; };
-		EDB09D9A1D85BF34000FC309 /* TimeoutObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeoutObserver.swift; sourceTree = "<group>"; };
-		EDB09D9B1D85BF34000FC309 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
-		EDB09D9C1D85BF34000FC309 /* URLSessionTaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperation.swift; sourceTree = "<group>"; };
-		EDB09D9D1D85BF34000FC309 /* UserNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCondition.swift; sourceTree = "<group>"; };
-		EDB09DA61D85BF34000FC309 /* TaskScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskScheduler.swift; sourceTree = "<group>"; };
-		EDB09DA91D85BF34000FC309 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		EDB09DAA1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ServiceEndpoint+JSONParsing.swift"; path = "../Services/ServiceEndpoint+JSONParsing.swift"; sourceTree = "<group>"; };
-		EDB09DAB1D85BF34000FC309 /* ServiceEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEndpoint.swift; sourceTree = "<group>"; };
-		EDB09DAC1D85BF34000FC309 /* ServiceEndpointPathTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEndpointPathTransformer.swift; sourceTree = "<group>"; };
-		EDB09DAD1D85BF34000FC309 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
-		EDB09DAE1D85BF34000FC309 /* ServiceRequestConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestConfigurator.swift; sourceTree = "<group>"; };
-		EDB09DAF1D85BF34000FC309 /* ServiceRequestDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestDecorator.swift; sourceTree = "<group>"; };
-		EDB09DB01D85BF34000FC309 /* ServiceRequestOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestOperation.swift; sourceTree = "<group>"; };
-		EDB09DB11D85BF34000FC309 /* ServiceRequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestStatus.swift; sourceTree = "<group>"; };
-		EDB09DB21D85BF34000FC309 /* ServiceSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceSession.swift; sourceTree = "<group>"; };
-		EDC073851D8AE2ED00ADEBC9 /* JSONServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONServiceRequest.swift; sourceTree = "<group>"; };
-		EDF647F61DE4D072007E9869 /* DependencySuccessCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencySuccessCondition.swift; sourceTree = "<group>"; };
+		EDB7F4BF1EC2137B0037CCB3 /* Horatio.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Horatio.xcodeproj; path = ../Horatio/Horatio.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,147 +147,18 @@
 		EDB09D5B1D85BF19000FC309 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				EDB09D5D1D85BF34000FC309 /* Horatio */,
+				EDB7F4BF1EC2137B0037CCB3 /* Horatio.xcodeproj */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
 		};
-		EDB09D5D1D85BF34000FC309 /* Horatio */ = {
+		EDB7F4C01EC2137B0037CCB3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EDB09D5E1D85BF34000FC309 /* Container */,
-				EDB09D761D85BF34000FC309 /* Operations */,
-				EDB09D6C1D85BF34000FC309 /* Features */,
-				EDB09DA71D85BF34000FC309 /* Services */,
-				EDB09D721D85BF34000FC309 /* JSON */,
-				EDB09DA51D85BF34000FC309 /* Scheduler */,
+				EDB7F4C51EC2137B0037CCB3 /* Horatio.framework */,
+				EDB7F4C71EC2137B0037CCB3 /* HoratioTests.xctest */,
 			);
-			name = Horatio;
-			path = ../Horatio;
-			sourceTree = "<group>";
-		};
-		EDB09D5E1D85BF34000FC309 /* Container */ = {
-			isa = PBXGroup;
-			children = (
-				EDB09D5F1D85BF34000FC309 /* Container.swift */,
-			);
-			path = Container;
-			sourceTree = "<group>";
-		};
-		EDB09D6C1D85BF34000FC309 /* Features */ = {
-			isa = PBXGroup;
-			children = (
-				EDB09D6D1D85BF34000FC309 /* FeatureCondition.swift */,
-				EDB09D6E1D85BF34000FC309 /* FeatureManager.swift */,
-				EDB09D6F1D85BF34000FC309 /* FeatureSelector.swift */,
-				EDB09D701D85BF34000FC309 /* FeatureSubject.swift */,
-				EDB09D711D85BF34000FC309 /* VendorIDFeatureSubject.swift */,
-			);
-			path = Features;
-			sourceTree = "<group>";
-		};
-		EDB09D721D85BF34000FC309 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				EDB09D731D85BF34000FC309 /* JSONParsing.swift */,
-				EDB09D741D85BF34000FC309 /* JSONServiceResponseProcessor.swift */,
-				EDC073851D8AE2ED00ADEBC9 /* JSONServiceRequest.swift */,
-				EDB09DAA1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift */,
-			);
-			path = JSON;
-			sourceTree = "<group>";
-		};
-		EDB09D761D85BF34000FC309 /* Operations */ = {
-			isa = PBXGroup;
-			children = (
-				EDB09D771D85BF34000FC309 /* AlertOperation.swift */,
-				EDB09E101D872579000FC309 /* Observers */,
-				EDB09D791D85BF34000FC309 /* BlockOperation.swift */,
-				EDB09E0E1D87251D000FC309 /* Conditions */,
-				EDB09E0F1D872555000FC309 /* Extensions */,
-				EDB09D7D1D85BF34000FC309 /* DelayOperation.swift */,
-				EDB09D811D85BF34000FC309 /* GroupOperation.swift */,
-				EDB09D831D85BF34000FC309 /* LICENSE.txt */,
-				EDB09D851D85BF34000FC309 /* LocationOperation.swift */,
-				EDB09D901D85BF34000FC309 /* Operation.swift */,
-				EDB09D921D85BF34000FC309 /* OperationErrors.swift */,
-				EDB09D941D85BF34000FC309 /* OperationQueue.swift */,
-				EDB09D9C1D85BF34000FC309 /* URLSessionTaskOperation.swift */,
-			);
-			path = Operations;
-			sourceTree = "<group>";
-		};
-		EDB09DA51D85BF34000FC309 /* Scheduler */ = {
-			isa = PBXGroup;
-			children = (
-				EDB09DA61D85BF34000FC309 /* TaskScheduler.swift */,
-			);
-			path = Scheduler;
-			sourceTree = "<group>";
-		};
-		EDB09DA71D85BF34000FC309 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				EDB09DA91D85BF34000FC309 /* Service.swift */,
-				EDB09DAB1D85BF34000FC309 /* ServiceEndpoint.swift */,
-				EDB09DAC1D85BF34000FC309 /* ServiceEndpointPathTransformer.swift */,
-				EDB09DAD1D85BF34000FC309 /* ServiceRequest.swift */,
-				EDB09DAE1D85BF34000FC309 /* ServiceRequestConfigurator.swift */,
-				EDB09DAF1D85BF34000FC309 /* ServiceRequestDecorator.swift */,
-				EDB09DB01D85BF34000FC309 /* ServiceRequestOperation.swift */,
-				EDB09DB11D85BF34000FC309 /* ServiceRequestStatus.swift */,
-				EDB09DB21D85BF34000FC309 /* ServiceSession.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		EDB09E0E1D87251D000FC309 /* Conditions */ = {
-			isa = PBXGroup;
-			children = (
-				EDF647F61DE4D072007E9869 /* DependencySuccessCondition.swift */,
-				EDB09D801D85BF34000FC309 /* ExclusivityController.swift */,
-				EDB09D8A1D85BF34000FC309 /* NoCancelledDependencies.swift */,
-				EDB09D861D85BF34000FC309 /* MutuallyExclusive.swift */,
-				EDB09D7A1D85BF34000FC309 /* CalendarCondition.swift */,
-				EDB09D7C1D85BF34000FC309 /* CloudCondition.swift */,
-				EDB09D821D85BF34000FC309 /* HealthCondition.swift */,
-				EDB09D841D85BF34000FC309 /* LocationCondition.swift */,
-				EDB09D881D85BF34000FC309 /* NegatedCondition.swift */,
-				EDB09D911D85BF34000FC309 /* OperationCondition.swift */,
-				EDB09D951D85BF34000FC309 /* PassbookCondition.swift */,
-				EDB09D961D85BF34000FC309 /* PhotosCondition.swift */,
-				EDB09D971D85BF34000FC309 /* ReachabilityCondition.swift */,
-				EDB09D981D85BF34000FC309 /* RemoteNotificationCondition.swift */,
-				EDB09D991D85BF34000FC309 /* SilentCondition.swift */,
-				EDB09D9D1D85BF34000FC309 /* UserNotificationCondition.swift */,
-			);
-			name = Conditions;
-			sourceTree = "<group>";
-		};
-		EDB09E0F1D872555000FC309 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				EDB09D7B1D85BF34000FC309 /* CKContainer+Operations.swift */,
-				EDB09D7F1D85BF34000FC309 /* Dictionary+Operations.swift */,
-				EDB09D8B1D85BF34000FC309 /* NSLock+Operations.swift */,
-				EDB09D8C1D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.h */,
-				EDB09D8D1D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.m */,
-				EDB09D8E1D85BF34000FC309 /* NSOperation+Operations.swift */,
-				EDB09D8F1D85BF34000FC309 /* NSURL+CacheFiles.swift */,
-				EDB09D9B1D85BF34000FC309 /* UIUserNotifications+Operations.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
-		EDB09E101D872579000FC309 /* Observers */ = {
-			isa = PBXGroup;
-			children = (
-				EDB09D781D85BF34000FC309 /* BlockObserver.swift */,
-				EDB09D891D85BF34000FC309 /* NetworkObserver.swift */,
-				EDB09D931D85BF34000FC309 /* OperationObserver.swift */,
-				EDB09D9A1D85BF34000FC309 /* TimeoutObserver.swift */,
-			);
-			name = Observers;
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,6 +260,12 @@
 			mainGroup = EDB09D1E1D85BD25000FC309;
 			productRefGroup = EDB09D281D85BD25000FC309 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EDB7F4C01EC2137B0037CCB3 /* Products */;
+					ProjectRef = EDB7F4BF1EC2137B0037CCB3 /* Horatio.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				EDB09D261D85BD25000FC309 /* HoratioDemo */,
@@ -496,6 +275,23 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		EDB7F4C51EC2137B0037CCB3 /* Horatio.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Horatio.framework;
+			remoteRef = EDB7F4C41EC2137B0037CCB3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EDB7F4C71EC2137B0037CCB3 /* HoratioTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HoratioTests.xctest;
+			remoteRef = EDB7F4C61EC2137B0037CCB3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		EDB09D251D85BD25000FC309 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -503,7 +299,6 @@
 			files = (
 				EDB09D381D85BD25000FC309 /* LaunchScreen.storyboard in Resources */,
 				EDB09D351D85BD25000FC309 /* Assets.xcassets in Resources */,
-				EDB09DDA1D85BF34000FC309 /* LICENSE.txt in Resources */,
 				EDB09D301D85BD25000FC309 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,63 +324,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDB09DDE1D85BF34000FC309 /* NegatedCondition.swift in Sources */,
-				EDB09DEA1D85BF34000FC309 /* PassbookCondition.swift in Sources */,
-				EDC073861D8AE2ED00ADEBC9 /* JSONServiceRequest.swift in Sources */,
-				EDB09DEB1D85BF34000FC309 /* PhotosCondition.swift in Sources */,
-				EDB09DC71D85BF34000FC309 /* FeatureManager.swift in Sources */,
 				EDB09D2D1D85BD25000FC309 /* ViewController.swift in Sources */,
-				EDB09DD71D85BF34000FC309 /* ExclusivityController.swift in Sources */,
-				EDB09E011D85BF34000FC309 /* ServiceRequestDecorator.swift in Sources */,
-				EDB09E001D85BF34000FC309 /* ServiceRequestConfigurator.swift in Sources */,
-				EDB09DCE1D85BF34000FC309 /* AlertOperation.swift in Sources */,
-				EDB09DCC1D85BF34000FC309 /* JSONServiceResponseProcessor.swift in Sources */,
-				EDB09DD31D85BF34000FC309 /* CloudCondition.swift in Sources */,
-				EDB09DF91D85BF34000FC309 /* TaskScheduler.swift in Sources */,
-				EDB09DED1D85BF34000FC309 /* RemoteNotificationCondition.swift in Sources */,
-				EDB09DF11D85BF34000FC309 /* URLSessionTaskOperation.swift in Sources */,
-				EDB09DFC1D85BF34000FC309 /* ServiceEndpoint+JSONParsing.swift in Sources */,
-				EDB09DE81D85BF34000FC309 /* OperationObserver.swift in Sources */,
-				EDB09E031D85BF34000FC309 /* ServiceRequestStatus.swift in Sources */,
-				EDB09E021D85BF34000FC309 /* ServiceRequestOperation.swift in Sources */,
-				EDB09DC61D85BF34000FC309 /* FeatureCondition.swift in Sources */,
-				EDB09DCB1D85BF34000FC309 /* JSONParsing.swift in Sources */,
-				EDB09DFF1D85BF34000FC309 /* ServiceRequest.swift in Sources */,
-				EDB09DE41D85BF34000FC309 /* NSURL+CacheFiles.swift in Sources */,
-				EDB09DD41D85BF34000FC309 /* DelayOperation.swift in Sources */,
-				EDB09DDB1D85BF34000FC309 /* LocationCondition.swift in Sources */,
-				EDB09DD81D85BF34000FC309 /* GroupOperation.swift in Sources */,
-				EDB09DE91D85BF34000FC309 /* OperationQueue.swift in Sources */,
-				EDB09DE71D85BF34000FC309 /* OperationErrors.swift in Sources */,
-				EDB09DFE1D85BF34000FC309 /* ServiceEndpointPathTransformer.swift in Sources */,
-				EDB09DD91D85BF34000FC309 /* HealthCondition.swift in Sources */,
-				EDB09DEF1D85BF34000FC309 /* TimeoutObserver.swift in Sources */,
-				EDB09DBA1D85BF34000FC309 /* Container.swift in Sources */,
-				EDB09DFD1D85BF34000FC309 /* ServiceEndpoint.swift in Sources */,
-				EDB09DD11D85BF34000FC309 /* CalendarCondition.swift in Sources */,
-				EDB09DE51D85BF34000FC309 /* Operation.swift in Sources */,
-				EDB09DFB1D85BF34000FC309 /* Service.swift in Sources */,
 				EDB09D331D85BD25000FC309 /* HoratioDemo.xcdatamodeld in Sources */,
-				EDB09DEC1D85BF34000FC309 /* ReachabilityCondition.swift in Sources */,
 				EDB09D2B1D85BD25000FC309 /* AppDelegate.swift in Sources */,
-				EDF647F71DE4D072007E9869 /* DependencySuccessCondition.swift in Sources */,
-				EDB09DE31D85BF34000FC309 /* NSOperation+Operations.swift in Sources */,
-				EDB09DD21D85BF34000FC309 /* CKContainer+Operations.swift in Sources */,
-				EDB09DC81D85BF34000FC309 /* FeatureSelector.swift in Sources */,
-				EDB09DCF1D85BF34000FC309 /* BlockObserver.swift in Sources */,
-				EDB09DE11D85BF34000FC309 /* NSLock+Operations.swift in Sources */,
-				EDB09DDF1D85BF34000FC309 /* NetworkObserver.swift in Sources */,
-				EDB09DD01D85BF34000FC309 /* BlockOperation.swift in Sources */,
-				EDB09DDC1D85BF34000FC309 /* LocationOperation.swift in Sources */,
-				EDB09DE01D85BF34000FC309 /* NoCancelledDependencies.swift in Sources */,
-				EDB09DCA1D85BF34000FC309 /* VendorIDFeatureSubject.swift in Sources */,
-				EDB09DC91D85BF34000FC309 /* FeatureSubject.swift in Sources */,
-				EDB09DE21D85BF34000FC309 /* NSObject+ThrowingKeyValueObserving.m in Sources */,
-				EDB09DEE1D85BF34000FC309 /* SilentCondition.swift in Sources */,
-				EDB09DD61D85BF34000FC309 /* Dictionary+Operations.swift in Sources */,
-				EDB09E041D85BF34000FC309 /* ServiceSession.swift in Sources */,
-				EDB09DDD1D85BF34000FC309 /* MutuallyExclusive.swift in Sources */,
-				EDB09DE61D85BF34000FC309 /* OperationCondition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,708 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EDB7F4271EC211DD0037CCB3 /* Horatio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDB7F41D1EC211DD0037CCB3 /* Horatio.framework */; };
+		EDB7F42C1EC211DD0037CCB3 /* HoratioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F42B1EC211DD0037CCB3 /* HoratioTests.swift */; };
+		EDB7F42E1EC211DD0037CCB3 /* Horatio.h in Headers */ = {isa = PBXBuildFile; fileRef = EDB7F4201EC211DD0037CCB3 /* Horatio.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EDB7F4821EC212080037CCB3 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4421EC212080037CCB3 /* Container.swift */; };
+		EDB7F4831EC212080037CCB3 /* FeatureCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4441EC212080037CCB3 /* FeatureCondition.swift */; };
+		EDB7F4841EC212080037CCB3 /* FeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4451EC212080037CCB3 /* FeatureManager.swift */; };
+		EDB7F4851EC212080037CCB3 /* FeatureSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4461EC212080037CCB3 /* FeatureSelector.swift */; };
+		EDB7F4861EC212080037CCB3 /* FeatureSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4471EC212080037CCB3 /* FeatureSubject.swift */; };
+		EDB7F4871EC212080037CCB3 /* VendorIDFeatureSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4481EC212080037CCB3 /* VendorIDFeatureSubject.swift */; };
+		EDB7F4881EC212080037CCB3 /* JSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F44A1EC212080037CCB3 /* JSONParsing.swift */; };
+		EDB7F4891EC212080037CCB3 /* JSONServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F44B1EC212080037CCB3 /* JSONServiceRequest.swift */; };
+		EDB7F48A1EC212080037CCB3 /* JSONServiceResponseProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F44C1EC212080037CCB3 /* JSONServiceResponseProcessor.swift */; };
+		EDB7F48C1EC212080037CCB3 /* AlertOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F44F1EC212080037CCB3 /* AlertOperation.swift */; };
+		EDB7F48D1EC212080037CCB3 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4501EC212080037CCB3 /* BlockObserver.swift */; };
+		EDB7F48E1EC212080037CCB3 /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4511EC212080037CCB3 /* BlockOperation.swift */; };
+		EDB7F4921EC212080037CCB3 /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4551EC212080037CCB3 /* DelayOperation.swift */; };
+		EDB7F4931EC212080037CCB3 /* DependencySuccessCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4561EC212080037CCB3 /* DependencySuccessCondition.swift */; };
+		EDB7F4941EC212080037CCB3 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4571EC212080037CCB3 /* Dictionary+Operations.swift */; };
+		EDB7F4951EC212080037CCB3 /* ExclusivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4581EC212080037CCB3 /* ExclusivityController.swift */; };
+		EDB7F4961EC212080037CCB3 /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4591EC212080037CCB3 /* GroupOperation.swift */; };
+		EDB7F4981EC212080037CCB3 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDB7F45B1EC212080037CCB3 /* LICENSE.txt */; };
+		EDB7F49B1EC212080037CCB3 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F45E1EC212080037CCB3 /* MutuallyExclusive.swift */; };
+		EDB7F49C1EC212080037CCB3 /* NegatedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F45F1EC212080037CCB3 /* NegatedCondition.swift */; };
+		EDB7F49D1EC212080037CCB3 /* NetworkObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4601EC212080037CCB3 /* NetworkObserver.swift */; };
+		EDB7F49E1EC212080037CCB3 /* NoCancelledDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4611EC212080037CCB3 /* NoCancelledDependencies.swift */; };
+		EDB7F49F1EC212080037CCB3 /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4621EC212080037CCB3 /* NSLock+Operations.swift */; };
+		EDB7F4A01EC212080037CCB3 /* NSObject+ThrowingKeyValueObserving.h in Headers */ = {isa = PBXBuildFile; fileRef = EDB7F4631EC212080037CCB3 /* NSObject+ThrowingKeyValueObserving.h */; };
+		EDB7F4A11EC212080037CCB3 /* NSObject+ThrowingKeyValueObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4641EC212080037CCB3 /* NSObject+ThrowingKeyValueObserving.m */; };
+		EDB7F4A21EC212080037CCB3 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4651EC212080037CCB3 /* NSOperation+Operations.swift */; };
+		EDB7F4A31EC212080037CCB3 /* NSURL+CacheFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4661EC212080037CCB3 /* NSURL+CacheFiles.swift */; };
+		EDB7F4A41EC212080037CCB3 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4671EC212080037CCB3 /* Operation.swift */; };
+		EDB7F4A51EC212080037CCB3 /* OperationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4681EC212080037CCB3 /* OperationCondition.swift */; };
+		EDB7F4A61EC212080037CCB3 /* OperationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4691EC212080037CCB3 /* OperationErrors.swift */; };
+		EDB7F4A71EC212080037CCB3 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F46A1EC212080037CCB3 /* OperationObserver.swift */; };
+		EDB7F4A81EC212080037CCB3 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F46B1EC212080037CCB3 /* OperationQueue.swift */; };
+		EDB7F4AB1EC212080037CCB3 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F46E1EC212080037CCB3 /* ReachabilityCondition.swift */; };
+		EDB7F4AC1EC212080037CCB3 /* RemoteNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F46F1EC212080037CCB3 /* RemoteNotificationCondition.swift */; };
+		EDB7F4AD1EC212080037CCB3 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4701EC212080037CCB3 /* SilentCondition.swift */; };
+		EDB7F4AE1EC212080037CCB3 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4711EC212080037CCB3 /* TimeoutObserver.swift */; };
+		EDB7F4B01EC212080037CCB3 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4731EC212080037CCB3 /* URLSessionTaskOperation.swift */; };
+		EDB7F4B21EC212080037CCB3 /* TaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4761EC212080037CCB3 /* TaskScheduler.swift */; };
+		EDB7F4B31EC212080037CCB3 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4781EC212080037CCB3 /* Service.swift */; };
+		EDB7F4B41EC212080037CCB3 /* ServiceEndpoint+JSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4791EC212080037CCB3 /* ServiceEndpoint+JSONParsing.swift */; };
+		EDB7F4B51EC212080037CCB3 /* ServiceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F47A1EC212080037CCB3 /* ServiceEndpoint.swift */; };
+		EDB7F4B61EC212080037CCB3 /* ServiceEndpointPathTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F47B1EC212080037CCB3 /* ServiceEndpointPathTransformer.swift */; };
+		EDB7F4B71EC212080037CCB3 /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F47C1EC212080037CCB3 /* ServiceRequest.swift */; };
+		EDB7F4B81EC212080037CCB3 /* ServiceRequestConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F47D1EC212080037CCB3 /* ServiceRequestConfigurator.swift */; };
+		EDB7F4B91EC212080037CCB3 /* ServiceRequestDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F47E1EC212080037CCB3 /* ServiceRequestDecorator.swift */; };
+		EDB7F4BA1EC212080037CCB3 /* ServiceRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F47F1EC212080037CCB3 /* ServiceRequestOperation.swift */; };
+		EDB7F4BB1EC212080037CCB3 /* ServiceRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4801EC212080037CCB3 /* ServiceRequestStatus.swift */; };
+		EDB7F4BC1EC212080037CCB3 /* ServiceSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4811EC212080037CCB3 /* ServiceSession.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EDB7F4281EC211DD0037CCB3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDB7F4141EC211DD0037CCB3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDB7F41C1EC211DD0037CCB3;
+			remoteInfo = Horatio;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EDB7F41D1EC211DD0037CCB3 /* Horatio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Horatio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDB7F4201EC211DD0037CCB3 /* Horatio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Horatio.h; sourceTree = "<group>"; };
+		EDB7F4211EC211DD0037CCB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDB7F4261EC211DD0037CCB3 /* HoratioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HoratioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDB7F42B1EC211DD0037CCB3 /* HoratioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoratioTests.swift; sourceTree = "<group>"; };
+		EDB7F42D1EC211DD0037CCB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDB7F4421EC212080037CCB3 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		EDB7F4441EC212080037CCB3 /* FeatureCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureCondition.swift; sourceTree = "<group>"; };
+		EDB7F4451EC212080037CCB3 /* FeatureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureManager.swift; sourceTree = "<group>"; };
+		EDB7F4461EC212080037CCB3 /* FeatureSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureSelector.swift; sourceTree = "<group>"; };
+		EDB7F4471EC212080037CCB3 /* FeatureSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureSubject.swift; sourceTree = "<group>"; };
+		EDB7F4481EC212080037CCB3 /* VendorIDFeatureSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorIDFeatureSubject.swift; sourceTree = "<group>"; };
+		EDB7F44A1EC212080037CCB3 /* JSONParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParsing.swift; sourceTree = "<group>"; };
+		EDB7F44B1EC212080037CCB3 /* JSONServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONServiceRequest.swift; sourceTree = "<group>"; };
+		EDB7F44C1EC212080037CCB3 /* JSONServiceResponseProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONServiceResponseProcessor.swift; sourceTree = "<group>"; };
+		EDB7F44D1EC212080037CCB3 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = Classes/LICENSE.txt; sourceTree = "<group>"; };
+		EDB7F44F1EC212080037CCB3 /* AlertOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertOperation.swift; sourceTree = "<group>"; };
+		EDB7F4501EC212080037CCB3 /* BlockObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockObserver.swift; sourceTree = "<group>"; };
+		EDB7F4511EC212080037CCB3 /* BlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockOperation.swift; sourceTree = "<group>"; };
+		EDB7F4521EC212080037CCB3 /* CalendarCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCondition.swift; sourceTree = "<group>"; };
+		EDB7F4531EC212080037CCB3 /* CKContainer+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKContainer+Operations.swift"; sourceTree = "<group>"; };
+		EDB7F4541EC212080037CCB3 /* CloudCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudCondition.swift; sourceTree = "<group>"; };
+		EDB7F4551EC212080037CCB3 /* DelayOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayOperation.swift; sourceTree = "<group>"; };
+		EDB7F4561EC212080037CCB3 /* DependencySuccessCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencySuccessCondition.swift; sourceTree = "<group>"; };
+		EDB7F4571EC212080037CCB3 /* Dictionary+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Operations.swift"; sourceTree = "<group>"; };
+		EDB7F4581EC212080037CCB3 /* ExclusivityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExclusivityController.swift; sourceTree = "<group>"; };
+		EDB7F4591EC212080037CCB3 /* GroupOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupOperation.swift; sourceTree = "<group>"; };
+		EDB7F45A1EC212080037CCB3 /* HealthCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCondition.swift; sourceTree = "<group>"; };
+		EDB7F45B1EC212080037CCB3 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		EDB7F45C1EC212080037CCB3 /* LocationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCondition.swift; sourceTree = "<group>"; };
+		EDB7F45D1EC212080037CCB3 /* LocationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationOperation.swift; sourceTree = "<group>"; };
+		EDB7F45E1EC212080037CCB3 /* MutuallyExclusive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutuallyExclusive.swift; sourceTree = "<group>"; };
+		EDB7F45F1EC212080037CCB3 /* NegatedCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegatedCondition.swift; sourceTree = "<group>"; };
+		EDB7F4601EC212080037CCB3 /* NetworkObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkObserver.swift; sourceTree = "<group>"; };
+		EDB7F4611EC212080037CCB3 /* NoCancelledDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoCancelledDependencies.swift; sourceTree = "<group>"; };
+		EDB7F4621EC212080037CCB3 /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
+		EDB7F4631EC212080037CCB3 /* NSObject+ThrowingKeyValueObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ThrowingKeyValueObserving.h"; sourceTree = "<group>"; };
+		EDB7F4641EC212080037CCB3 /* NSObject+ThrowingKeyValueObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ThrowingKeyValueObserving.m"; sourceTree = "<group>"; };
+		EDB7F4651EC212080037CCB3 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperation+Operations.swift"; sourceTree = "<group>"; };
+		EDB7F4661EC212080037CCB3 /* NSURL+CacheFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+CacheFiles.swift"; sourceTree = "<group>"; };
+		EDB7F4671EC212080037CCB3 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
+		EDB7F4681EC212080037CCB3 /* OperationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationCondition.swift; sourceTree = "<group>"; };
+		EDB7F4691EC212080037CCB3 /* OperationErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationErrors.swift; sourceTree = "<group>"; };
+		EDB7F46A1EC212080037CCB3 /* OperationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationObserver.swift; sourceTree = "<group>"; };
+		EDB7F46B1EC212080037CCB3 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
+		EDB7F46C1EC212080037CCB3 /* PassbookCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassbookCondition.swift; sourceTree = "<group>"; };
+		EDB7F46D1EC212080037CCB3 /* PhotosCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCondition.swift; sourceTree = "<group>"; };
+		EDB7F46E1EC212080037CCB3 /* ReachabilityCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCondition.swift; sourceTree = "<group>"; };
+		EDB7F46F1EC212080037CCB3 /* RemoteNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationCondition.swift; sourceTree = "<group>"; };
+		EDB7F4701EC212080037CCB3 /* SilentCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentCondition.swift; sourceTree = "<group>"; };
+		EDB7F4711EC212080037CCB3 /* TimeoutObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeoutObserver.swift; sourceTree = "<group>"; };
+		EDB7F4721EC212080037CCB3 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
+		EDB7F4731EC212080037CCB3 /* URLSessionTaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperation.swift; sourceTree = "<group>"; };
+		EDB7F4741EC212080037CCB3 /* UserNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCondition.swift; sourceTree = "<group>"; };
+		EDB7F4761EC212080037CCB3 /* TaskScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskScheduler.swift; sourceTree = "<group>"; };
+		EDB7F4781EC212080037CCB3 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		EDB7F4791EC212080037CCB3 /* ServiceEndpoint+JSONParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServiceEndpoint+JSONParsing.swift"; sourceTree = "<group>"; };
+		EDB7F47A1EC212080037CCB3 /* ServiceEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEndpoint.swift; sourceTree = "<group>"; };
+		EDB7F47B1EC212080037CCB3 /* ServiceEndpointPathTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEndpointPathTransformer.swift; sourceTree = "<group>"; };
+		EDB7F47C1EC212080037CCB3 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
+		EDB7F47D1EC212080037CCB3 /* ServiceRequestConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestConfigurator.swift; sourceTree = "<group>"; };
+		EDB7F47E1EC212080037CCB3 /* ServiceRequestDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestDecorator.swift; sourceTree = "<group>"; };
+		EDB7F47F1EC212080037CCB3 /* ServiceRequestOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestOperation.swift; sourceTree = "<group>"; };
+		EDB7F4801EC212080037CCB3 /* ServiceRequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestStatus.swift; sourceTree = "<group>"; };
+		EDB7F4811EC212080037CCB3 /* ServiceSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceSession.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EDB7F4191EC211DD0037CCB3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDB7F4231EC211DD0037CCB3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDB7F4271EC211DD0037CCB3 /* Horatio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EDB7F4131EC211DD0037CCB3 = {
+			isa = PBXGroup;
+			children = (
+				EDB7F41F1EC211DD0037CCB3 /* Horatio */,
+				EDB7F42A1EC211DD0037CCB3 /* HoratioTests */,
+				EDB7F41E1EC211DD0037CCB3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EDB7F41E1EC211DD0037CCB3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7F41D1EC211DD0037CCB3 /* Horatio.framework */,
+				EDB7F4261EC211DD0037CCB3 /* HoratioTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EDB7F41F1EC211DD0037CCB3 /* Horatio */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7F4201EC211DD0037CCB3 /* Horatio.h */,
+				EDB7F44D1EC212080037CCB3 /* LICENSE.txt */,
+				EDB7F4401EC212080037CCB3 /* Classes */,
+				EDB7F4BD1EC212E60037CCB3 /* Optional */,
+				EDB7F4BE1EC213270037CCB3 /* Supporting Files */,
+			);
+			path = Horatio;
+			sourceTree = "<group>";
+		};
+		EDB7F42A1EC211DD0037CCB3 /* HoratioTests */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7F42B1EC211DD0037CCB3 /* HoratioTests.swift */,
+				EDB7F42D1EC211DD0037CCB3 /* Info.plist */,
+			);
+			path = HoratioTests;
+			sourceTree = "<group>";
+		};
+		EDB7F4401EC212080037CCB3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7F4411EC212080037CCB3 /* Container */,
+				EDB7F4431EC212080037CCB3 /* Features */,
+				EDB7F4491EC212080037CCB3 /* JSON */,
+				EDB7F44E1EC212080037CCB3 /* Operations */,
+				EDB7F4751EC212080037CCB3 /* Scheduler */,
+				EDB7F4771EC212080037CCB3 /* Services */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		EDB7F4411EC212080037CCB3 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7F4421EC212080037CCB3 /* Container.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		EDB7F4431EC212080037CCB3 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7F4441EC212080037CCB3 /* FeatureCondition.swift */,
+				EDB7F4451EC212080037CCB3 /* FeatureManager.swift */,
+				EDB7F4461EC212080037CCB3 /* FeatureSelector.swift */,
+				EDB7F4471EC212080037CCB3 /* FeatureSubject.swift */,
+				EDB7F4481EC212080037CCB3 /* VendorIDFeatureSubject.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		EDB7F4491EC212080037CCB3 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7F44A1EC212080037CCB3 /* JSONParsing.swift */,
+				EDB7F44B1EC212080037CCB3 /* JSONServiceRequest.swift */,
+				EDB7F44C1EC212080037CCB3 /* JSONServiceResponseProcessor.swift */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		EDB7F44E1EC212080037CCB3 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7F44F1EC212080037CCB3 /* AlertOperation.swift */,
+				EDB7F4501EC212080037CCB3 /* BlockObserver.swift */,
+				EDB7F4511EC212080037CCB3 /* BlockOperation.swift */,
+				EDB7F4551EC212080037CCB3 /* DelayOperation.swift */,
+				EDB7F4561EC212080037CCB3 /* DependencySuccessCondition.swift */,
+				EDB7F4571EC212080037CCB3 /* Dictionary+Operations.swift */,
+				EDB7F4581EC212080037CCB3 /* ExclusivityController.swift */,
+				EDB7F4591EC212080037CCB3 /* GroupOperation.swift */,
+				EDB7F45B1EC212080037CCB3 /* LICENSE.txt */,
+				EDB7F45E1EC212080037CCB3 /* MutuallyExclusive.swift */,
+				EDB7F45F1EC212080037CCB3 /* NegatedCondition.swift */,
+				EDB7F4601EC212080037CCB3 /* NetworkObserver.swift */,
+				EDB7F4611EC212080037CCB3 /* NoCancelledDependencies.swift */,
+				EDB7F4621EC212080037CCB3 /* NSLock+Operations.swift */,
+				EDB7F4631EC212080037CCB3 /* NSObject+ThrowingKeyValueObserving.h */,
+				EDB7F4641EC212080037CCB3 /* NSObject+ThrowingKeyValueObserving.m */,
+				EDB7F4651EC212080037CCB3 /* NSOperation+Operations.swift */,
+				EDB7F4661EC212080037CCB3 /* NSURL+CacheFiles.swift */,
+				EDB7F4671EC212080037CCB3 /* Operation.swift */,
+				EDB7F4681EC212080037CCB3 /* OperationCondition.swift */,
+				EDB7F4691EC212080037CCB3 /* OperationErrors.swift */,
+				EDB7F46A1EC212080037CCB3 /* OperationObserver.swift */,
+				EDB7F46B1EC212080037CCB3 /* OperationQueue.swift */,
+				EDB7F46E1EC212080037CCB3 /* ReachabilityCondition.swift */,
+				EDB7F4701EC212080037CCB3 /* SilentCondition.swift */,
+				EDB7F4711EC212080037CCB3 /* TimeoutObserver.swift */,
+				EDB7F4731EC212080037CCB3 /* URLSessionTaskOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		EDB7F4751EC212080037CCB3 /* Scheduler */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7F4761EC212080037CCB3 /* TaskScheduler.swift */,
+			);
+			path = Scheduler;
+			sourceTree = "<group>";
+		};
+		EDB7F4771EC212080037CCB3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7F4781EC212080037CCB3 /* Service.swift */,
+				EDB7F4791EC212080037CCB3 /* ServiceEndpoint+JSONParsing.swift */,
+				EDB7F47A1EC212080037CCB3 /* ServiceEndpoint.swift */,
+				EDB7F47B1EC212080037CCB3 /* ServiceEndpointPathTransformer.swift */,
+				EDB7F47C1EC212080037CCB3 /* ServiceRequest.swift */,
+				EDB7F47D1EC212080037CCB3 /* ServiceRequestConfigurator.swift */,
+				EDB7F47E1EC212080037CCB3 /* ServiceRequestDecorator.swift */,
+				EDB7F47F1EC212080037CCB3 /* ServiceRequestOperation.swift */,
+				EDB7F4801EC212080037CCB3 /* ServiceRequestStatus.swift */,
+				EDB7F4811EC212080037CCB3 /* ServiceSession.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EDB7F4BD1EC212E60037CCB3 /* Optional */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7F4521EC212080037CCB3 /* CalendarCondition.swift */,
+				EDB7F4531EC212080037CCB3 /* CKContainer+Operations.swift */,
+				EDB7F4541EC212080037CCB3 /* CloudCondition.swift */,
+				EDB7F45A1EC212080037CCB3 /* HealthCondition.swift */,
+				EDB7F45C1EC212080037CCB3 /* LocationCondition.swift */,
+				EDB7F45D1EC212080037CCB3 /* LocationOperation.swift */,
+				EDB7F46C1EC212080037CCB3 /* PassbookCondition.swift */,
+				EDB7F46D1EC212080037CCB3 /* PhotosCondition.swift */,
+				EDB7F46F1EC212080037CCB3 /* RemoteNotificationCondition.swift */,
+				EDB7F4721EC212080037CCB3 /* UIUserNotifications+Operations.swift */,
+				EDB7F4741EC212080037CCB3 /* UserNotificationCondition.swift */,
+			);
+			name = Optional;
+			path = Classes/Operations;
+			sourceTree = "<group>";
+		};
+		EDB7F4BE1EC213270037CCB3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7F4211EC211DD0037CCB3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EDB7F41A1EC211DD0037CCB3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDB7F4A01EC212080037CCB3 /* NSObject+ThrowingKeyValueObserving.h in Headers */,
+				EDB7F42E1EC211DD0037CCB3 /* Horatio.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EDB7F41C1EC211DD0037CCB3 /* Horatio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDB7F4311EC211DD0037CCB3 /* Build configuration list for PBXNativeTarget "Horatio" */;
+			buildPhases = (
+				EDB7F4181EC211DD0037CCB3 /* Sources */,
+				EDB7F4191EC211DD0037CCB3 /* Frameworks */,
+				EDB7F41A1EC211DD0037CCB3 /* Headers */,
+				EDB7F41B1EC211DD0037CCB3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Horatio;
+			productName = Horatio;
+			productReference = EDB7F41D1EC211DD0037CCB3 /* Horatio.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EDB7F4251EC211DD0037CCB3 /* HoratioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDB7F4341EC211DD0037CCB3 /* Build configuration list for PBXNativeTarget "HoratioTests" */;
+			buildPhases = (
+				EDB7F4221EC211DD0037CCB3 /* Sources */,
+				EDB7F4231EC211DD0037CCB3 /* Frameworks */,
+				EDB7F4241EC211DD0037CCB3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EDB7F4291EC211DD0037CCB3 /* PBXTargetDependency */,
+			);
+			name = HoratioTests;
+			productName = HoratioTests;
+			productReference = EDB7F4261EC211DD0037CCB3 /* HoratioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EDB7F4141EC211DD0037CCB3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Mudpot Apps";
+				TargetAttributes = {
+					EDB7F41C1EC211DD0037CCB3 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 46RFK4MJ8P;
+						ProvisioningStyle = Automatic;
+					};
+					EDB7F4251EC211DD0037CCB3 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 46RFK4MJ8P;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = EDB7F4171EC211DD0037CCB3 /* Build configuration list for PBXProject "Horatio" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EDB7F4131EC211DD0037CCB3;
+			productRefGroup = EDB7F41E1EC211DD0037CCB3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EDB7F41C1EC211DD0037CCB3 /* Horatio */,
+				EDB7F4251EC211DD0037CCB3 /* HoratioTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EDB7F41B1EC211DD0037CCB3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDB7F4981EC212080037CCB3 /* LICENSE.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDB7F4241EC211DD0037CCB3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EDB7F4181EC211DD0037CCB3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDB7F4AC1EC212080037CCB3 /* RemoteNotificationCondition.swift in Sources */,
+				EDB7F4BA1EC212080037CCB3 /* ServiceRequestOperation.swift in Sources */,
+				EDB7F4B01EC212080037CCB3 /* URLSessionTaskOperation.swift in Sources */,
+				EDB7F4A51EC212080037CCB3 /* OperationCondition.swift in Sources */,
+				EDB7F49D1EC212080037CCB3 /* NetworkObserver.swift in Sources */,
+				EDB7F4AE1EC212080037CCB3 /* TimeoutObserver.swift in Sources */,
+				EDB7F4AB1EC212080037CCB3 /* ReachabilityCondition.swift in Sources */,
+				EDB7F4AD1EC212080037CCB3 /* SilentCondition.swift in Sources */,
+				EDB7F49E1EC212080037CCB3 /* NoCancelledDependencies.swift in Sources */,
+				EDB7F4951EC212080037CCB3 /* ExclusivityController.swift in Sources */,
+				EDB7F4871EC212080037CCB3 /* VendorIDFeatureSubject.swift in Sources */,
+				EDB7F4831EC212080037CCB3 /* FeatureCondition.swift in Sources */,
+				EDB7F4A71EC212080037CCB3 /* OperationObserver.swift in Sources */,
+				EDB7F4851EC212080037CCB3 /* FeatureSelector.swift in Sources */,
+				EDB7F4B71EC212080037CCB3 /* ServiceRequest.swift in Sources */,
+				EDB7F4B31EC212080037CCB3 /* Service.swift in Sources */,
+				EDB7F49B1EC212080037CCB3 /* MutuallyExclusive.swift in Sources */,
+				EDB7F4B51EC212080037CCB3 /* ServiceEndpoint.swift in Sources */,
+				EDB7F48E1EC212080037CCB3 /* BlockOperation.swift in Sources */,
+				EDB7F4B81EC212080037CCB3 /* ServiceRequestConfigurator.swift in Sources */,
+				EDB7F4B61EC212080037CCB3 /* ServiceEndpointPathTransformer.swift in Sources */,
+				EDB7F49C1EC212080037CCB3 /* NegatedCondition.swift in Sources */,
+				EDB7F4A21EC212080037CCB3 /* NSOperation+Operations.swift in Sources */,
+				EDB7F4A61EC212080037CCB3 /* OperationErrors.swift in Sources */,
+				EDB7F4A11EC212080037CCB3 /* NSObject+ThrowingKeyValueObserving.m in Sources */,
+				EDB7F4821EC212080037CCB3 /* Container.swift in Sources */,
+				EDB7F4961EC212080037CCB3 /* GroupOperation.swift in Sources */,
+				EDB7F4861EC212080037CCB3 /* FeatureSubject.swift in Sources */,
+				EDB7F4841EC212080037CCB3 /* FeatureManager.swift in Sources */,
+				EDB7F4A31EC212080037CCB3 /* NSURL+CacheFiles.swift in Sources */,
+				EDB7F4A81EC212080037CCB3 /* OperationQueue.swift in Sources */,
+				EDB7F49F1EC212080037CCB3 /* NSLock+Operations.swift in Sources */,
+				EDB7F4B41EC212080037CCB3 /* ServiceEndpoint+JSONParsing.swift in Sources */,
+				EDB7F48A1EC212080037CCB3 /* JSONServiceResponseProcessor.swift in Sources */,
+				EDB7F4BC1EC212080037CCB3 /* ServiceSession.swift in Sources */,
+				EDB7F4931EC212080037CCB3 /* DependencySuccessCondition.swift in Sources */,
+				EDB7F4B21EC212080037CCB3 /* TaskScheduler.swift in Sources */,
+				EDB7F4BB1EC212080037CCB3 /* ServiceRequestStatus.swift in Sources */,
+				EDB7F4881EC212080037CCB3 /* JSONParsing.swift in Sources */,
+				EDB7F4B91EC212080037CCB3 /* ServiceRequestDecorator.swift in Sources */,
+				EDB7F48C1EC212080037CCB3 /* AlertOperation.swift in Sources */,
+				EDB7F4A41EC212080037CCB3 /* Operation.swift in Sources */,
+				EDB7F4891EC212080037CCB3 /* JSONServiceRequest.swift in Sources */,
+				EDB7F4941EC212080037CCB3 /* Dictionary+Operations.swift in Sources */,
+				EDB7F48D1EC212080037CCB3 /* BlockObserver.swift in Sources */,
+				EDB7F4921EC212080037CCB3 /* DelayOperation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDB7F4221EC211DD0037CCB3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDB7F42C1EC211DD0037CCB3 /* HoratioTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EDB7F4291EC211DD0037CCB3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDB7F41C1EC211DD0037CCB3 /* Horatio */;
+			targetProxy = EDB7F4281EC211DD0037CCB3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EDB7F42F1EC211DD0037CCB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EDB7F4301EC211DD0037CCB3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EDB7F4321EC211DD0037CCB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 46RFK4MJ8P;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Horatio/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.Horatio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		EDB7F4331EC211DD0037CCB3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 46RFK4MJ8P;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Horatio/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.Horatio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		EDB7F4351EC211DD0037CCB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 46RFK4MJ8P;
+				INFOPLIST_FILE = HoratioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		EDB7F4361EC211DD0037CCB3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 46RFK4MJ8P;
+				INFOPLIST_FILE = HoratioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EDB7F4171EC211DD0037CCB3 /* Build configuration list for PBXProject "Horatio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDB7F42F1EC211DD0037CCB3 /* Debug */,
+				EDB7F4301EC211DD0037CCB3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDB7F4311EC211DD0037CCB3 /* Build configuration list for PBXNativeTarget "Horatio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDB7F4321EC211DD0037CCB3 /* Debug */,
+				EDB7F4331EC211DD0037CCB3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDB7F4341EC211DD0037CCB3 /* Build configuration list for PBXNativeTarget "HoratioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDB7F4351EC211DD0037CCB3 /* Debug */,
+				EDB7F4361EC211DD0037CCB3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EDB7F4141EC211DD0037CCB3 /* Project object */;
+}
