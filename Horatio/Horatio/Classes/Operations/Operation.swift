@@ -162,7 +162,7 @@ open class Operation: Foundation.Operation {
         }
     }
     
-    var userInitiated: Bool {
+    public var userInitiated: Bool {
         get {
             return qualityOfService == .userInitiated
         }
@@ -199,7 +199,7 @@ open class Operation: Foundation.Operation {
 
     fileprivate(set) var conditions = [OperationCondition]()
     
-    func addCondition(_ condition: OperationCondition) {
+    public func addCondition(_ condition: OperationCondition) {
         assert(state < .evaluatingConditions, "Cannot modify conditions after execution has begun.")
 
         conditions.append(condition)
@@ -207,7 +207,7 @@ open class Operation: Foundation.Operation {
 
     fileprivate(set) var observers = [OperationObserver]()
     
-    func addObserver(_ observer: OperationObserver) {
+    public func addObserver(_ observer: OperationObserver) {
         assert(state <= .executing, "Cannot modify observers after execution has begun.")
 
         observers.append(observer)
@@ -272,14 +272,14 @@ open class Operation: Foundation.Operation {
      finished its execution, and that operations dependent on yours can re-evaluate
      their readiness state.
      */
-    func execute() {
+    open func execute() {
         print("\(type(of: self)) must override `execute()`.")
 
         finish()
     }
 
     fileprivate var _internalErrors = [Error]()
-    func cancelWithError(_ error: Error? = nil) {
+    public final func cancelWithError(_ error: Error? = nil) {
         if let error = error {
             _internalErrors.append(error)
         }
@@ -287,7 +287,7 @@ open class Operation: Foundation.Operation {
         cancel()
     }
 
-    final func produceOperation(_ operation: Foundation.Operation) {
+    public final func produceOperation(_ operation: Foundation.Operation) {
         for observer in observers {
             observer.operation(self, didProduceOperation: operation)
         }
@@ -303,7 +303,7 @@ open class Operation: Foundation.Operation {
      for how an error from an `NSURLSession` is passed along via the
      `finishWithError()` method.
      */
-    final func finishWithError(_ error: Error?) {
+    public final func finishWithError(_ error: Error?) {
         if let error = error {
             finish([error])
         }
@@ -317,7 +317,7 @@ open class Operation: Foundation.Operation {
      operation has finished.
      */
     fileprivate var hasFinishedAlready = false
-    final func finish(_ errors: [Error] = []) {
+    public final func finish(_ errors: [Error] = []) {
         if !hasFinishedAlready {
             hasFinishedAlready = true
             state = .finishing
@@ -349,7 +349,7 @@ open class Operation: Foundation.Operation {
      this method to potentially inform the user about an error when trying to
      bring up the Core Data stack.
      */
-    func finished(_ errors: [NSError]) {
+    open func finished(_ errors: [NSError]) {
         // No op.
 
         // TODO: Remove this spammy log

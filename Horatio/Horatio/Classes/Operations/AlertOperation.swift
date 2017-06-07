@@ -8,13 +8,13 @@
 
 import UIKit
 
-class AlertOperation: Operation {
+public class AlertOperation: Operation {
     // MARK: Properties
 
     fileprivate let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
     fileprivate let presentationContext: UIViewController?
 
-    var title: String? {
+    public var title: String? {
         get {
             return alertController.title
         }
@@ -25,7 +25,7 @@ class AlertOperation: Operation {
         }
     }
 
-    var message: String? {
+    public var message: String? {
         get {
             return alertController.message
         }
@@ -37,7 +37,7 @@ class AlertOperation: Operation {
 
     // MARK: Initialization
 
-    init(presentationContext: UIViewController? = nil) {
+    public init(presentationContext: UIViewController? = nil) {
         self.presentationContext = presentationContext
         super.init()
 
@@ -51,7 +51,7 @@ class AlertOperation: Operation {
         addCondition(MutuallyExclusive<UIViewController>())
     }
 
-    func addAction(_ title: String, style: UIAlertActionStyle = .default, handler: @escaping (AlertOperation) -> Void = { _ in }) {
+    public func addAction(_ title: String, style: UIAlertActionStyle = .default, handler: @escaping (AlertOperation) -> Void = { _ in }) {
         let action = UIAlertAction(title: title, style: style) { [weak self] _ in
             if let strongSelf = self {
                 handler(strongSelf)
@@ -63,7 +63,7 @@ class AlertOperation: Operation {
         alertController.addAction(action)
     }
 
-    override func execute() {
+    override public func execute() {
         // it's probably not safe to even walk the view hierarchy from a background thread, so do this all on main
         DispatchQueue.main.async {
             var presentationContext = self.presentationContext
