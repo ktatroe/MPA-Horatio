@@ -48,7 +48,7 @@ open class FetchServiceResponseOperation: GroupOperation {
         name = "Fetch Service Request Operation"
     }
 
-    override func finished(_ errors: [NSError]) {
+    override open func finished(_ errors: [NSError]) {
         do {
             try FileManager.default.removeItem(at: cacheFile)
         } catch { }
