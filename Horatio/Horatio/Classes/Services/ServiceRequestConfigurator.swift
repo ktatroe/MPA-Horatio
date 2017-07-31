@@ -26,7 +26,6 @@ public extension ServiceRequestConfigurator {
                 for transformer in endpointPathTransformers(serviceRequest) {
                     components = transformer.transformedPath(components)
                 }
-
                 
                 components = rectifyEmbeddedQuery(components: components)
 

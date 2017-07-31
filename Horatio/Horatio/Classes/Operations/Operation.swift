@@ -16,23 +16,6 @@ import Foundation
  */
 open class Operation: Foundation.Operation {
 
-    // use the KVO mechanism to indicate that changes to "state" affect other properties as well
-    class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
-        return ["state" as NSObject]
-    }
-
-    class func keyPathsForValuesAffectingIsExecuting() -> Set<NSObject> {
-        return ["state" as NSObject]
-    }
-    
-    class func keyPathsForValuesAffectingIsFinished() -> Set<NSObject> {
-        return ["state" as NSObject]
-    }
-
-    class func keyPathsForValuesAffectingIsCancelled() -> Set<NSObject> {
-        return ["state" as NSObject]
-    }
-
     // MARK: State Management
     
     fileprivate enum State: Int, Comparable {
@@ -62,6 +45,19 @@ open class Operation: Foundation.Operation {
         
         /// The `Operation` has finished executing.
         case finished
+
+        func keyPathForKeyValueObserving() -> String? {
+            switch self {
+            case .ready:
+                return "isReady"
+
+            case .finished:
+                return "isFinished"
+
+            default:
+                return nil
+            }
+        }
         
         func canTransitionToState(_ target: State) -> Bool {
             switch (self, target) {
@@ -118,14 +114,25 @@ open class Operation: Foundation.Operation {
              classic definition of deadlock.
              */
             willChangeValue(forKey: "state")
-            
-            stateLock.withCriticalScope { Void -> Void in
+
+            let newStateKeyPath = newState.keyPathForKeyValueObserving()
+
+            if let path = newStateKeyPath {
+                willChangeValue(forKey: path)
+            }
+
+            stateLock.withCriticalScope { () -> Void in
                 guard _state != .finished else {
                     return
                 }
-                
+
                 assert(_state.canTransitionToState(newState), "Performing invalid state transition.")
+
                 _state = newState
+            }
+
+            if let path = newStateKeyPath {
+                didChangeValue(forKey: path)
             }
 
             didChangeValue(forKey: "state")
@@ -162,7 +169,7 @@ open class Operation: Foundation.Operation {
         }
     }
     
-    public var userInitiated: Bool {
+    var userInitiated: Bool {
         get {
             return qualityOfService == .userInitiated
         }

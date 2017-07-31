@@ -47,6 +47,7 @@ public struct ReachabilityCondition: OperationCondition {
 
 }
 
+
 /// A private singleton that maintains a basic cache of `SCNetworkReachability` objects.
 private class ReachabilityController {
     static var reachabilityRefs = [String: SCNetworkReachability]()
