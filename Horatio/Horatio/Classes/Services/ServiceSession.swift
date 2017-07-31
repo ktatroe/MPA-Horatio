@@ -24,7 +24,7 @@ public protocol ServiceSessionHandler: class {
 public protocol ServiceSession: class {
     var isAuthenticated: Bool { get }
 
-    func attemptOpen(_ completion: ((Void) -> Bool)?)
+    func attemptOpen(_ completion: (() -> Bool)?)
     func close()
 
     func signURLRequest(_ request: NSMutableURLRequest) -> NSMutableURLRequest

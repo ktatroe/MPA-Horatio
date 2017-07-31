@@ -27,7 +27,7 @@ extension ServiceEndpoint : JSONParsing {
     // MARK: <JSONParsing>
 
     public func updateFromJSONRepresentation(_ data: JSONObject) {
-        guard type(of: self).isValidJSONRepresentation(data) else { return }
+        guard ServiceEndpoint.isValidJSONRepresentation(data) else { return }
 
         if let urlString = JSONParser.parseString(data[JSONKeys.URL]) {
             urlContainer = .absolutePath(urlString)
@@ -40,6 +40,9 @@ extension ServiceEndpoint : JSONParsing {
             components.host = JSONParser.parseString(data[JSONKeys.HostName])
             components.path = "\(String(describing: basePath))/\(String(describing: path))"
 
+            let paths = [basePath, path].flatMap { $0 }
+            components.path = paths.joined(separator: "/")
+            
             self.urlContainer = .components(components)
         }
 
