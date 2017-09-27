@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSLock {
+extension NSLocking {
     func withCriticalScope<T>(_ block: () -> T) -> T {
         lock()
         let value = block()
