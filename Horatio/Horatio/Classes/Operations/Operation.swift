@@ -95,7 +95,7 @@ open class Operation: Foundation.Operation {
     fileprivate var _state = State.initialized
     
     /// A lock to guard reads and writes to the `_state` property
-    fileprivate let stateLock = NSLock()
+    fileprivate let stateLock = NSRecursiveLock()
     
     fileprivate var state: State {
         get {
@@ -105,68 +105,65 @@ open class Operation: Foundation.Operation {
         }
 
         set(newState) {
-            /*
-             It's important to note that the KVO notifications are NOT called from inside
-             the lock. If they were, the app would deadlock, because in the middle of
-             calling the `didChangeValueForKey()` method, the observers try to access
-             properties like "isReady" or "isFinished". Since those methods also
-             acquire the lock, then we'd be stuck waiting on our own lock. It's the
-             classic definition of deadlock.
-             */
-            willChangeValue(forKey: "state")
-
-            let newStateKeyPath = newState.keyPathForKeyValueObserving()
-
-            if let path = newStateKeyPath {
-                willChangeValue(forKey: path)
-            }
-
             stateLock.withCriticalScope { () -> Void in
-                guard _state != .finished else {
-                    return
+                willChangeValue(forKey: "state")
+
+                let newStateKeyPath = newState.keyPathForKeyValueObserving()
+
+                if let path = newStateKeyPath {
+                    willChangeValue(forKey: path)
                 }
 
                 assert(_state.canTransitionToState(newState), "Performing invalid state transition.")
 
-                _state = newState
-            }
+                if _state != .finished {
+                    _state = newState
+                }
 
-            if let path = newStateKeyPath {
-                didChangeValue(forKey: path)
-            }
+                if let path = newStateKeyPath {
+                    didChangeValue(forKey: path)
+                }
 
-            didChangeValue(forKey: "state")
+                didChangeValue(forKey: "state")
+            }
         }
     }
 
     // Here is where we extend our definition of "readiness".
     override open var isReady: Bool {
-        switch state {
-            
-        case .initialized:
-            // If the operation has been cancelled, "isReady" should return true
-            return isCancelled
-            
-        case .pending:
-            // If the operation has been cancelled, "isReady" should return true
-            guard !isCancelled else {
-                return true
+        var result = false
+
+        stateLock.withCriticalScope { () -> Void in
+            switch state {
+
+            case .initialized:
+                // If the operation has been cancelled, "isReady" should return true
+                result = isCancelled
+
+            case .pending:
+                // If the operation has been cancelled, "isReady" should return true
+                guard !isCancelled else {
+                    result = true
+                    return
+                }
+
+                // If super isReady, conditions can be evaluated
+                if super.isReady {
+                    evaluateConditions()
+                }
+
+                // Until conditions have been evaluated, "isReady" returns false
+                result = false
+
+            case .ready:
+                result = super.isReady || isCancelled
+
+            default:
+                result = false
             }
-            
-            // If super isReady, conditions can be evaluated
-            if super.isReady {
-                evaluateConditions()
-            }
-            
-            // Until conditions have been evaluated, "isReady" returns false
-            return false
-            
-        case .ready:
-            return super.isReady || isCancelled
-            
-        default:
-            return false
         }
+        
+        return result
     }
     
     var userInitiated: Bool {
