@@ -92,9 +92,8 @@ open class DownloadServiceResponseOperation: GroupOperation {
 
                 let task = URLSession.shared.downloadTask(with: urlRequest, completionHandler: { [weak self] (url, response, error) -> Void in
                     guard let weakSelf = self else { return }
-                    guard let response = response as? HTTPURLResponse else { weakSelf.finish(); return }
 
-                    weakSelf.downloadFinished(url, response: response, error: error as NSError?)
+                    weakSelf.downloadFinished(url, response: response as? HTTPURLResponse, error: error as NSError?)
                 })
 
                 let taskOperation = URLSessionTaskOperation(task: task)
