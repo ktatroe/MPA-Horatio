@@ -37,7 +37,7 @@ public protocol ServiceEndpointProvider: class {
 /**
  Stores information about a `ServiceEndpoint` URL.
 */
-enum ServiceEndpointURLContainer {
+public enum ServiceEndpointURLContainer {
     // URL is contained in an `NSURLComponents` object
     case components(URLComponents)
 
@@ -55,7 +55,7 @@ open class ServiceEndpoint {
 
     open let identifier: String
 
-    var urlContainer: ServiceEndpointURLContainer
+    open var urlContainer: ServiceEndpointURLContainer
 
     open var type: ServiceEndpointType = .get
 
