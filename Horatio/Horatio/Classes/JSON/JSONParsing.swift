@@ -231,8 +231,10 @@ extension String {
                 result += self[position ..< entityRange.lowerBound]
                 position = entityRange.lowerBound
 
-                let entityLength = (beacon == "\\u") ? 4 : 2
-                let entity = self[position ..< self.index(position, offsetBy: entityLength)]
+                let entityLength = (beacon == "\\u") ? 6 : 4
+                let indexAtEntityEnd = self.index(position, offsetBy: entityLength)
+                
+                let entity = self[position ..< indexAtEntityEnd]
 
                 if let decodedEntity = decodeEntity(String(entity)) {
                     result.append(decodedEntity)
@@ -240,7 +242,7 @@ extension String {
                     result.append(String(entity))
                 }
                 
-                position = self.index(after: position)
+                position = indexAtEntityEnd
             }
         }
 
