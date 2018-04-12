@@ -239,6 +239,8 @@ extension String {
                 } else {
                     result.append(String(entity))
                 }
+                
+                position = self.index(after: position)
             }
         }
 
