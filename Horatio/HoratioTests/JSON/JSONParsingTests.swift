@@ -61,12 +61,39 @@ class JSONParsingTests: XCTestCase {
         XCTAssertEqual(str, parsedString)
     }
     
-    /* this string has an instance of \\u which caused Cru's app to lock up */
-    func testOffendingString() {
-        let str = "{ abc: \\uxyz \"efg\" }"
+    func testUnicodeDString() {
+        let str = "{ abc: \\u0044 \"efg\" }"
+        let decodedString = "{ abc: D \"efg\" }"
         
         let parsedString = JSONParser.parseString(str)
         
-        XCTAssertEqual(str, parsedString)
+        XCTAssertEqual(decodedString, parsedString)
+    }
+    
+    func testUnicodeDAString() {
+        let str = "{ abc: \\u0044\\u0041 \"efg\" }"
+        let decodedString = "{ abc: DA \"efg\" }"
+        
+        let parsedString = JSONParser.parseString(str)
+        
+        XCTAssertEqual(decodedString, parsedString)
+    }
+    
+    func testHexDString() {
+        let str = "{ abc: \\x44 \"efg\" }"
+        let decodedString = "{ abc: D \"efg\" }"
+        
+        let parsedString = JSONParser.parseString(str)
+        
+        XCTAssertEqual(decodedString, parsedString)
+    }
+    
+    func testHexDAString() {
+        let str = "{ abc: \\x44\\x41 \"efg\" }"
+        let decodedString = "{ abc: DA \"efg\" }"
+        
+        let parsedString = JSONParser.parseString(str)
+        
+        XCTAssertEqual(decodedString, parsedString)
     }
 }
