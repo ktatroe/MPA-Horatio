@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4FB1ABC2207EF53000C78406 /* JSONParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1ABC1207EF53000C78406 /* JSONParsingTests.swift */; };
+		4FB1ABC4207FA6D500C78406 /* Horatio.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1ABC3207FA6D500C78406 /* Horatio.podspec */; };
 		EDB7F4271EC211DD0037CCB3 /* Horatio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDB7F41D1EC211DD0037CCB3 /* Horatio.framework */; };
 		EDB7F42C1EC211DD0037CCB3 /* HoratioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F42B1EC211DD0037CCB3 /* HoratioTests.swift */; };
 		EDB7F42E1EC211DD0037CCB3 /* Horatio.h in Headers */ = {isa = PBXBuildFile; fileRef = EDB7F4201EC211DD0037CCB3 /* Horatio.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -73,6 +74,7 @@
 
 /* Begin PBXFileReference section */
 		4FB1ABC1207EF53000C78406 /* JSONParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingTests.swift; sourceTree = "<group>"; };
+		4FB1ABC3207FA6D500C78406 /* Horatio.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; name = Horatio.podspec; path = ../Horatio.podspec; sourceTree = "<group>"; };
 		EDB7F41D1EC211DD0037CCB3 /* Horatio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Horatio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB7F4201EC211DD0037CCB3 /* Horatio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Horatio.h; sourceTree = "<group>"; };
 		EDB7F4211EC211DD0037CCB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		EDB7F4131EC211DD0037CCB3 = {
 			isa = PBXGroup;
 			children = (
+				4FB1ABC3207FA6D500C78406 /* Horatio.podspec */,
 				EDB7F41F1EC211DD0037CCB3 /* Horatio */,
 				EDB7F42A1EC211DD0037CCB3 /* HoratioTests */,
 				EDB7F41E1EC211DD0037CCB3 /* Products */,
@@ -433,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDB7F4981EC212080037CCB3 /* LICENSE.txt in Resources */,
+				4FB1ABC4207FA6D500C78406 /* Horatio.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
