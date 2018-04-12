@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Horatio'
-  s.version = '0.3'
+  s.version = '0.3.1'
 
   s.ios.deployment_target = '9.0'
 
