@@ -60,7 +60,6 @@ open class FetchServiceResponseOperation: GroupOperation {
         guard let url = request.url, !(url.hasDirectoryPath && url.lastPathComponent.count == 1) else { return UUID().uuidString }
 
         let lastComponent = url.lastPathComponent
-        
         return lastComponent
     }
 }
