@@ -57,9 +57,10 @@ open class FetchServiceResponseOperation: GroupOperation {
     // MARK: - Private
 
     fileprivate static func generatedCacheFileName(_ request: ServiceRequest) -> String {
-        guard let url = request.url else { return UUID().uuidString }
+        guard let url = request.url, !(url.hasDirectoryPath && url.lastPathComponent.count == 1) else { return UUID().uuidString }
 
         let lastComponent = url.lastPathComponent
+        
         return lastComponent
     }
 }
