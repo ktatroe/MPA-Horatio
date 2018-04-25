@@ -215,7 +215,7 @@ extension String {
 
         func decodeEntity(_ entity: String) -> Character? {
             if entity.hasPrefix("\\x") || entity.hasPrefix("\\u") {
-                return decodeHexValue(entity.substring(from: entity.characters.index(entity.startIndex, offsetBy: 2)), base: 16)
+                return decodeHexValue(entity.substring(from: entity.index(entity.startIndex, offsetBy: 2)), base: 16)
             }
 
             return nil
@@ -231,14 +231,18 @@ extension String {
                 result += self[position ..< entityRange.lowerBound]
                 position = entityRange.lowerBound
 
-                let entityLength = (beacon == "\\u") ? 4 : 2
-                let entity = self[position ..< self.characters.index(position, offsetBy: entityLength)]
+                let entityLength = (beacon == "\\u") ? 6 : 4
+                let indexAtEntityEnd = self.index(position, offsetBy: entityLength)
+                
+                let entity = self[position ..< indexAtEntityEnd]
 
                 if let decodedEntity = decodeEntity(String(entity)) {
                     result.append(decodedEntity)
                 } else {
                     result.append(String(entity))
                 }
+                
+                position = indexAtEntityEnd
             }
         }
 
