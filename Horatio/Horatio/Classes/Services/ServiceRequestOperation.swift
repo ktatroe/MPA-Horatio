@@ -128,116 +128,116 @@ open class DownloadServiceResponseOperation: GroupOperation {
     }
 }
 
-public struct ProcessServiceResponseErrors {
-    enum ErrorTypes: Error {
-        case notProcessed
-    }
-    
-    static let domain = "ProcessServiceResponseErrors"
-    
-    struct Codes {
-        static let notProcessed = 0
-    }
-    
-    static func errorForType(_ type: ErrorTypes) -> NSError {
-        switch type {
-        case .notProcessed:
-            return NSError(domain: domain, code: Codes.notProcessed, userInfo: nil)
-        }
-    }
-}
+//public struct ProcessServiceResponseErrors {
+//    enum ErrorTypes: Error {
+//        case notProcessed
+//    }
+//
+//    static let domain = "ProcessServiceResponseErrors"
+//
+//    struct Codes {
+//        static let notProcessed = 0
+//    }
+//
+//    static func errorForType(_ type: ErrorTypes) -> NSError {
+//        switch type {
+//        case .notProcessed:
+//            return NSError(domain: domain, code: Codes.notProcessed, userInfo: nil)
+//        }
+//    }
+//}
 
 
 /**
  Uses a provided `ServiceResponseProcessor` to process a response downloaded
  into a cache file.
 */
-open class ProcessServiceResponseOperation: Operation {
-    // MARK: - Properties
-
-    let request: ServiceRequest
-    let cacheFile: URL
-
-    let responseProcessor: ServiceResponseProcessor
-
-
-    // MARK: - Initialization
-
-    public init(request: ServiceRequest, responseProcessor: ServiceResponseProcessor, cacheFile: URL) {
-        self.request = request
-        self.cacheFile = cacheFile
-
-        self.responseProcessor = responseProcessor
-
-        super.init()
-    }
-
-
-    // MARK: - Overrides
-
-    override open func execute() {
-        guard let stream = InputStream(url: cacheFile) else {
-            finish()
-
-            return
-        }
-
-        stream.open()
-
-        defer {
-            stream.close()
-        }
-
-        self.responseProcessor.process(request, input: .stream(stream), completionBlock: { (response: ServiceResponseProcessorParam) -> Void in
-            switch response {
-            case .stream(_): fallthrough
-            case .data(_, _):
-                self.finish()
-                break
-
-            case .processed(let processed):
-                if processed {
-                    self.finish()
-                    return
-                }
-                
-                self.finishWithError(ProcessServiceResponseErrors.errorForType(.notProcessed))
-
-            case .error(let error):
-                self.finishWithError(error)
-                return
-            }
-        })
-    }
-}
-
-
-/**
- Handles moving data from one processor to another. A value may either be terminal or
- non-terminal. Terminal values indicate that processing is complete and the input is
- "consumed". Non-terminal values provide new input that may be further processed (for
- example, in a pipeline of processors).
-*/
-public enum ServiceResponseProcessorParam {
-    /// Initial input is typically a memory-efficient `NSInputStream`.
-    case stream(InputStream)
-
-    /// `NSData` can be used to pipe data from one processor to the next.
-    case data(String, Data)
-
-    /// The processor was terminal, with an indication of whether the data was completely processed.
-    case processed(Bool)
-
-    /// The processor was terminal, and ended with a known error.
-    case error(NSError)
-}
+//open class ProcessServiceResponseOperation: Operation {
+//    // MARK: - Properties
+//
+//    let request: ServiceRequest
+//    let cacheFile: URL
+//
+//    let responseProcessor: ServiceResponseProcessor
+//
+//
+//    // MARK: - Initialization
+//
+//    public init(request: ServiceRequest, responseProcessor: ServiceResponseProcessor, cacheFile: URL) {
+//        self.request = request
+//        self.cacheFile = cacheFile
+//
+//        self.responseProcessor = responseProcessor
+//
+//        super.init()
+//    }
+//
+//
+//    // MARK: - Overrides
+//
+//    override open func execute() {
+//        guard let stream = InputStream(url: cacheFile) else {
+//            finish()
+//
+//            return
+//        }
+//
+//        stream.open()
+//
+//        defer {
+//            stream.close()
+//        }
+//
+//        self.responseProcessor.process(request, input: .stream(stream), completionBlock: { (response: ServiceResponseProcessorParam) -> Void in
+//            switch response {
+//            case .stream(_): fallthrough
+//            case .data(_):
+//                self.finish()
+//                break
+//
+//            case .processed(let processed):
+//                if processed {
+//                    self.finish()
+//                    return
+//                }
+//
+//                self.finishWithError(ProcessServiceResponseErrors.errorForType(.notProcessed))
+//
+//            case .error(let error):
+//                self.finishWithError(error)
+//                return
+//            }
+//        })
+//    }
+//}
 
 
-/**
- Handles input delivered via `ServiceResponseProcessorParam`, processes the data, and returns
- a new `ServiceResponseProcessorParam`, which can then be further processed or, if terminal,
- complete the processing stage of the operation.
-*/
-public protocol ServiceResponseProcessor: class {
-    func process(_ request: ServiceRequest, input: ServiceResponseProcessorParam, completionBlock: @escaping (ServiceResponseProcessorParam) -> Void)
-}
+///**
+// Handles moving data from one processor to another. A value may either be terminal or
+// non-terminal. Terminal values indicate that processing is complete and the input is
+// "consumed". Non-terminal values provide new input that may be further processed (for
+// example, in a pipeline of processors).
+//*/
+//public enum ServiceResponseProcessorParam {
+//    /// Initial input is typically a memory-efficient `NSInputStream`.
+//    case stream(InputStream)
+//
+//    /// `NSData` can be used to pipe data from one processor to the next.
+//    case data(Data)
+//
+//    /// The processor was terminal, with an indication of whether the data was completely processed.
+//    case processed(Bool)
+//
+//    /// The processor was terminal, and ended with a known error.
+//    case error(NSError)
+//}
+//
+//
+///**
+// Handles input delivered via `ServiceResponseProcessorParam`, processes the data, and returns
+// a new `ServiceResponseProcessorParam`, which can then be further processed or, if terminal,
+// complete the processing stage of the operation.
+//*/
+//public protocol ServiceResponseProcessor: class {
+//    func process(_ request: ServiceRequest, input: ServiceResponseProcessorParam, completionBlock: @escaping (ServiceResponseProcessorParam) -> Void)
+//}

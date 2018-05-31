@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4FB1ABC2207EF53000C78406 /* JSONParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1ABC1207EF53000C78406 /* JSONParsingTests.swift */; };
 		4FB1ABC4207FA6D500C78406 /* Horatio.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1ABC3207FA6D500C78406 /* Horatio.podspec */; };
+		BDEEC19920BE3D980080BB34 /* NewServiceRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEEC19820BE3D980080BB34 /* NewServiceRequestOperation.swift */; };
 		EDB7F4271EC211DD0037CCB3 /* Horatio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDB7F41D1EC211DD0037CCB3 /* Horatio.framework */; };
 		EDB7F42C1EC211DD0037CCB3 /* HoratioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F42B1EC211DD0037CCB3 /* HoratioTests.swift */; };
 		EDB7F42E1EC211DD0037CCB3 /* Horatio.h in Headers */ = {isa = PBXBuildFile; fileRef = EDB7F4201EC211DD0037CCB3 /* Horatio.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -75,6 +76,7 @@
 /* Begin PBXFileReference section */
 		4FB1ABC1207EF53000C78406 /* JSONParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingTests.swift; sourceTree = "<group>"; };
 		4FB1ABC3207FA6D500C78406 /* Horatio.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; name = Horatio.podspec; path = ../Horatio.podspec; sourceTree = "<group>"; };
+		BDEEC19820BE3D980080BB34 /* NewServiceRequestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceRequestOperation.swift; sourceTree = "<group>"; };
 		EDB7F41D1EC211DD0037CCB3 /* Horatio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Horatio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB7F4201EC211DD0037CCB3 /* Horatio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Horatio.h; sourceTree = "<group>"; };
 		EDB7F4211EC211DD0037CCB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				EDB7F47D1EC212080037CCB3 /* ServiceRequestConfigurator.swift */,
 				EDB7F47E1EC212080037CCB3 /* ServiceRequestDecorator.swift */,
 				EDB7F47F1EC212080037CCB3 /* ServiceRequestOperation.swift */,
+				BDEEC19820BE3D980080BB34 /* NewServiceRequestOperation.swift */,
 				EDB7F4801EC212080037CCB3 /* ServiceRequestStatus.swift */,
 				EDB7F4811EC212080037CCB3 /* ServiceSession.swift */,
 			);
@@ -482,6 +485,7 @@
 				EDB7F4821EC212080037CCB3 /* Container.swift in Sources */,
 				EDB7F4961EC212080037CCB3 /* GroupOperation.swift in Sources */,
 				EDB7F4861EC212080037CCB3 /* FeatureSubject.swift in Sources */,
+				BDEEC19920BE3D980080BB34 /* NewServiceRequestOperation.swift in Sources */,
 				EDB7F4841EC212080037CCB3 /* FeatureManager.swift in Sources */,
 				EDB7F4A31EC212080037CCB3 /* NSURL+CacheFiles.swift in Sources */,
 				EDB7F4A81EC212080037CCB3 /* OperationQueue.swift in Sources */,
