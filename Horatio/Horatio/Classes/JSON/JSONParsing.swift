@@ -215,7 +215,7 @@ extension String {
 
         func decodeEntity(_ entity: String) -> Character? {
             if entity.hasPrefix("\\x") || entity.hasPrefix("\\u") {
-                return decodeHexValue(entity.substring(from: entity.index(entity.startIndex, offsetBy: 2)), base: 16)
+                return decodeHexValue(String(entity[entity.index(entity.startIndex, offsetBy: 2)]), base: 16)
             }
 
             return nil
