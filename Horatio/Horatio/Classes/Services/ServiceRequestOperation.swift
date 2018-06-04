@@ -211,9 +211,10 @@ public class ProcessServiceResponseOperation: Operation, ServiceResponseProcessi
     
     // MARK: - Initialization
     
-    public init(request: ServiceRequest, responseProcessor: ServiceResponseProcessor) {
+    public init(request: ServiceRequest, responseProcessor: ServiceResponseProcessor, responseData: Data? = nil) {
         self.request = request
         self.responseProcessor = responseProcessor
+        self.responseData = responseData
     }
     
     // MARK: - Operation execute override
