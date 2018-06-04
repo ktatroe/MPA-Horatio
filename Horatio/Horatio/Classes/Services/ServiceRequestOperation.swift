@@ -146,9 +146,9 @@ public class DownloadServiceResponseOperation: GroupOperation, ServiceResponseFe
     public var responseData: Data? {
         return try? Data(contentsOf: cacheFileURL)
     }
-    
+
     // MARK: - Initialization
-    
+
     public init(request: ServiceRequest, session: ServiceSession? = nil, cacheFileURL: URL, urlSession: URLSession = URLSession.shared) {
         self.request = request
         self.cacheFileURL = cacheFileURL
