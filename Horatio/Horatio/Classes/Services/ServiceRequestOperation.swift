@@ -34,12 +34,12 @@ public class FetchServiceResponseOperation: GroupOperation {
     // MARK: - Initialization
     
     public init(request: ServiceRequest, session: ServiceSession? = nil, urlSession: URLSession = URLSession.shared, responseProcessor: ServiceResponseProcessor) {
-        
+
         let fetchOperation: ServiceFetchOperation
         switch request.requestMethod {
         case .data:
             fetchOperation = DataServiceResponseOperation(request: request, session: session, urlSession: urlSession)
-            
+
         case .download:
             let cacheFileURL = FetchServiceResponseOperation.constructCacheFileURL(for: request)
             fetchOperation = DownloadServiceResponseOperation(request: request, session: session, cacheFileURL: cacheFileURL, urlSession: urlSession)
@@ -49,31 +49,31 @@ public class FetchServiceResponseOperation: GroupOperation {
         }
 
         let processOperation = ProcessServiceResponseOperation(request: request, responseProcessor: responseProcessor)
-        
+
         let dataPassingOperation = BlockOperation {
             processOperation.responseData = fetchOperation.responseData
         }
-        
+
         dataPassingOperation.addDependency(fetchOperation)
         processOperation.addDependency(dataPassingOperation)
-        
+
         super.init(operations: [fetchOperation, processOperation, dataPassingOperation])
-        
+
         #if os(iOS) || os(tvOS)
         let timeout = TimeoutObserver(timeout: 20.0)
         addObserver(timeout)
         #endif
-        
+
         let networkObserver = NetworkObserver()
         addObserver(networkObserver)
-        
+
         name = "Fetch Service Request Operation"
     }
-    
+
     override open func finished(_ errors: [NSError]) {
         errorHandler?(errors)
     }
-    
+
     // MARK: - Private
     
     private static func constructCacheFileURL(for request: ServiceRequest) -> URL {
@@ -152,7 +152,7 @@ public class DownloadServiceResponseOperation: GroupOperation, ServiceResponseFe
     public init(request: ServiceRequest, session: ServiceSession? = nil, cacheFileURL: URL, urlSession: URLSession = URLSession.shared) {
         self.request = request
         self.cacheFileURL = cacheFileURL
-        
+
         super.init(operations: [])
         
         guard let urlRequest = request.makeURLRequest(session),
@@ -169,10 +169,10 @@ public class DownloadServiceResponseOperation: GroupOperation, ServiceResponseFe
         let taskOperation = URLSessionTaskOperation(task: task)
         addOperation(taskOperation)
     }
-    
-    
+
+
     // MARK: - Private
-    
+
     private func downloadFinished(_ url: URL?, error: Error?) {
         if let localURL = url {
             try? FileManager.default.removeItem(at: cacheFileURL)
@@ -182,7 +182,7 @@ public class DownloadServiceResponseOperation: GroupOperation, ServiceResponseFe
             } catch let error as NSError {
                 aggregateError(error)
             }
-            
+
         } else if let error = error {
             aggregateError(error)
         } else {
@@ -210,7 +210,7 @@ public class ProcessServiceResponseOperation: Operation, ServiceResponseProcessi
     public fileprivate(set) var responseData: Data?
     
     // MARK: - Initialization
-    
+
     public init(request: ServiceRequest, responseProcessor: ServiceResponseProcessor, responseData: Data? = nil) {
         self.request = request
         self.responseProcessor = responseProcessor
@@ -251,13 +251,13 @@ public class ProcessServiceResponseOperation: Operation, ServiceResponseProcessi
 public enum ServiceResponseProcessorParam {
     /// Initial input is typically a memory-efficient `NSInputStream`.
     case stream(InputStream)
-    
+
     /// `NSData` can be used to pipe data from one processor to the next.
     case data(Data)
-    
+
     /// The processor was terminal, with an indication of whether the data was completely processed.
     case processed(Bool)
-    
+
     /// The processor was terminal, and ended with a known error.
     case error(NSError)
 }
