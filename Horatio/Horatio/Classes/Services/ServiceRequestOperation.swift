@@ -143,9 +143,7 @@ public class DownloadServiceResponseOperation: GroupOperation, ServiceResponseFe
     public let request: ServiceRequest
     public let cacheFileURL: URL
     
-    public var responseData: Data? {
-        return try? Data(contentsOf: cacheFileURL)
-    }
+    public private(set) var responseData: Data?
 
     // MARK: - Initialization
 
@@ -162,7 +160,7 @@ public class DownloadServiceResponseOperation: GroupOperation, ServiceResponseFe
         
         name = "Download Service Request Operation \(url)"
         
-        let task = urlSession.downloadTask(with: urlRequest) { [weak self] (url, response, error) in
+        let task = urlSession.downloadTask(with: urlRequest) { [weak self] (url, _, error) in
             self?.downloadFinished(url, error: error)
         }
         
@@ -179,6 +177,8 @@ public class DownloadServiceResponseOperation: GroupOperation, ServiceResponseFe
             
             do {
                 try FileManager.default.moveItem(at: localURL, to: cacheFileURL)
+                
+                responseData = try Data(contentsOf: cacheFileURL)
             } catch let error as NSError {
                 aggregateError(error)
             }
