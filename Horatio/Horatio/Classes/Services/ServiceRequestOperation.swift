@@ -42,7 +42,7 @@ public class FetchServiceResponseOperation: GroupOperation {
             
         case .download:
             let cacheFileURL = FetchServiceResponseOperation.constructCacheFileURL(for: request)
-            fetchOperation = DownloadServiceResponseOperation(request: request, cacheFileURL: cacheFileURL, session: session, urlSession: urlSession)
+            fetchOperation = DownloadServiceResponseOperation(request: request, session: session, cacheFileURL: cacheFileURL, urlSession: urlSession)
             errorHandler = { _ in
                 try? FileManager.default.removeItem(at: cacheFileURL)
             }
@@ -149,7 +149,7 @@ public class DownloadServiceResponseOperation: GroupOperation, ServiceResponseFe
     
     // MARK: - Initialization
     
-    public init(request: ServiceRequest, cacheFileURL: URL, session: ServiceSession? = nil, urlSession: URLSession = URLSession.shared) {
+    public init(request: ServiceRequest, session: ServiceSession? = nil, cacheFileURL: URL, urlSession: URLSession = URLSession.shared) {
         self.request = request
         self.cacheFileURL = cacheFileURL
         

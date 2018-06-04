@@ -138,7 +138,6 @@
 		EDB7F47C1EC212080037CCB3 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
 		EDB7F47D1EC212080037CCB3 /* ServiceRequestConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestConfigurator.swift; sourceTree = "<group>"; };
 		EDB7F47E1EC212080037CCB3 /* ServiceRequestDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestDecorator.swift; sourceTree = "<group>"; };
-		EDB7F47F1EC212080037CCB3 /* OldServiceRequestOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldServiceRequestOperation.swift; sourceTree = "<group>"; };
 		EDB7F4801EC212080037CCB3 /* ServiceRequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestStatus.swift; sourceTree = "<group>"; };
 		EDB7F4811EC212080037CCB3 /* ServiceSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -306,7 +305,6 @@
 				EDB7F47C1EC212080037CCB3 /* ServiceRequest.swift */,
 				EDB7F47D1EC212080037CCB3 /* ServiceRequestConfigurator.swift */,
 				EDB7F47E1EC212080037CCB3 /* ServiceRequestDecorator.swift */,
-				EDB7F47F1EC212080037CCB3 /* OldServiceRequestOperation.swift */,
 				BDEEC19820BE3D980080BB34 /* ServiceRequestOperation.swift */,
 				EDB7F4801EC212080037CCB3 /* ServiceRequestStatus.swift */,
 				EDB7F4811EC212080037CCB3 /* ServiceSession.swift */,
