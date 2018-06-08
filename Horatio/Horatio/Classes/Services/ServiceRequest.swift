@@ -102,7 +102,7 @@ public struct ServiceRequest {
 
     // MARK: - Initialization
 
-    public init?(endpoint: ServiceEndpoint, payload: ServiceRequestPayload? = nil, configurator: ServiceRequestConfigurator? = nil, requestMethod: ServiceRequestMethod = .download) {
+    public init?(endpoint: ServiceEndpoint, payload: ServiceRequestPayload? = nil, configurator: ServiceRequestConfigurator? = nil, requestMethod: ServiceRequestMethod) {
         
         self.endpoint = endpoint
 
