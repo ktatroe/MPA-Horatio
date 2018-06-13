@@ -19,6 +19,19 @@ public protocol ServiceRequestPayload {
 }
 
 
+/**
+ Provides a default implementation of hashValue() that uses values() to
+ calculate the hash. Override in implementation to provide specialized hash
+ */
+public extension ServiceRequestPayload {
+    func hashValue() -> Int {
+        let strings = values().map { (key, value) in "\(key):\(value)" }
+        let fullString = strings.sorted().joined()
+        return fullString.hashValue
+    }
+}
+
+
 /// An empty service request for requests that require no payload; typealias to a specific payload type to use
 open class EmptyServiceRequestPayload: ServiceRequestPayload {
     // MARK: - Initializers
