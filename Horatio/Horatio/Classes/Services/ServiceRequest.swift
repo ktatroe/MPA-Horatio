@@ -71,6 +71,10 @@ public func == (lhs: ServiceRequestIdentifier, rhs: ServiceRequestIdentifier) ->
     return (lhs.endpoint.identifier == rhs.endpoint.identifier) && (lhs.payload.hashValue() == rhs.payload.hashValue())
 }
 
+public enum ServiceRequestMethod {
+    case data
+    case download
+}
 
 /**
  Turns an `ServiceEndpoint` into an `NSURLRequest` by assigning the endpoint a locator
@@ -94,15 +98,18 @@ public struct ServiceRequest {
     public let payload: ServiceRequestPayload?
     let configurator: ServiceRequestConfigurator?
 
+    let requestMethod: ServiceRequestMethod
 
     // MARK: - Initialization
 
-    public init?(endpoint: ServiceEndpoint, payload: ServiceRequestPayload? = nil, configurator: ServiceRequestConfigurator? = nil) {
+    public init?(endpoint: ServiceEndpoint, payload: ServiceRequestPayload? = nil, configurator: ServiceRequestConfigurator? = nil, requestMethod: ServiceRequestMethod) {
+        
         self.endpoint = endpoint
 
         self.payload = payload
         self.configurator = configurator
-
+        self.requestMethod = requestMethod
+        
         if let configurator = configurator {
             self.url = configurator.configureURL(self)
         } else {
