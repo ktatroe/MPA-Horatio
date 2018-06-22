@@ -62,7 +62,7 @@ public extension ServiceRequestConfigurator {
         guard let range = path.range(of: "?") else { return components }
 
         var newComponents = components
-        newComponents.path = String(path[range.lowerBound...])
+        newComponents.path = String(path[..<range.lowerBound])
         let queryString = String(path[range.upperBound...])
 
         var queryItems = [URLQueryItem]()
