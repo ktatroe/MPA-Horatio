@@ -146,7 +146,7 @@ public struct ServiceRequest {
     public func makeURLRequest(_ session: ServiceSession?) -> URLRequest? {
         guard let url = url else { return nil }
 
-        var request = NSMutableURLRequest(url: url)
+        var request = URLRequest(url: url)
         request.httpMethod = self.endpoint.type.rawValue
 
         if let configurator = configurator {
@@ -157,6 +157,6 @@ public struct ServiceRequest {
             request = session.signURLRequest(request)
         }
 
-        return request as URLRequest
+        return request
     }
 }

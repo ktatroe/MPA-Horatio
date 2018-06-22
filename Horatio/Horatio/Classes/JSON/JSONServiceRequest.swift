@@ -36,18 +36,21 @@ open class JSONBodyServiceRequestConfigurator: ServiceRequestConfigurator {
  Adds HTTP headers indicating the response is expected (and allowed) to be in JSON format.
  */
 open class JSONHeadersServiceRequestDecorator: ServiceRequestDecorator {
-    public init() {
-        
-    }
+    
+    public init() { }
     
     
     // MARK: - Protocols
     
     // MARK: <ServiceRequestDecorator>
     
-    open func compose(_ urlRequest: NSMutableURLRequest) {
-        urlRequest.setValue("application/json, text/javascript, */*; q=0.01", forHTTPHeaderField:"Accept")
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    open func compose(_ urlRequest: URLRequest) -> URLRequest {
+        var request = urlRequest
+        
+        request.setValue("application/json, text/javascript, */*; q=0.01", forHTTPHeaderField:"Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        return request
     }
 }
 
@@ -72,10 +75,14 @@ open class JSONBodyParametersServiceRequestDecorator: ServiceRequestDecorator {
     
     // MARK: <ServiceRequestDecorator>
     
-    open func compose(_ urlRequest: NSMutableURLRequest) {
+    open func compose(_ urlRequest: URLRequest) -> URLRequest {
+        var request = urlRequest
+        
         do {
             let data = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-            urlRequest.httpBody = data
+            request.httpBody = data
         } catch { }
+        
+        return request
     }
 }

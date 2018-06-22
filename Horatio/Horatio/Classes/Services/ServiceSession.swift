@@ -27,5 +27,5 @@ public protocol ServiceSession: class {
     func attemptOpen(_ completion: (() -> Bool)?)
     func close()
 
-    func signURLRequest(_ request: NSMutableURLRequest) -> NSMutableURLRequest
+    func signURLRequest(_ request: URLRequest) -> URLRequest
 }

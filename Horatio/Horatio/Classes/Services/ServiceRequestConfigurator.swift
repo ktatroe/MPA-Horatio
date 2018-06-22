@@ -11,7 +11,7 @@ import Foundation
  */
 public protocol ServiceRequestConfigurator: class {
     func configureURL(_ serviceRequest: ServiceRequest) -> URL?
-    func configureURLRequest(_ serviceRequest: ServiceRequest, urlRequest: NSMutableURLRequest) -> NSMutableURLRequest
+    func configureURLRequest(_ serviceRequest: ServiceRequest, urlRequest: URLRequest) -> URLRequest
 
     func endpointPathTransformers(_ serviceRequest: ServiceRequest) -> [ServiceEndpointPathTransformer]
     func urlRequestDecorators(_ serviceRequest: ServiceRequest) -> [ServiceRequestDecorator]
@@ -43,12 +43,13 @@ public extension ServiceRequestConfigurator {
     }
 
 
-    public func configureURLRequest(_ serviceRequest: ServiceRequest, urlRequest: NSMutableURLRequest) -> NSMutableURLRequest {
+    public func configureURLRequest(_ serviceRequest: ServiceRequest, urlRequest: URLRequest) -> URLRequest {
+        var request = urlRequest
         for decorator in urlRequestDecorators(serviceRequest) {
-            decorator.compose(urlRequest)
+            request = decorator.compose(request)
         }
 
-        return urlRequest
+        return request
     }
 
     /**
