@@ -76,7 +76,7 @@ class TimedTaskCoordinator : ScheduledTaskCoordinator {
 
     func scheduleTasks() {
         guard isActive else { return }
-        guard let queue = Container.resolve(OperationQueue.self) else { return }
+        guard let queue = try? Container.resolve(OperationQueue.self) else { return }
 
         serialQueue.sync {
             for provider in self.providers {

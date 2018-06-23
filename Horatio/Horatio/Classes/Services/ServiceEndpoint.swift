@@ -30,7 +30,7 @@ public enum ServiceEndpointType : String {
  but can switch between them as necessary (for example, when switching environments).
  */
 public protocol ServiceEndpointProvider: class {
-    func endpoint(_ identifier: String) -> ServiceEndpoint?
+    func endpoint(_ identifier: String) throws -> ServiceEndpoint
 }
 
 

@@ -19,6 +19,19 @@ public protocol ServiceRequestPayload {
 }
 
 
+/**
+ Provides a default implementation of hashValue() that uses values() to
+ calculate the hash. Override in implementation to provide specialized hash
+ */
+public extension ServiceRequestPayload {
+    func hashValue() -> Int {
+        let strings = values().map { (key, value) in "\(key):\(value)" }
+        let fullString = strings.sorted().joined()
+        return fullString.hashValue
+    }
+}
+
+
 /// An empty service request for requests that require no payload; typealias to a specific payload type to use
 open class EmptyServiceRequestPayload: ServiceRequestPayload {
     // MARK: - Initializers
@@ -71,6 +84,10 @@ public func == (lhs: ServiceRequestIdentifier, rhs: ServiceRequestIdentifier) ->
     return (lhs.endpoint.identifier == rhs.endpoint.identifier) && (lhs.payload.hashValue() == rhs.payload.hashValue())
 }
 
+public enum ServiceRequestMethod {
+    case data
+    case download
+}
 
 /**
  Turns an `ServiceEndpoint` into an `NSURLRequest` by assigning the endpoint a locator
@@ -94,15 +111,17 @@ public struct ServiceRequest {
     public let payload: ServiceRequestPayload?
     let configurator: ServiceRequestConfigurator?
 
+    let requestMethod: ServiceRequestMethod
 
     // MARK: - Initialization
 
-    public init?(endpoint: ServiceEndpoint, payload: ServiceRequestPayload? = nil, configurator: ServiceRequestConfigurator? = nil) {
+    public init(endpoint: ServiceEndpoint, payload: ServiceRequestPayload? = nil, configurator: ServiceRequestConfigurator? = nil, requestMethod: ServiceRequestMethod) {
         self.endpoint = endpoint
 
         self.payload = payload
         self.configurator = configurator
-
+        self.requestMethod = requestMethod
+        
         if let configurator = configurator {
             self.url = configurator.configureURL(self)
         } else {
@@ -127,7 +146,7 @@ public struct ServiceRequest {
     public func makeURLRequest(_ session: ServiceSession?) -> URLRequest? {
         guard let url = url else { return nil }
 
-        var request = NSMutableURLRequest(url: url)
+        var request = URLRequest(url: url)
         request.httpMethod = self.endpoint.type.rawValue
 
         if let configurator = configurator {
@@ -138,6 +157,6 @@ public struct ServiceRequest {
             request = session.signURLRequest(request)
         }
 
-        return request as URLRequest
+        return request
     }
 }

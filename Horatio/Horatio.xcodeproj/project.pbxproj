@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4FB1ABC2207EF53000C78406 /* JSONParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1ABC1207EF53000C78406 /* JSONParsingTests.swift */; };
 		4FB1ABC4207FA6D500C78406 /* Horatio.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1ABC3207FA6D500C78406 /* Horatio.podspec */; };
+		BDEEC19920BE3D980080BB34 /* ServiceRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEEC19820BE3D980080BB34 /* ServiceRequestOperation.swift */; };
 		EDB7F4271EC211DD0037CCB3 /* Horatio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDB7F41D1EC211DD0037CCB3 /* Horatio.framework */; };
 		EDB7F42C1EC211DD0037CCB3 /* HoratioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F42B1EC211DD0037CCB3 /* HoratioTests.swift */; };
 		EDB7F42E1EC211DD0037CCB3 /* Horatio.h in Headers */ = {isa = PBXBuildFile; fileRef = EDB7F4201EC211DD0037CCB3 /* Horatio.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -57,7 +58,6 @@
 		EDB7F4B71EC212080037CCB3 /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F47C1EC212080037CCB3 /* ServiceRequest.swift */; };
 		EDB7F4B81EC212080037CCB3 /* ServiceRequestConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F47D1EC212080037CCB3 /* ServiceRequestConfigurator.swift */; };
 		EDB7F4B91EC212080037CCB3 /* ServiceRequestDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F47E1EC212080037CCB3 /* ServiceRequestDecorator.swift */; };
-		EDB7F4BA1EC212080037CCB3 /* ServiceRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F47F1EC212080037CCB3 /* ServiceRequestOperation.swift */; };
 		EDB7F4BB1EC212080037CCB3 /* ServiceRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4801EC212080037CCB3 /* ServiceRequestStatus.swift */; };
 		EDB7F4BC1EC212080037CCB3 /* ServiceSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7F4811EC212080037CCB3 /* ServiceSession.swift */; };
 /* End PBXBuildFile section */
@@ -75,6 +75,7 @@
 /* Begin PBXFileReference section */
 		4FB1ABC1207EF53000C78406 /* JSONParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingTests.swift; sourceTree = "<group>"; };
 		4FB1ABC3207FA6D500C78406 /* Horatio.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; name = Horatio.podspec; path = ../Horatio.podspec; sourceTree = "<group>"; };
+		BDEEC19820BE3D980080BB34 /* ServiceRequestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequestOperation.swift; sourceTree = "<group>"; };
 		EDB7F41D1EC211DD0037CCB3 /* Horatio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Horatio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB7F4201EC211DD0037CCB3 /* Horatio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Horatio.h; sourceTree = "<group>"; };
 		EDB7F4211EC211DD0037CCB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,7 +138,6 @@
 		EDB7F47C1EC212080037CCB3 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
 		EDB7F47D1EC212080037CCB3 /* ServiceRequestConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestConfigurator.swift; sourceTree = "<group>"; };
 		EDB7F47E1EC212080037CCB3 /* ServiceRequestDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestDecorator.swift; sourceTree = "<group>"; };
-		EDB7F47F1EC212080037CCB3 /* ServiceRequestOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestOperation.swift; sourceTree = "<group>"; };
 		EDB7F4801EC212080037CCB3 /* ServiceRequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestStatus.swift; sourceTree = "<group>"; };
 		EDB7F4811EC212080037CCB3 /* ServiceSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -305,7 +305,7 @@
 				EDB7F47C1EC212080037CCB3 /* ServiceRequest.swift */,
 				EDB7F47D1EC212080037CCB3 /* ServiceRequestConfigurator.swift */,
 				EDB7F47E1EC212080037CCB3 /* ServiceRequestDecorator.swift */,
-				EDB7F47F1EC212080037CCB3 /* ServiceRequestOperation.swift */,
+				BDEEC19820BE3D980080BB34 /* ServiceRequestOperation.swift */,
 				EDB7F4801EC212080037CCB3 /* ServiceRequestStatus.swift */,
 				EDB7F4811EC212080037CCB3 /* ServiceSession.swift */,
 			);
@@ -397,17 +397,19 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Mudpot Apps";
 				TargetAttributes = {
 					EDB7F41C1EC211DD0037CCB3 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 46RFK4MJ8P;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 					EDB7F4251EC211DD0037CCB3 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 46RFK4MJ8P;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -455,7 +457,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDB7F4AC1EC212080037CCB3 /* RemoteNotificationCondition.swift in Sources */,
-				EDB7F4BA1EC212080037CCB3 /* ServiceRequestOperation.swift in Sources */,
 				EDB7F4B01EC212080037CCB3 /* URLSessionTaskOperation.swift in Sources */,
 				EDB7F4A51EC212080037CCB3 /* OperationCondition.swift in Sources */,
 				EDB7F49D1EC212080037CCB3 /* NetworkObserver.swift in Sources */,
@@ -482,6 +483,7 @@
 				EDB7F4821EC212080037CCB3 /* Container.swift in Sources */,
 				EDB7F4961EC212080037CCB3 /* GroupOperation.swift in Sources */,
 				EDB7F4861EC212080037CCB3 /* FeatureSubject.swift in Sources */,
+				BDEEC19920BE3D980080BB34 /* ServiceRequestOperation.swift in Sources */,
 				EDB7F4841EC212080037CCB3 /* FeatureManager.swift in Sources */,
 				EDB7F4A31EC212080037CCB3 /* NSURL+CacheFiles.swift in Sources */,
 				EDB7F4A81EC212080037CCB3 /* OperationQueue.swift in Sources */,
@@ -533,15 +535,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -586,7 +596,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.Horatio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = AdHoc;
 		};
@@ -599,7 +609,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = AdHoc;
 		};
@@ -613,15 +623,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -667,15 +685,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -720,7 +746,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.Horatio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -740,7 +766,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.Horatio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -753,7 +779,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -766,7 +792,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mudpotapps.HoratioTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

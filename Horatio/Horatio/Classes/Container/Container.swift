@@ -71,21 +71,20 @@ open class Container {
 
 
 extension Container : Resolvable {
-    @discardableResult
-    public func resolve<T>(_ serviceType: T.Type, name: String? = nil) -> T? {
+    
+    public func resolve<T>(_ serviceType: T.Type, name: String? = nil) throws -> T {
         typealias FactoryType = (Resolvable) -> T
 
-        return resolveFactory(name) { (factory: FactoryType) in factory(self) }
+        return try resolveFactory(name) { (factory: FactoryType) in factory(self) }
     }
 
-    @discardableResult
-    static public func resolve<T>(_ serviceType: T.Type, name: String? = nil) -> T? {
-        let result = sharedContainer.resolve(serviceType, name: name)
+    static public func resolve<T>(_ serviceType: T.Type, name: String? = nil) throws -> T {
+        let result = try sharedContainer.resolve(serviceType, name: name)
 
         return result
     }
 
-    internal func resolveFactory<T, Factory>(_ name: String?, invoker: (Factory) -> T) -> T? {
+    internal func resolveFactory<T, Factory>(_ name: String?, invoker: (Factory) -> T) throws -> T {
         let key = ContainerItemKey(factoryType: Factory.self, name: name)
 
         // read from data structure in a thread-safe manner
@@ -95,16 +94,20 @@ extension Container : Resolvable {
             servicesLock.unlock()
         }
 
-        if let entry = services[key] as? ContainerEntry<T> {
-            if entry.instance == nil {
-                // this is doing a write to a shared object, and also must happen inside the lock
-                entry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
-            }
-
-            return entry.instance as? T
+        guard let entry = services[key] as? ContainerEntry<T> else {
+            throw ResolvableError.entryMissing(forKey: String(describing: key))
         }
-
-        return nil
+        
+        if entry.instance == nil {
+            // this is doing a write to a shared object, and also must happen inside the lock
+            entry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
+        }
+        
+        guard let instance = entry.instance as? T else {
+            throw ResolvableError.invalidType
+        }
+        
+        return instance
     }
 
     fileprivate func resolveEntry<T, Factory>(_ entry: ContainerEntry<T>, key: ContainerItemKey, invoker: (Factory) -> T) -> T {
@@ -117,8 +120,13 @@ extension Container : Resolvable {
 
 public typealias FunctionType = Any
 
+public enum ResolvableError: Error {
+    case invalidType
+    case entryMissing(forKey: String)
+}
+
 public protocol Resolvable {
-    func resolve<T>(_ serviceType: T.Type, name: String?) -> T?
+    func resolve<T>(_ serviceType: T.Type, name: String?) throws -> T
 }
 
 
@@ -129,6 +137,12 @@ internal struct ContainerItemKey {
     internal init(factoryType: FunctionType.Type, name: String? = nil) {
         self.factoryType = factoryType
         self.name = name
+    }
+}
+
+extension ContainerItemKey: CustomStringConvertible {
+    var description: String {
+        return "type: \(factoryType) name: \(name ?? "nil")"
     }
 }
 

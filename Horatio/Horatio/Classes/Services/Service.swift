@@ -4,6 +4,9 @@
 
 import Foundation
 
+public enum ServiceError: Error {
+    case endpointProviderNotFound
+}
 
 /**
  Provides access to named `ServiceEndpoint` instances and generates `ServiceRequest`
@@ -13,19 +16,15 @@ import Foundation
 public protocol Service: class {
     var sessionHandler: ServiceSessionHandler? { get }
 
-    func makeRequest(_ identifier: String, payload: ServiceRequestPayload?, configurator: ServiceRequestConfigurator?) -> ServiceRequest?
+    func makeRequest(_ identifier: String, payload: ServiceRequestPayload?, configurator: ServiceRequestConfigurator?, requestMethod: ServiceRequestMethod) throws -> ServiceRequest
 }
 
 extension Service {
-    public func makeRequest(_ identifier: String, payload: ServiceRequestPayload?, configurator: ServiceRequestConfigurator?) -> ServiceRequest? {
-        if let endpointProvider = Container.resolve(ServiceEndpointProvider.self) {
-            if let endpoint = endpointProvider.endpoint(identifier) {
-                let request = ServiceRequest(endpoint: endpoint, payload: payload, configurator: configurator)
-
-                return request
-            }
-        }
-
-        return nil
+    public func makeRequest(_ identifier: String, payload: ServiceRequestPayload?, configurator: ServiceRequestConfigurator?, requestMethod: ServiceRequestMethod) throws -> ServiceRequest {
+        let endpointProvider = try Container.resolve(ServiceEndpointProvider.self)
+        let endpoint = try endpointProvider.endpoint(identifier)
+        let request = ServiceRequest(endpoint: endpoint, payload: payload, configurator: configurator, requestMethod: requestMethod)
+        
+        return request
     }
 }

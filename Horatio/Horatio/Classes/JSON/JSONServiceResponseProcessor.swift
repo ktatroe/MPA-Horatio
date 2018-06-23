@@ -57,7 +57,7 @@ open class JSONServiceResponseProcessor: ServiceResponseProcessor {
             case .stream(let inputStream):
                 jsonData = try JSONSerialization.jsonObject(with: inputStream, options: .allowFragments)
                 
-            case .data(_, let inputData):
+            case .data(let inputData):
                 jsonData = try JSONSerialization.jsonObject(with: inputData, options: .allowFragments)
                 
             default:
