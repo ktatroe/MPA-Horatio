@@ -1,6 +1,7 @@
 ## Build generated
 build/
 DerivedData/
+Binaries/
 
 ## Various settings
 *.pbxuser
@@ -16,3 +17,4 @@ xcuserdata/
 ## Other
 *.moved-aside
 *.xcuserstate
+
